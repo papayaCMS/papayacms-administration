@@ -24,7 +24,6 @@ require_once("./inc.conf.php");
 require_once("./inc.func.php");
 
 define('PAPAYA_ADMIN_PAGE', TRUE);
-
 /**
  * check include path - try to include installer, and application object
  * @var PapayaApplicationCms $application Application object

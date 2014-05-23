@@ -224,6 +224,5 @@ function setUpAutoloader($directoriesUp = 4) {
   } else {
     include_once($path.'conf.inc.php');
   }
-  includeOrRedirect(PAPAYA_INCLUDE_PATH.'system/Papaya/Autoloader.php');
-  spl_autoload_register('PapayaAutoloader::load');
+  includeOrRedirect($path.'/../vendor/autoload.php');
 }
