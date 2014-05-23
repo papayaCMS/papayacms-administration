@@ -1,4 +1,7 @@
 {
   "name": "papaya/cms-administration",
-  "type": "papaya-administration-ui"
+  "type": "papaya-administration-ui",
+  "require": {
+    "papaya/composer-plugins": "*"
+  }
 }
