@@ -1,0 +1,1 @@
+"On" to bring up a form for automatically sending status updates to social networks after publishing pages, otherwise "Off".
