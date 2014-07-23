@@ -1,0 +1,1 @@
+"On", um nach dem Veröffentlichen von Seiten ein Formular zum automatischen Senden einer Statusmeldung in sozialen Netzwerken anzuzeigen, andernfalls "Off".
