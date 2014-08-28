@@ -22,6 +22,7 @@ function initializeAdministrationPage() {
   } else {
     include_once($path.'/../conf.inc.php');
   }
+  define('PAPAYA_DOCUMENT_ROOT', dirname($path).'/');
   include_once($path.'/inc.func.php');
   $application = include_once($path.'/inc.application.php');
   $options = $application->options;
