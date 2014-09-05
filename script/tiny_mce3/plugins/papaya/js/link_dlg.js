@@ -135,6 +135,11 @@ PapayaLinkForm = JsonClass(
           this.setFieldValue('pageidtarget', attrTarget);
           this.setFieldValue('urltarget', attrTarget);
         }
+        //target
+        if (this.papayaTag.hasAttr('nofollow')) {
+          var attrNoFollow = this.papayaTag.getAttr('nofollow', '');
+          this.setFieldValue('urlnofollow', attrNoFollow == 'yes');
+        }
         //alternative text mode
         var attrAltMode = this.papayaTag.getAttr('altmode', 'auto');
         this.setFieldValue('pageidtextmode', attrAltMode);
@@ -222,6 +227,11 @@ PapayaLinkForm = JsonClass(
         this.papayaTag.setAttr('title', this.getFieldValue('urltitle'));
         this.papayaTag.setAttr('class', this.getFieldValue('urlcss'));
         this.papayaTag.setAttr('target', this.getFieldValue('urltarget'));
+        if (this.getFieldValue('urlnofollow')) {
+          this.papayaTag.setAttr('nofollow', 'yes');
+        } else {
+          this.papayaTag.setAttr('nofollow', '');
+        }
         if (this.getFieldValue('urlpopupuse')) {
           this.papayaTag.name = 'popup';
           this.papayaTag.setAttr('width', this.getFieldValue('urlpopupwidth'));

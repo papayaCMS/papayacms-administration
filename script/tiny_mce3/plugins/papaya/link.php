@@ -160,6 +160,13 @@ if (initializeAdministrationPage()) {
               </select>
             </td>
           </tr>
+          <tr>
+            <td class="columnLabel">&nbsp;</td>
+            <td class="columnElement">
+                <input type="checkbox" name="urlnofollow" id="urlnofollow" value="yes">
+                <label for="urlnofollow">{#papaya.link_nofollow}</label>
+            </td>
+          </tr>
         </table>
         <fieldset>
           <legend>{#papaya.link_popup_title}</legend>
