@@ -1164,7 +1164,7 @@ img.dialogImage, div.dialogImage {
 
 input.dialogInput, input.dialogPassword,
 input.dialogImage, input.dialogFixedImage, input.dialogMediaFile,
-select.dialogSelect, input.dialogPageId, input.dialogGeoPos,
+select.dialogSelect, select.dialogList, input.dialogPageId, input.dialogGeoPos,
 input.dialogInputDate, input.dialogInputDateTime, input.dialogInputColor,
 textarea.dialogTextarea, textarea.dialogSimpleRichtext, textarea.dialogRichtext {
   border: 1px solid <?php echo PAPAYA_BORDERCOLOR_DOWN; ?>;
@@ -1173,7 +1173,7 @@ textarea.dialogTextarea, textarea.dialogSimpleRichtext, textarea.dialogRichtext 
 }
 input.dialogInput:focus, input.dialogPassword:focus,
 input.dialogImage:focus, input.dialogFixedImage:focus, input.dialogMediaFile:focus,
-select.dialogSelect:focus, input.dialogPageId:focus, input.dialogGeoPos:focus,
+select.dialogSelect:focus, select.dialogList:focus, input.dialogPageId:focus, input.dialogGeoPos:focus,
 input.dialogInputDate:focus, input.dialogInputDateTime:focus, input.dialogInputColor:focus,
 textarea.dialogTextarea:focus,
 textarea.dialogSimpleRichtext:focus, textarea.dialogRichtext:focus {
@@ -1198,7 +1198,8 @@ span.dialogCheckbox input:focus {
   color: <?php echo PAPAYA_FGCOLOR_FOCUS; ?>;
 }
 
-select.dialogSelect optgroup {
+select.dialogSelect optgroup,
+select.dialogList optgroup {
   background-color: <?php echo PAPAYA_BGCOLOR_SUBTITLE; ?>;
   background-image: url(pics/<?php echo PAPAYA_THEME_PICS; ?>/background-title.png);
   background-position: left -80px;
@@ -1207,13 +1208,15 @@ select.dialogSelect optgroup {
   line-height: 16px;
   text-align: center;
 }
-select.dialogSelect option {
+select.dialogSelect option,
+select.dialogList option {
   background-color: <?php echo PAPAYA_BGCOLOR_LISTVIEW_ODD; ?>;
   color: <?php echo PAPAYA_FGCOLOR_LISTVIEW; ?>;
   line-height: 16px;
   text-align: left;
 }
-select.dialogSelect option.even {
+select.dialogSelect option.even,
+select.dialogList option.even {
   background-color: <?php echo PAPAYA_BGCOLOR_LISTVIEW_EVEN; ?>;
   color: <?php echo PAPAYA_FGCOLOR_LISTVIEW; ?>;
 }
