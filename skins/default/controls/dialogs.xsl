@@ -609,6 +609,15 @@
   <xsl:param name="field"/>
   <xsl:param name="select" select="$field/select"/>
   <xsl:choose>
+    <xsl:when test="$select/@type = 'multiple'">
+      <select class="scaleable dialogList" multiple="multiple" name="{$select/@name}" size="{$select/@size}">
+        <xsl:for-each select="$select/option">
+          <xsl:call-template name="dialog-field-select-option">
+            <xsl:with-param name="option" select="."/>
+          </xsl:call-template>
+        </xsl:for-each>
+      </select>
+    </xsl:when>
     <xsl:when test="$select/@type = 'dropdown'">
       <select class="scaleable dialogSelect" name="{$select/@name}" size="1">
         <xsl:for-each select="$select/option">
