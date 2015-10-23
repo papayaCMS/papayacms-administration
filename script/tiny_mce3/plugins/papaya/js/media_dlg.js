@@ -19,9 +19,6 @@ PapayaMediaForm = JsonClass(
       editMarginBottom : {
         check : 'numeric'
       },
-      editMarginLeft : {
-        check : 'numeric'
-      },
       editSizeWidth : {
         check : ['numeric', 'gt=0']
       },
@@ -154,6 +151,8 @@ PapayaMediaForm = JsonClass(
                 break;
             }
           }
+        } else if (this.papayaTag.getAttr('lightbox') == 'yes') {
+          this.selectLinkMode('lightbox', true);
         } else if (this.papayaTag.getAttr('popup') == 'yes') {
           this.selectLinkMode('popup', true);
         } else {
@@ -186,6 +185,12 @@ PapayaMediaForm = JsonClass(
         this.papayaTag.setAttr('class', this.getFieldValue('cssclass'));
 
         switch (this.mediaData.linkMode) {
+        case 'lightbox' :
+          this.papayaTag.setAttr('lightbox', 'yes');
+          this.papayaTag.setAttr('href', '');
+          this.papayaTag.setAttr('target', '');
+          this.papayaTag.setAttr('topic', '');
+          break;
         case 'popup' :
           this.papayaTag.setAttr('popup', 'yes');
           this.papayaTag.setAttr('href', '');
@@ -410,6 +415,7 @@ PapayaMediaForm = JsonClass(
       var panels = {
         none : 'panel_linkParamNone',
         popup : 'panel_linkParamPopup',
+        lightbox : 'panel_linkParamLightbox',
         pageid : 'panel_linkParamPageId',
         url : 'panel_linkParamURL',
         email : 'panel_linkParamEmail',

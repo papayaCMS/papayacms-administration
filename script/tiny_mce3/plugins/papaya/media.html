@@ -135,6 +135,10 @@
                   <label for="linktype_popup">{#papaya.media_link_type_popup}</label>
                 </li>
                 <li>
+                  <input type="radio" name="linktype" id="linktype_lightbox" value="popup" onchange="PapayaMediaDialog.selectLinkMode('lightbox', this.checked);" onclick="PapayaMediaDialog.selectLinkMode('lightbox', this.checked);"/>
+                  <label for="linktype_lightbox">{#papaya.media_link_type_lightbox}</label>
+                </li>
+                <li>
                   <input type="radio" name="linktype" id="linktype_pageid" value="pageid" onchange="PapayaMediaDialog.selectLinkMode('pageid', this.checked);" onclick="PapayaMediaDialog.selectLinkMode('pageid', this.checked);"/>
                   <label for="linktype_pageid">{#papaya.media_link_type_pageid}</label>
                 </li>
@@ -163,6 +167,9 @@
               </div>
               <div id="panel_linkParamPopup" style="display: none;">
                 Popup
+              </div>
+              <div id="panel_linkParamLightbox" style="display: none;">
+                Lightbox
               </div>
               <div id="panel_linkParamPageId" style="display: none;">
                 <table class="properties" summary="">
