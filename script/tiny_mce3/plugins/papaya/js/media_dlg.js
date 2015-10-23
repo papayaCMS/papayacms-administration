@@ -186,6 +186,7 @@ PapayaMediaForm = JsonClass(
 
         switch (this.mediaData.linkMode) {
         case 'lightbox' :
+          this.papayaTag.setAttr('popup', '');
           this.papayaTag.setAttr('lightbox', 'yes');
           this.papayaTag.setAttr('href', '');
           this.papayaTag.setAttr('target', '');
@@ -193,18 +194,21 @@ PapayaMediaForm = JsonClass(
           break;
         case 'popup' :
           this.papayaTag.setAttr('popup', 'yes');
+          this.papayaTag.setAttr('lightbox', '');
           this.papayaTag.setAttr('href', '');
           this.papayaTag.setAttr('target', '');
           this.papayaTag.setAttr('topic', '');
           break;
         case 'url' :
           this.papayaTag.setAttr('popup', '');
+          this.papayaTag.setAttr('lightbox', '');
           this.papayaTag.setAttr('href', this.getFieldValue('url'));
           this.papayaTag.setAttr('target', this.getFieldValue('urltarget'));
           this.papayaTag.setAttr('topic', '');
           break;
         case 'email' :
           this.papayaTag.setAttr('popup', '');
+          this.papayaTag.setAttr('lightbox', '');
           var emailHref = 'mailto:' + this.getFieldValue('email');
           var emailSubject = this.getFieldValue('emailsubject');
           if (emailSubject != '') {
@@ -216,6 +220,7 @@ PapayaMediaForm = JsonClass(
           break;
         case 'file' :
           this.papayaTag.setAttr('popup', '');
+          this.papayaTag.setAttr('lightbox', '');
           var fileHref = 'mediafile:' + this.getFieldValue('filedataid');
           this.papayaTag.setAttr('href', fileHref);
           this.papayaTag.setAttr('target', this.getFieldValue('filetarget'));
@@ -223,6 +228,7 @@ PapayaMediaForm = JsonClass(
           break;
         case 'image' :
           this.papayaTag.setAttr('popup', '');
+          this.papayaTag.setAttr('lightbox', '');
           var imageHref = 'mediaimage:' + this.getFieldValue('imageid');
           this.papayaTag.setAttr('href', imageHref);
           this.papayaTag.setAttr('target', '');
@@ -230,6 +236,7 @@ PapayaMediaForm = JsonClass(
           break;
         case 'pageid' :
           this.papayaTag.setAttr('popup', '');
+          this.papayaTag.setAttr('lightbox', '');
           this.papayaTag.setAttr('href', '');
           this.papayaTag.setAttr('target', '');
           this.papayaTag.setAttr('topic', this.getFieldValue('pageid'));
@@ -237,6 +244,7 @@ PapayaMediaForm = JsonClass(
         case 'none' :
         default :
           this.papayaTag.setAttr('popup', '');
+          this.papayaTag.setAttr('lightbox', '');
           this.papayaTag.setAttr('href', '');
           this.papayaTag.setAttr('target', '');
           this.papayaTag.setAttr('topic', '');
