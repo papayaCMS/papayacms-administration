@@ -55,7 +55,7 @@ PapayaMediaForm = JsonClass(
       title : '',
       size : 0,
       align : '',
-      resize : 'abs',
+      resize : '',
       width : 0,
       height : 0,
       orgWidth: 0,

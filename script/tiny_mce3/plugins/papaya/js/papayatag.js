@@ -162,7 +162,6 @@ PapayaTag = JsonClass(
             var newSize = this.loadSizeFromHTML(tagAttr);
             if ((this.getAttr('dyn_width', 0) != newSize.width) ||
                 (this.getAttr('dyn_height', 0) != newSize.height)) {
-              this.setAttr('resize', 'abs');
               this.setAttr('width', newSize.width);
               this.setAttr('height', newSize.height);
               this.setAttr('dyn_width', newSize.dyn_width);
