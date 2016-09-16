@@ -1,0 +1,54 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "98c305bd5b1beb0a05576f81580f8b34",
+    "content-hash": "f4056f39dfbd742603d76c176f90b2fe",
+    "packages": [
+        {
+            "name": "papaya/composer-plugins",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/papayaCMS/papayacms-composer-plugins.git",
+                "reference": "bc01c504dbdac62a67a912a19f1fec64470081fd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/papayaCMS/papayacms-composer-plugins/zipball/bc01c504dbdac62a67a912a19f1fec64470081fd",
+                "reference": "bc01c504dbdac62a67a912a19f1fec64470081fd",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.0"
+            },
+            "require-dev": {
+                "composer/composer": "1.0.*@dev"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "Papaya\\Composer\\InstallerPlugin"
+            },
+            "autoload": {
+                "psr-0": {
+                    "Papaya\\Composer": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "description": "papaya CMS Composer Plugins",
+            "time": "2016-04-11 14:33:58"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "papaya/composer-plugins": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}

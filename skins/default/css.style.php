@@ -1529,7 +1529,20 @@ form.dialog .buttons .button {
   border-bottom-color: <?php echo PAPAYA_BORDERCOLOR_DOWN; ?>;
   border-right-color: <?php echo PAPAYA_BORDERCOLOR_DOWN; ?>;
   background-color: <?php echo PAPAYA_BGCOLOR_WORKAREA; ?>;
+  color:  <?php echo PAPAYA_FGCOLOR_WORKAREA; ?>;
   cursor: pointer;
+  font-size: 13px;
+  line-height: 17px;
+  height: 21px;
+  vertical-align: bottom;
+  padding: 0 4px;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+form.dialog .buttons a.button {
+  text-decoration: none;
+  line-height: 19px;
 }
 form.dialog .buttons .left {
   float: left;

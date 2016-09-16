@@ -162,12 +162,37 @@
 
 <xsl:template name="dialog-button">
   <xsl:param name="button"/>
+  <xsl:variable name="hasImage" select="$button/@image and $button/@image != ''"/>
   <xsl:choose>
-    <xsl:when test="$button/@type = image">
+    <xsl:when test="$button/@type = 'image'">
       IMAGE_BUTTON
     </xsl:when>
+    <xsl:when test="$button/@type = 'link'">
+      <a href="{@href}">
+        <xsl:if test="$button/@id != ''">
+          <xsl:attribute name="id"><xsl:value-of select="$button/@id"/></xsl:attribute>
+        </xsl:if>
+        <xsl:if test="$button/@hint != ''">
+          <xsl:attribute name="title"><xsl:value-of select="$button/@hint"/></xsl:attribute>
+        </xsl:if>
+        <xsl:if test="$button/@onclick != ''">
+          <xsl:attribute name="onclick"><xsl:value-of select="$button/@onclick"/></xsl:attribute>
+        </xsl:if>
+        <xsl:attribute name="class">
+          <xsl:text>button </xsl:text>
+          <xsl:choose>
+            <xsl:when test="@align = 'left'">left</xsl:when>
+            <xsl:otherwise>right</xsl:otherwise>
+          </xsl:choose>
+          <xsl:if test="$hasImage"><xsl:text> buttonWithImage</xsl:text></xsl:if>
+        </xsl:attribute>
+        <xsl:if test="$hasImage">
+          <xsl:attribute name="style">background-image: <xsl:value-of select="$image"/></xsl:attribute>
+        </xsl:if>
+        <xsl:value-of select="$button/text()"/>
+      </a>
+    </xsl:when>
     <xsl:otherwise>
-      <xsl:variable name="hasImage" select="$button/@image and $button/@image != ''"/>
       <input>
         <xsl:attribute name="type">
           <xsl:choose>
