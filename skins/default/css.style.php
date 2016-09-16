@@ -31,6 +31,12 @@ body, div, ul, li, input, select, textarea {
   -khtml-box-sizing: border-box;
   box-sizing: border-box;
 }
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+  margin-top:-2px;
+  margin-bottom: -2px;
+}
 body {
   font-family: sans-serif;
   margin: 0;
