@@ -184,7 +184,8 @@ function includeThemeDefinition() {
   $application = setUpApplication();
   $color = $application->options->get('PAPAYA_UI_THEME', 'green');
   $theme = $application->options->get('PAPAYA_UI_SKIN', 'default');
-  include_once(dirname(__FILE__).'/skins/'.$theme.'/theme_'.$color.'.php');
+  $themeFile = dirname(__FILE__).'/skins/'.$theme.'/theme_'.$color.'.php';
+  include_once($themeFile);
 }
 
 /**
