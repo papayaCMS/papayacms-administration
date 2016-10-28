@@ -716,6 +716,29 @@ table.columnGrid td.columnRight {
   padding: 2px;
   vertical-align: top;
 }
+#workarea table.listview tr.hasInput td:first-of-type {
+  padding-left: 20px;
+  position: relative;
+}
+#workarea table.listview .itemInput {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+#workarea table.listview .itemInput input {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+#workarea table.listview .itemInput label {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
 #workarea table.listview .nodeIcon img {
   width: 16px;
   height: 16px;
@@ -744,6 +767,27 @@ table.columnGrid td.columnRight {
   float: left;
   width: 210px;
   margin: 5px;
+  position: relative;
+}
+#workarea div.listitemTile .itemInput {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  line-height: 1em;
+}
+#workarea div.listitemTile .itemInput label {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+#workarea div.listitemTile .itemInput input {
+  position: absolute;
+  left: 10px;
+  top: 10px;
 }
 #workarea div.listitemTile div.tile {
   height: 70px;
@@ -826,6 +870,7 @@ table.columnGrid td.columnRight {
   vertical-align: middle;
   float: left;
   margin: 4px;
+  position: relative;
 }
 #workarea div.listitemThumbnail div.thumbnail {
   line-height: 100px;
@@ -835,6 +880,26 @@ table.columnGrid td.columnRight {
   text-decoration: none;
   border: 1px solid <?php echo PAPAYA_BGCOLOR_LISTVIEW_EVEN; ?>;
   background-color: <?php echo PAPAYA_BGCOLOR_LISTVIEW_ODD; ?>;
+}
+#workarea div.listitemThumbnail .itemInput {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  line-height: 1em;
+}
+#workarea div.listitemThumbnail .itemInput label {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+#workarea div.listitemThumbnail .itemInput input {
+  position: absolute;
+  left: 10px;
+  top: 10px;
 }
 #workarea div.listitemThumbnail div.thumbnail div.image {
   vertical-align: middle;

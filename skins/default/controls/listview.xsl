@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:xls="http://www.w3.org/1999/XSL/Transform">
 
 <xsl:template name="listview">
   <xsl:param name="listview"/>
@@ -28,14 +29,14 @@
         </xsl:call-template>
         <xsl:if test="$listview/items/listitem">
           <xsl:choose>
-            <xsl:when test="$listview/@mode = 'tile'">
+            <xsl:when test="$listview/@mode = 'tile' or $listview/@mode = 'tiles'">
               <xsl:call-template name="listview-items-tiled">
                 <xsl:with-param name="title" select="$listview/@title"/>
                 <xsl:with-param name="columns" select="$listview/cols/col"/>
                 <xsl:with-param name="items" select="$listview/items/listitem"/>
               </xsl:call-template>
             </xsl:when>
-            <xsl:when test="$listview/@mode = 'thumbs'">
+            <xsl:when test="$listview/@mode = 'thumbs' or $listview/@mode = 'thumbnails'">
               <xsl:call-template name="listview-items-thumbnails">
                 <xsl:with-param name="title" select="$listview/@title"/>
                 <xsl:with-param name="columns" select="$listview/cols/col"/>
@@ -85,6 +86,9 @@
             <xsl:when test="not(position() mod 2)">even</xsl:when>
             <xsl:otherwise>odd</xsl:otherwise>
           </xsl:choose>
+          <xsl:if test="count(input[@type='radio' or @type = 'checkbox']) &gt; 0">
+            <xsl:text> hasInput</xsl:text>
+          </xsl:if>
         </xsl:attribute>
         <xsl:if test="@id">
           <xsl:attribute name="id"><xsl:value-of select="@id"/></xsl:attribute>
@@ -108,6 +112,9 @@
               <xsl:attribute name="onmouseover">overlib("<xsl:value-of select="$hint-js"/>"); this.title = "";</xsl:attribute>
             </xsl:if>
           </xsl:if>
+          <xsl:call-template name="listitem-input">
+            <xsl:with-param name="input" select="input[@type='radio' or @type = 'checkbox']"/>
+          </xsl:call-template>
           <xsl:choose>
             <xsl:when test="count(node) &gt; 0">
               <xsl:choose>
@@ -235,6 +242,9 @@
 	            </xsl:otherwise>
 	          </xsl:choose>
 	        </div>
+          <xsl:call-template name="listitem-input">
+            <xsl:with-param name="input" select="input[@type='radio' or @type = 'checkbox']"/>
+          </xsl:call-template>
 	        <div class="subitems">
 	          <xsl:text> </xsl:text>
 	          <xsl:for-each select="subitem">
@@ -304,17 +314,39 @@
 	            </xsl:otherwise>
 	          </xsl:choose>
           </div>
-         <div class="data">
+          <div class="data">
             <xsl:call-template name="listview-item-part-title">
               <xsl:with-param name="item" select="."/>
             </xsl:call-template>
           </div>
           <xsl:call-template name="float-fix"/>
         </div>
+        <xsl:call-template name="listitem-input">
+          <xsl:with-param name="input" select="input[@type='radio' or @type = 'checkbox']"/>
+        </xsl:call-template>
       </div>
     </xsl:for-each>
     <xsl:call-template name="float-fix"/>
   </div>
+</xsl:template>
+
+<xsl:template name="listitem-input">
+  <xsl:param name="input"/>
+  <xsl:if test="$input">
+    <xsl:variable name="inputId">
+      <xsl:choose>
+        <xsl:when test="$input/@id"><xsl:value-of select="$input/@id"/></xsl:when>
+        <xsl:otherwise><xsl:value-of select="generate-id($input)"/></xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <span class="itemInput">
+      <label for="{$inputId}"> </label>
+      <xsl:element name="{local-name($input)}">
+        <xsl:copy-of select="$input/@*[name() != 'id']"/>
+        <xsl:attribute name="id"><xsl:value-of select="$inputId"/></xsl:attribute>
+      </xsl:element>
+    </span>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template name="listview-buttons">
