@@ -1575,6 +1575,18 @@ div.messageQuote {
 /******************************************************************************
    Form Controls - Refactoring
 ******************************************************************************/
+#workarea form.dialogSizeXSmall table.dialog td.caption {
+  min-width: 40px;
+  width: 40px;
+}
+#workarea form.dialogSizeSmall table.dialog td.caption {
+  min-width: 50px;
+  width: 50px;
+}
+#workarea form.dialogSizeLarge table.dialog td.caption {
+  min-width: 200px;
+  width: 200px;
+}
 form.dialog .buttons {
   text-align: right;
   clear: both;
