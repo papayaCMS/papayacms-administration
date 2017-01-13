@@ -47,13 +47,16 @@
     <xsl:attribute name="class">
       <xsl:text>dialog</xsl:text>
       <xsl:choose>
-        <xsl:when test="$dialog/options/option[@name = 'DIALOG_WIDTH']/@value = $DIALOG_SIZE_MEDIUM">
+        <xsl:when test="$dialog/options/option[@name = 'DIALOG_WIDTH']/@value = $DIALOG_SIZE_M">
           <xsl:text> dialogSizeMedium</xsl:text>
         </xsl:when>
-        <xsl:when test="$dialog/options/option[@name = 'DIALOG_WIDTH']/@value = $DIALOG_SIZE_SMALL">
+        <xsl:when test="$dialog/options/option[@name = 'DIALOG_WIDTH']/@value = $DIALOG_SIZE_XS">
+          <xsl:text> dialogSizeXSmall</xsl:text>
+        </xsl:when>
+        <xsl:when test="$dialog/options/option[@name = 'DIALOG_WIDTH']/@value = $DIALOG_SIZE_S">
           <xsl:text> dialogSizeSmall</xsl:text>
         </xsl:when>
-        <xsl:when test="$dialog/options/option[@name = 'DIALOG_WIDTH']/@value = $DIALOG_SIZE_LARGE">
+        <xsl:when test="$dialog/options/option[@name = 'DIALOG_WIDTH']/@value = $DIALOG_SIZE_L">
           <xsl:text> dialogSizeLarge</xsl:text>
         </xsl:when>
       </xsl:choose>
