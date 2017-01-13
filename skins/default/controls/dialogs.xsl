@@ -7,9 +7,10 @@
 <xsl:variable name="DIALOG_CAPTION_STYLE_SIDE" select="1"/>
 <xsl:variable name="DIALOG_CAPTION_STYLE_TOP" select="2"/>
 
-<xsl:variable name="DIALOG_SIZE_SMALL" select="0"/>
-<xsl:variable name="DIALOG_SIZE_MEDIUM" select="1"/>
-<xsl:variable name="DIALOG_SIZE_LARGE" select="2"/>
+<xsl:variable name="DIALOG_SIZE_XS" select="'xs'"/>
+<xsl:variable name="DIALOG_SIZE_S" select="'s'"/>
+<xsl:variable name="DIALOG_SIZE_M" select="'m'"/>
+<xsl:variable name="DIALOG_SIZE_L" select="'l'"/>
 
 <xsl:template match="dialog-box">
   <xsl:call-template name="dialog-box">
