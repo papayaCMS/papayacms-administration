@@ -53,6 +53,7 @@ jQuery(document).ready(
           time24h: true
         }
       );
+    jQuery('div.dialogInputDateRange').papayaDialogDateRange({});
     jQuery('input.dialogInputGeoPosition,input.dialogGeoPos').papayaDialogFieldGeoPosition({});
     jQuery('input.dialogInputPage,input.dialogPageId').papayaDialogFieldPage({});
     jQuery('input.dialogInputMediaFile,input.dialogMediaFile').papayaDialogFieldMediaFile({});

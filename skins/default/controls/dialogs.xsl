@@ -424,7 +424,13 @@
 
   <xsl:template name="dialog-field-grouped">
     <xsl:param name="field"/>
-    <div class="group">
+    <div>
+      <xsl:attribute name="class">
+        <xsl:text>group</xsl:text>
+        <xsl:choose>
+          <xsl:when test="$field/@class = 'DialogFieldDateRange'"><xsl:text> dialogInputDateRange</xsl:text></xsl:when>
+        </xsl:choose>
+      </xsl:attribute>
       <xsl:for-each select="$field/group/*">
         <xsl:choose>
           <xsl:when test="local-name(.) = 'input'">

@@ -455,6 +455,7 @@
     <script type="text/javascript" src="./script/jquery.papayaDialogField.js"></script>
     <script type="text/javascript" src="./script/jquery.papayaDialogFieldColor.js"></script>
     <script type="text/javascript" src="./script/jquery.papayaDialogFieldCounted.js"></script>
+    <script type="text/javascript" src="./script/jquery.papayaDialogFieldDateRange.js"></script>
     <script type="text/javascript" src="./script/jquery.papayaDialogFieldGeoPosition.js"></script>
     <script type="text/javascript" src="./script/jquery.papayaDialogFieldImage.js"></script>
     <script type="text/javascript" src="./script/jquery.papayaDialogFieldImageResized.js"></script>
