@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:stylesheet
+  version="1.0"
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:papaya-fn="http://www.papaya-cms.com/ns/functions"
+  extension-element-prefixes="func"
+  exclude-result-prefixes="papaya-fn">
 
   <xsl:import href="./dialogs-old.xsl"/>
+  <xsl:import href="../_functions/json-encode.xsl"/>
 
   <xsl:variable name="DIALOG_CAPTION_STYLE_NONE" select="0"/>
   <xsl:variable name="DIALOG_CAPTION_STYLE_SIDE" select="1"/>
@@ -430,6 +436,14 @@
         <xsl:choose>
           <xsl:when test="$field/@class = 'DialogFieldDateRange'"><xsl:text> dialogInputDateRange</xsl:text></xsl:when>
         </xsl:choose>
+      </xsl:attribute>
+      <xsl:variable name="labels">
+        <xsl:for-each select="$field/group/labels/label">
+           <xsl:element name="{@for}"><xsl:value-of select="."/></xsl:element>
+        </xsl:for-each>
+      </xsl:variable>
+      <xsl:attribute name="data-labels">
+        <xsl:value-of select="papaya-fn:json-encode($labels)"/>
       </xsl:attribute>
       <xsl:for-each select="$field/group/*">
         <xsl:choose>
