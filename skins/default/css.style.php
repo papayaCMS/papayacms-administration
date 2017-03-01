@@ -1195,6 +1195,9 @@ iframe {
   border-bottom: 1px solid <?php echo PAPAYA_BORDERCOLOR_DOWN; ?>;
   padding: 2px;
 }
+button:focus {
+  outline: none;
+}
 button {
   background: transparent;
   border: 1px solid <?php echo PAPAYA_BORDERCOLOR_UP; ?>;
@@ -1202,6 +1205,11 @@ button {
   border-right-color: <?php echo PAPAYA_BORDERCOLOR_DOWN; ?>;
   cursor: pointer;
   margin-left: 2px;
+}
+button.selected {
+  border: 1px solid <?php echo PAPAYA_BORDERCOLOR_DOWN; ?>;
+  border-bottom-color: <?php echo PAPAYA_BORDERCOLOR_UP; ?>;
+  border-right-color: <?php echo PAPAYA_BORDERCOLOR_UP; ?>;
 }
 button.dialogPopupButton {
   border: none;

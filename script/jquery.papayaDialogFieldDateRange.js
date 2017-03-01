@@ -26,6 +26,8 @@
     currentPage: null,
 
     initialize : function(container) {
+      var labels = $(container).data().labels || {};
+
       // store the checkboxes for later actions
       this.fields.start = $(container).find('input[name$="[start]"]');
       this.fields.end = $(container).find('input[name$="[end]"]');
@@ -33,15 +35,23 @@
       var tabs = $('<div class="dialogControlButtons"/>').appendTo(container);
 
       this.pages.fields = $('<div class="dialogControlPage"/>').appendTo(container).hide();
-      this.pages.in = $('<div class="dialogControlPage"/>').appendTo(container);
-      this.pages.fromTo = $('<div class="dialogControlPage"/>').appendTo(container).hide();
+      this.pages.fromTo = $('<div class="dialogControlPage"/>').appendTo(container)
+      this.pages.in = $('<div class="dialogControlPage"/>').appendTo(container).hide();
       this.pages.from = $('<div class="dialogControlPage"/>').appendTo(container).hide();
       this.pages.to = $('<div class="dialogControlPage"/>').appendTo(container).hide();
 
-      this.tabs.in = this.createTabButton('In', this.pages.in).appendTo(tabs);
-      this.tabs.fromTo = this.createTabButton('From/To', this.pages.fromTo).appendTo(tabs);
-      this.tabs.from = this.createTabButton('From', this.pages.from).appendTo(tabs);
-      this.tabs.to = this.createTabButton('To', this.pages.to).appendTo(tabs);
+      this.tabs.fromTo = this.createTabButton(
+        labels['page-fromto'] || 'From/To', this.pages.fromTo
+      ).appendTo(tabs);
+      this.tabs.in = this.createTabButton(
+        labels['page-in'] || 'In', this.pages.in
+      ).appendTo(tabs);
+      this.tabs.from = this.createTabButton(
+        labels['page-from'] || 'From', this.pages.from
+      ).appendTo(tabs);
+      this.tabs.to = this.createTabButton(
+        labels['page-to'] || 'To', this.pages.to
+      ).appendTo(tabs);
 
       // move static inputs into "fields" tab
       this.pages.fields.append(this.fields.start);
@@ -69,7 +79,13 @@
             startMonth = 0;
             endMonth = 11;
           } else {
-            return;
+            if (value == '') {
+              this.inputs.start.val('');
+              this.inputs.from.val('');
+              this.inputs.end.val('');
+              this.inputs.to.val('');
+              return;
+            }
           }
           startDate = (new Date(year, startMonth, 1, 0, 0, 1));
           endDate = (new Date(year, endMonth + 1, 0, 0, 0, 1));
@@ -137,7 +153,7 @@
         }.bind(this)
       );
 
-      this.switchTo(this.tabs.in, this.pages.in);
+      this.switchTo(this.tabs.fromTo, this.pages.fromTo);
       this.updateFields();
     },
 
@@ -160,7 +176,7 @@
         if (!this.tabs.hasOwnProperty(i)) {
           continue;
         }
-        this.tabs[i].removeAttr('data-selected');
+        this.tabs[i].removeClass('selected');
       }
       for (i in this.pages) {
         if (!this.pages.hasOwnProperty(i)) {
@@ -170,7 +186,7 @@
       }
       this.currentPage = page;
       this.updateFields();
-      tab.attr('data-selected', 'true');
+      tab.addClass('selected');
       page.show();
     },
 
@@ -182,6 +198,8 @@
           var endDate = new Date();
           endDate.setFullYear(endDate.getFullYear() + 100);
           this.fields.end.val(getFormattedDate(endDate));
+        } else {
+          this.fields.end.val('');
         }
       } else if (this.currentPage === this.pages.to) {
         var end = this.inputs.to.val();
@@ -190,12 +208,13 @@
           var startDate = new Date();
           startDate.setFullYear(startDate.getFullYear() - 100);
           this.fields.start.val(getFormattedDate(startDate));
+        } else {
+          this.fields.start.val('');
         }
       } else {
         this.fields.start.val(this.inputs.start.val());
         this.fields.end.val(this.inputs.end.val());
       }
-      console.log(this.fields.start.val(), this.fields.end.val());
     }
   };
 
