@@ -1755,6 +1755,10 @@ div.dialogControlButtons img {
   margin: 0.2em;
   cursor: pointer;
 }
+div.dialogControlButtons button img {
+  margin: 0.2em 0 0 0;
+  cursor: pointer;
+}
 .dialogField .suggest ul {
   margin: 0;
   padding: 0;

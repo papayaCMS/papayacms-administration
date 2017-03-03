@@ -41,16 +41,24 @@
       this.pages.to = $('<div class="dialogControlPage"/>').appendTo(container).hide();
 
       this.tabs.fromTo = this.createTabButton(
-        labels['page-fromto'] || 'From/To', this.pages.fromTo
+        'actions/date-filter-between',
+        labels['page-fromto'] || 'From/To',
+        this.pages.fromTo
       ).appendTo(tabs);
       this.tabs.in = this.createTabButton(
-        labels['page-in'] || 'In', this.pages.in
+        'actions/date-filter-period',
+        labels['page-in'] || 'In (Year: YYYY, Year-Month: YYYY-MM)',
+        this.pages.in
       ).appendTo(tabs);
       this.tabs.from = this.createTabButton(
-        labels['page-from'] || 'From', this.pages.from
+        'actions/date-filter-after',
+        labels['page-from'] || 'From',
+        this.pages.from
       ).appendTo(tabs);
       this.tabs.to = this.createTabButton(
-        labels['page-to'] || 'To', this.pages.to
+        'actions/date-filter-before',
+        labels['page-to'] || 'To',
+        this.pages.to
       ).appendTo(tabs);
 
       // move static inputs into "fields" tab
@@ -157,9 +165,17 @@
       this.updateFields();
     },
 
-    createTabButton : function (caption, page) {
+    createTabButton : function (glyph, text, page) {
       var button = $('<button type="button" class="button">');
-      button.text(caption);
+      var image = $('<img/>').appendTo(button);
+      image.attr(
+        {
+          src : './pics/icons/16x16/' + glyph + '.png',
+          alt : text,
+          title : text
+        }
+      );
+      button.attr('title', text);
       button.click(
         function(tab, page) {
           return function() {
