@@ -219,25 +219,9 @@
 
     updateFields : function() {
       if (this.currentPage === this.pages.from) {
-        var start = this.inputs.from.val();
-        if (start != '') {
-          this.fields.start.val(start);
-          var endDate = new Date();
-          endDate.setFullYear(endDate.getFullYear() + 100);
-          this.fields.end.val(getFormattedDate(endDate));
-        } else {
-          this.fields.end.val('');
-        }
+        this.fields.end.val('');
       } else if (this.currentPage === this.pages.to) {
-        var end = this.inputs.to.val();
-        if (end != '') {
-          this.fields.end.val(end);
-          var startDate = new Date();
-          startDate.setFullYear(startDate.getFullYear() - 100);
-          this.fields.start.val(getFormattedDate(startDate));
-        } else {
-          this.fields.start.val('');
-        }
+        this.fields.start.val('');
       } else {
         this.fields.start.val(this.inputs.start.val());
         this.fields.end.val(this.inputs.end.val());
