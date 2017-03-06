@@ -27,6 +27,7 @@
 
     initialize : function(container) {
       var labels = $(container).data().labels || {};
+      var selectedPage = $(container).data().selectedPage || 'fromto';
 
       // store the checkboxes for later actions
       this.fields.start = $(container).find('input[name$="[start]"]');
@@ -43,27 +44,29 @@
       this.tabs.fromTo = this.createTabButton(
         'actions/date-filter-between',
         labels['page-fromto'] || 'From/To',
-        this.pages.fromTo
+        'fromTo'
       ).appendTo(tabs);
       this.tabs.in = this.createTabButton(
         'actions/date-filter-period',
         labels['page-in'] || 'In (Year: YYYY, Year-Month: YYYY-MM)',
-        this.pages.in
+        'in'
       ).appendTo(tabs);
       this.tabs.from = this.createTabButton(
         'actions/date-filter-after',
         labels['page-from'] || 'From',
-        this.pages.from
+        'from'
       ).appendTo(tabs);
       this.tabs.to = this.createTabButton(
         'actions/date-filter-before',
         labels['page-to'] || 'To',
-        this.pages.to
+        'to'
       ).appendTo(tabs);
 
       // move static inputs into "fields" tab
       this.pages.fields.append(this.fields.start);
       this.pages.fields.append(this.fields.end);
+      this.fields.mode = $('<input type="hidden"/>').appendTo(this.pages.fields);
+      this.fields.mode.attr('name', this.fields.start.attr('name').replace(/\[start\]$/, '[mode]'));
 
       // create a new input for "in" tab
       this.inputs.in = $('<input class="dialogInput dialogScale" type="text"/>').appendTo(this.pages.in);
@@ -132,7 +135,6 @@
           }
         }.bind(this)
       );
-
       // create a new input for "from" tab
       this.inputs.from = $('<input class="dialogInput dialogScale" type="text" autocomplete="off"/>').appendTo(this.pages.from);
       this.inputs.from.val(this.fields.start.val());
@@ -161,11 +163,11 @@
         }.bind(this)
       );
 
-      this.switchTo(this.tabs.fromTo, this.pages.fromTo);
+      this.switchTo(selectedPage);
       this.updateFields();
     },
 
-    createTabButton : function (glyph, text, page) {
+    createTabButton : function (glyph, text, pageName) {
       var button = $('<button type="button" class="button">');
       var image = $('<img/>').appendTo(button);
       image.attr(
@@ -177,16 +179,24 @@
       );
       button.attr('title', text);
       button.click(
-        function(tab, page) {
+        function(pageName) {
           return function() {
-            this.switchTo(tab, page);
+            this.switchTo(pageName);
           }.bind(this)
-        }.bind(this)(button, page)
+        }.bind(this)(pageName)
       );
       return button;
     },
 
-    switchTo : function (tab, page) {
+    switchTo : function (pageName) {
+      var tab, page;
+      if (this.tabs[pageName] && this.pages[pageName]) {
+        tab = this.tabs[pageName];
+        page = this.pages[pageName];
+      } else {
+        tab = this.tabs.fromTo;
+        page = this.pages.fromTo;
+      }
       var i;
       for (i in this.tabs) {
         if (!this.tabs.hasOwnProperty(i)) {
@@ -201,6 +211,7 @@
         this.pages[i].hide();
       }
       this.currentPage = page;
+      this.fields.mode.val(pageName);
       this.updateFields();
       tab.addClass('selected');
       page.show();

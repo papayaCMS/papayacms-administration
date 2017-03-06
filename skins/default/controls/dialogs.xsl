@@ -431,6 +431,7 @@
   <xsl:template name="dialog-field-grouped">
     <xsl:param name="field"/>
     <div>
+      <xsl:copy-of select="$field/group/@*[starts-with(local-name(), 'data-')]"/>
       <xsl:attribute name="class">
         <xsl:text>group</xsl:text>
         <xsl:choose>
