@@ -3,7 +3,6 @@
   version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:papaya-fn="http://www.papaya-cms.com/ns/functions"
-  extension-element-prefixes="func"
   exclude-result-prefixes="papaya-fn">
 
   <xsl:import href="./dialogs-old.xsl"/>
