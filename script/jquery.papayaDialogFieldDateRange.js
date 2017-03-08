@@ -219,9 +219,11 @@
 
     updateFields : function() {
       if (this.currentPage === this.pages.from) {
+        this.fields.start.val(this.inputs.start.val());
         this.fields.end.val('');
       } else if (this.currentPage === this.pages.to) {
         this.fields.start.val('');
+        this.fields.end.val(this.inputs.end.val());
       } else {
         this.fields.start.val(this.inputs.start.val());
         this.fields.end.val(this.inputs.end.val());
