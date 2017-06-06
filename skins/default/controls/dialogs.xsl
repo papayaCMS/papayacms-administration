@@ -363,6 +363,11 @@
               <xsl:with-param name="field" select="$field"/>
             </xsl:call-template>
           </xsl:when>
+          <xsl:when test="$field/image">
+            <xsl:call-template name="dialog-field-image">
+              <xsl:with-param name="field" select="$field"/>
+            </xsl:call-template>
+          </xsl:when>
         </xsl:choose>
       </td>
     </tr>
@@ -750,6 +755,13 @@
       </input>
       <label for="{generate-id($option)}"><xsl:apply-templates select="$option/node()"/></label>
     </div>
+  </xsl:template>
+
+  <xsl:template name="dialog-field-image">
+    <xsl:param name="field"/>
+    <xsl:param name="image" select="$field/image"/>
+
+    <img src="{$image/@src}" alt="" />
   </xsl:template>
 
 </xsl:stylesheet>
