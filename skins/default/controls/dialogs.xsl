@@ -685,13 +685,30 @@
     <xsl:param name="select" select="$field/select"/>
     <xsl:choose>
       <xsl:when test="$select/@type = 'dropdown'">
-        <select class="scaleable dialogSelect" name="{$select/@name}" size="1">
-          <xsl:for-each select="$select/option">
-            <xsl:call-template name="dialog-field-select-option">
-              <xsl:with-param name="option" select="."/>
-            </xsl:call-template>
-          </xsl:for-each>
-        </select>
+        <xsl:choose>
+          <xsl:when test="count($select/group) &gt; 0">
+            <select class="scaleable dialogSelect" name="{$select/@name}" size="1">
+              <xsl:for-each select="$select/group">
+                <optgroup label="{./@caption}">
+                  <xsl:for-each select="./option">
+                    <xsl:call-template name="dialog-field-select-option">
+                      <xsl:with-param name="option" select="."/>
+                    </xsl:call-template>
+                  </xsl:for-each>
+                </optgroup>
+              </xsl:for-each>
+            </select>
+          </xsl:when>
+          <xsl:otherwise>
+            <select class="scaleable dialogSelect" name="{$select/@name}" size="1">
+              <xsl:for-each select="$select/option">
+                <xsl:call-template name="dialog-field-select-option">
+                  <xsl:with-param name="option" select="."/>
+                </xsl:call-template>
+              </xsl:for-each>
+            </select>
+          </xsl:otherwise>
+        </xsl:choose>
       </xsl:when>
       <xsl:when test="$select/@type = 'list'">
         <select class="scaleable dialogList" name="{$select/@name}" multiple="multiple">
