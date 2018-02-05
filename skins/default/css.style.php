@@ -805,6 +805,8 @@ table.columnGrid td.columnRight {
 }
 #workarea div.listitemTile div.icon img.glyph {
   display: inline;
+  max-width: 48px;
+  max-height: 48px;
 }
 #workarea div.listitemTile div.subitems {
   float: right;
@@ -909,6 +911,8 @@ table.columnGrid td.columnRight {
   display: inline;
   vertical-align: middle;
   margin: auto;
+  max-width: 100px;
+  max-height: 80px;
 }
 #workarea div.listitemThumbnail div.data a {
   display: block;
@@ -1737,6 +1741,7 @@ table.dialogField .information .icon {
 }
 table.dialogField .information img {
   display: inline;
+  max-height: 48px;
 }
 table.dialogField .information .title {
   font-weight: bold;

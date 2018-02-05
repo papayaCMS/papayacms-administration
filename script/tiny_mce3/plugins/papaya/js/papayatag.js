@@ -390,35 +390,33 @@ PapayaTag = JsonClass(
       var html = '';
       var attrDownload = this.getAttr('download', 'no');
       var attrType = this.getAttr('dyn_type', 0);
+      var mimeType = this.getAttr('dyn_mimetype', '');
       var mediaTypes = [1, 2, 3, 4, 13];
+      var imageTypes = [1, 2, 3];
       function getSize(name, size) {
-        if (typeof size == 'number' && size > 0) {
+        if (typeof size === 'number' && size > 0) {
           return '" ' + name + '="' + size;
         }
         return '';
       }
-      if (attrDownload == 'no' && PapayaUtils.inArray(attrType, mediaTypes)) {
-        if (this.getAttr('dyn_exists', 0) == 1) {
-          switch (attrType) {
-          case 1:
-          case 2:
-          case 3:
+      var isImage = (mimeType === 'image/svg+xml' || PapayaUtils.inArray(attrType, imageTypes));
+      var isMedia = (isImage || PapayaUtils.inArray(attrType, mediaTypes));
+      if (attrDownload === 'no' &&  isMedia) {
+        if (this.getAttr('dyn_exists', 0) === 1) {
+          if (isImage) {
             html = '<img src="' + this.getAttr('dyn_src') +
-              '" ' + this.dataAttribute + '="'+this.getAttrString() +
+              '" ' + this.dataAttribute + '="' + this.getAttrString() +
               getSize('width', this.getAttr('width', 0)) +
               getSize('height', this.getAttr('height', 0)) +
-              '" style="'+this.getHTMLTagMediaCSS() +
+              '" style="' + this.getHTMLTagMediaCSS() +
               '" class="papayaMedia" />';
-            break;
-          case 4:
-          case 13:
+          } else if (isMedia) {
             html = '<img src="'+this.base_url+'pics/tpoint.gif" ' +
               this.dataAttribute + '="' + this.getAttrString() +
               getSize('width', this.getAttr('width', 0)) +
               getSize('height', this.getAttr('height', 0)) +
               '" style="'+this.getHTMLTagMediaCSS()+
               '" class="papayaMediaFlash" />';
-            break;
           }
         } else {
           html = '<img src="pics/icons/48x48/status/dialog-warning.png" ' +

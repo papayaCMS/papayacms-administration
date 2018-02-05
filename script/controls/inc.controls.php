@@ -17,19 +17,22 @@
 * @version $Id: inc.controls.php 39824 2014-05-20 08:31:38Z weinert $
 */
 
-if (isset($_SERVER['PATH_TRANSLATED']) && $_SERVER['PATH_TRANSLATED'] != '') {
-  $path = strtr(dirname(dirname(dirname(dirname($_SERVER['PATH_TRANSLATED'])))), '\\', '/');
-} else {
-  $path = strtr(dirname(dirname(dirname(dirname($_SERVER['SCRIPT_FILENAME'])))), '\\', '/');
-}
-if (substr($path, -1) != '/') {
-  $path .= '/';
-}
 
-/**
-* @ignore
-*/
-define('PAPAYA_DOCUMENT_ROOT', $path);
+
+if (!defined('PAPAYA_DOCUMENT_ROOT')) {
+  if (isset($_SERVER['PATH_TRANSLATED']) && $_SERVER['PATH_TRANSLATED'] != '') {
+    $path = strtr(dirname(dirname(dirname(dirname($_SERVER['PATH_TRANSLATED'])))), '\\', '/');
+  } else {
+    $path = strtr(dirname(dirname(dirname(dirname($_SERVER['SCRIPT_FILENAME'])))), '\\', '/');
+  }
+  if (substr($path, -1) != '/') {
+    $path .= '/';
+  }
+  /**
+   * @ignore
+   */
+  define('PAPAYA_DOCUMENT_ROOT', $path);
+}
 if (!defined('PAPAYA_ADMIN_PAGE')) {
   /**
   * @ignore
@@ -37,7 +40,7 @@ if (!defined('PAPAYA_ADMIN_PAGE')) {
   define('PAPAYA_ADMIN_PAGE', TRUE);
 }
 /**
-* incusion of base or additional libraries
+* inclusion of base or additional libraries
 */
 require_once(dirname(__FILE__).'/../../inc.conf.php');
 require_once(dirname(__FILE__).'/../../inc.func.php');

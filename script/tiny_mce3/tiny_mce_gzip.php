@@ -18,19 +18,22 @@
 * @version $Id: tiny_mce_gzip.php 38708 2013-09-11 15:09:51Z weinert $
 */
 
-if (isset($_SERVER['PATH_TRANSLATED']) && $_SERVER['PATH_TRANSLATED'] != '') {
+if (isset($_SERVER['PATH_TRANSLATED']) && $_SERVER['PATH_TRANSLATED'] !== '') {
   $adminPath = str_replace('\\', '/', dirname(dirname(dirname($_SERVER['PATH_TRANSLATED']))));
 } else {
   $adminPath = str_replace('\\', '/', dirname(dirname(dirname($_SERVER['SCRIPT_FILENAME']))));
 }
-if (substr($adminPath, -1) != '/') {
+if (substr($adminPath, -1) !== '/') {
   $adminPath .= '/';
 }
 /**
 * Papaya Document Root
 * @ignore
 */
-define('PAPAYA_DOCUMENT_ROOT', dirname($adminPath).'/');
+if (!defined('PAPAYA_DOCUMENT_ROOT')) {
+  define('PAPAYA_DOCUMENT_ROOT', dirname($adminPath).'/');
+}
+
 
 require_once($adminPath.'inc.conf.php');
 require_once($adminPath.'inc.func.php');
