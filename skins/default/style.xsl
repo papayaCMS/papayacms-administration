@@ -62,7 +62,7 @@
   <html>
     <head>
       <meta name="robots" content="noindex, nofollow" />
-      <title><xsl:value-of select="$PAGE_PROJECT" />: <xsl:value-of select="$PAGE_TITLE" /> - papaya CMS 5</title>
+      <title><xsl:value-of select="$PAGE_PROJECT" />: <xsl:value-of select="$PAGE_TITLE" /> - papaya CMS</title>
       <link rel="stylesheet" type="text/css" href="{$PAPAYA_PATH_SKIN}css.style.php?rev={$PAPAYA_VERSION}&amp;theme={$PAPAYA_UI_THEME}"/>
       <link rel="stylesheet" type="text/css" href="./script/jquery/css/papaya/jquery-ui-1.8.21.custom.css"/>
       <link rel="SHORTCUT ICON" href="{$PAPAYA_PATH_SKIN}pics/{$PAPAYA_UI_THEME}/favicon.ico" />
