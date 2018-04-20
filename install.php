@@ -190,7 +190,7 @@ if (!$application) {
     exit();
   }
 
-  if (!PapayaUtilServerProtocol::isSecure()) {
+  if (!(PapayaUtilServerProtocol::isSecure() || PapayaUtilServerName::get() === 'localhost')) {
     $dialog = new PapayaUiDialog();
     $dialog->caption = new PapayaUiStringTranslated('Warning');
     $url = new PapayaUrlCurrent();
