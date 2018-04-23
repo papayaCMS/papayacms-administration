@@ -21,7 +21,7 @@
 /**
 * inclusion of base or additional libraries
 */
-require_once(dirname(__FILE__).'/../../inc.func.php');
+require_once __DIR__.'/../../inc.func.php';
 includeThemeDefinition();
 controlScriptFileCaching(__FILE__, FALSE);
 header('Content-type: text/css');
@@ -376,7 +376,9 @@ div.menuBar ul li.button a.caption {
   margin-left: 20px;
   margin-right: 6px;
 }
-
+div.menuBar ul li.button.text-only a.caption {
+  margin-left: 6px;
+}
 div.menuBar ul li.combobox span.caption {
   white-space: nowrap;
   text-decoration: none;

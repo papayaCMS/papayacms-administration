@@ -120,10 +120,9 @@
     </xsl:variable>
     <li>
       <xsl:attribute name="class">
-        <xsl:choose>
-          <xsl:when test="$button/@down">button selected</xsl:when>
-          <xsl:otherwise>button</xsl:otherwise>
-        </xsl:choose>
+        <xsl:text>button</xsl:text>
+        <xsl:if test="$button/@down"> selected</xsl:if>
+        <xsl:if test="$glyph = ''"> text-only</xsl:if>
       </xsl:attribute>
       <xsl:if test="$glyph != ''">
         <xsl:choose>
