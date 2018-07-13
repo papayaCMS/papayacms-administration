@@ -20,13 +20,17 @@ $runAtBrowser = FALSE;
 $runAtConsole = FALSE;
 $verbose = TRUE;
 
-$path = str_replace('\\', '/', dirname(dirname(__FILE__)));
+$path = str_replace('\\', '/', dirname(__DIR__));
 $outputQueue = '';
+$jobId = 0;
 
-if (empty($_SERVER['DOCUMENT_ROOT']) &&
-    in_array(PHP_SAPI, array('cli', 'cgi')) &&
-    isset($_SERVER['argv']) && isset($_SERVER['argv']) &&
-    is_array($_SERVER['argv']) && count($_SERVER['argv']) > 0) {
+if (
+  empty($_SERVER['DOCUMENT_ROOT']) &&
+  isset($_SERVER['argv']) &&
+  is_array($_SERVER['argv']) &&
+  count($_SERVER['argv']) > 0 &&
+  in_array(PHP_SAPI, array('cli', 'cgi'))
+) {
   //called from cmdline - check for path param
   foreach ($_SERVER['argv'] as $param) {
     if (FALSE !== strpos($param, '--path=')) {
@@ -36,12 +40,14 @@ if (empty($_SERVER['DOCUMENT_ROOT']) &&
       $verbose = FALSE;
     }
     if (FALSE !== strpos($param, '--job=')) {
-      $_GET['job'] = (int)substr($param, 6);
+      $jobId = (int)substr($param, 6);
     }
   }
   $runAtConsole = TRUE;
-} elseif (isset($_SERVER['SCRIPT_FILENAME']) &&
-          file_exists($_SERVER['SCRIPT_FILENAME'])) {
+} elseif (
+  isset($_SERVER['SCRIPT_FILENAME']) &&
+  file_exists($_SERVER['SCRIPT_FILENAME'])
+) {
   //called from webbrowser
   $path = str_replace('\\', '/', dirname(dirname($_SERVER['SCRIPT_FILENAME'])));
   $runAtBrowser = TRUE;
@@ -50,7 +56,7 @@ if (empty($_SERVER['DOCUMENT_ROOT']) &&
   exit;
 }
 //trailing slash
-if (substr($path, -1) != '/') {
+if ('/' !== substr($path, -1)) {
   $path .= '/';
 }
 if (file_exists($path) && is_dir($path)) {
@@ -69,23 +75,24 @@ if (file_exists($path) && is_dir($path)) {
 /**
 * Configuration
 */
-require_once(dirname(__FILE__)."/inc.conf.php");
+require_once __DIR__.'/inc.conf.php';
 
 /** @var PapayaApplicationCms $application */
-$application = include(dirname(__FILE__).'/inc.application.php');
+$application = include __DIR__.'/inc.application.php';
 $options = $application->options;
 
 /**
 * Optionen
 */
 if ($verbose) {
-  $outputQueue .= 'Loading options'."\n";
+  $outputQueue .= 'Loading options.'."\n";
 }
 if ($options->loadAndDefine()) {
   if ($verbose) {
     $outputQueue .= 'Options loaded.'."\n";
   }
 } else {
+  echo $outputQueue;
   echo 'Can not load options.'."\n";
   exit;
 }
@@ -121,8 +128,10 @@ if ($runAtBrowser) {
     } else {
       $remoteAddress = NULL;
     }
-    if (in_array('0.0.0.0', $ipAddresses) ||
-        (isset($remoteAddress) && in_array($remoteAddress, $ipAddresses))) {
+    if (
+      in_array('0.0.0.0', $ipAddresses, TRUE) ||
+      (isset($remoteAddress) && in_array($remoteAddress, $ipAddresses, TRUE))
+    ) {
       if ($verbose) {
         echo 'Called from: '.htmlspecialchars($remoteAddress)."\n";
       }
@@ -131,11 +140,11 @@ if ($runAtBrowser) {
       exit;
     }
   } else {
-    echo 'Invalid access'."\n";
+    echo 'Invalid access.'."\n";
     exit;
   }
 } elseif ($verbose) {
-  echo 'Called from console'."\n";
+  echo 'Called from console.'."\n";
 }
 
 if ($verbose) {
@@ -149,10 +158,10 @@ if ($verbose) {
 }
 
 if ($verbose) {
-  echo "Start (".date('Y-m-d H:i:s').").\n";
+  echo 'Start ('.date('Y-m-d H:i:s').").\n";
 }
 try {
-  $pid = new pidfile(PAPAYA_PATH_CACHE.'papaya_cron.pid');
+  $pid = new pidfile(constant('PAPAYA_PATH_CACHE').'papaya_cron.pid');
   if ($pid->execute($verbose)) {
     $cron = new base_cronjobs;
 
@@ -163,49 +172,47 @@ try {
       if ($PAPAYA_USER->execLogin() &&
           $PAPAYA_USER->hasPerm(PapayaAdministrationPermissions::SYSTEM_CRONJOBS)) {
         if ($verbose) {
-          echo "Job id: ".(int)$_GET['job']."\n";
+          echo 'Job id: '.(int)$_GET['job']."\n";
         }
-        if ($cronjobId = $cron->checkJob($_GET['job'], FALSE)) {
+        if ($cronJobId = $cron->checkJob($_GET['job'], FALSE)) {
           if ($verbose) {
             echo "Job loaded.\n";
           }
-          $cron->executeJob($cronjobId, $verbose);
+          $cron->executeJob($cronJobId, $verbose);
         } else {
           echo 'Not found.'."\n";
         }
       } else {
         echo 'Invalid user'."\n";
       }
-    } elseif ($runAtConsole &&
-              isset($_GET['job']) &&  $_GET['job'] > 0) {
+    } elseif ($runAtConsole && $jobId) {
       if ($verbose) {
-        echo "Job id: ".(int)$_GET['job']."\n";
+        echo 'Job id: '.$jobId."\n";
       }
-      if ($cronjobId = $cron->checkJob($_GET['job'], TRUE)) {
+      if ($cronJobId = $cron->checkJob($jobId, TRUE)) {
         if ($verbose) {
           echo "Job loaded.\n";
         }
-        $cron->executeJob($cronjobId, $verbose);
+        $cron->executeJob($cronJobId, $verbose);
       } else {
         echo 'Not found or not active.'."\n";
       }
-    } elseif ($cronjobId = $cron->getNext()) {
+    } elseif ($cronJobId = $cron->getNext()) {
       if ($verbose) {
-        echo "Job id: ".$cronjobId."\n";
+        echo 'Job id: '.$cronJobId."\n";
       }
-      $cron->executeJob($cronjobId, $verbose);
+      $cron->executeJob($cronJobId, $verbose);
     }
     if ($verbose) {
-      echo "End.\n";
+      echo 'End ('.date('Y-m-d H:i:s').").\n";
     }
     $pid->delete();
     return 0;
-  } else {
-    if ($verbose) {
-      echo "Second Instance. Stop.\n";
-    }
-    return 1;
   }
+  if ($verbose) {
+    echo "Second Instance. Stop.\n";
+  }
+  return 1;
 } catch (LogicException $e) {
   echo $e->getMessage();
   return 1;
