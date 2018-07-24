@@ -17,6 +17,8 @@
 * @version $Id: end.php 39824 2014-05-20 08:31:38Z weinert $
 */
 
+use Papaya\Application\Cms;
+
 if (!defined('PAPAYA_ADMIN_PAGE')) {
   /**
   * This is an administration page
@@ -28,7 +30,7 @@ if (!defined('PAPAYA_ADMIN_PAGE')) {
 require_once("./inc.conf.php");
 require_once("./inc.func.php");
 
-/** @var PapayaApplicationCms $application */
+/** @var Cms $application */
 $application = includeOrRedirect(dirname(__FILE__).'/inc.application.php');
 
 if (!($hasOptions = $application->options->loadAndDefine())) {

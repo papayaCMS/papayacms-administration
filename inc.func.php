@@ -17,6 +17,9 @@
 * @version $Id: inc.func.php 39757 2014-04-24 14:28:20Z weinert $
 */
 
+use Papaya\Application\Cms;
+use Papaya\Application\Profiles\Cms;
+
 /**
 * Translate phrase
 *
@@ -63,7 +66,7 @@ function _gtfile($fileName) {
  * Include file or redirect to
  *
  * @param string $includeFile
- * @return boolean|PapayaApplication|PapayaApplicationCms
+ * @return boolean|PapayaApplication|Cms
  * @access public
  */
 function includeOrRedirect($includeFile) {
@@ -190,16 +193,16 @@ function includeThemeDefinition() {
 
 /**
  * @param int $directoriesUp
- * @return PapayaApplication|PapayaApplicationCms
+ * @return PapayaApplication|Cms
  */
 function setUpApplication($directoriesUp = 4) {
   static $application;
   if (empty($application)) {
     setUpAutoloader($directoriesUp);
-    /** @var PapayaApplicationCms $application */
+    /** @var Cms $application */
     $application = PapayaApplication::getInstance();
     $application->registerProfiles(
-      new PapayaApplicationProfilesCms(), PapayaApplication::DUPLICATE_IGNORE
+      new Cms(), PapayaApplication::DUPLICATE_IGNORE
     );
     $application->response = new PapayaResponse();
     $application->options->loadAndDefine();

@@ -17,6 +17,8 @@
 * @version $Id: inc.auth.php 39781 2014-05-05 15:43:39Z weinert $
 */
 
+use Papaya\Application\Cms;
+
 error_reporting(2047);
 
 if (!defined('PAPAYA_ADMIN_PAGE')) {
@@ -39,7 +41,7 @@ require_once("./inc.func.php");
 */
 require_once('./inc.glyphs.php');
 
-/** @var PapayaApplicationCms $application */
+/** @var Cms $application */
 $application = includeOrRedirect('./inc.application.php');
 
 if (!($hasOptions = $application->options->loadAndDefine())) {

@@ -18,6 +18,7 @@
 */
 
 
+use Papaya\Application\Cms;
 
 if (!defined('PAPAYA_DOCUMENT_ROOT')) {
   if (isset($_SERVER['PATH_TRANSLATED']) && $_SERVER['PATH_TRANSLATED'] != '') {
@@ -45,7 +46,7 @@ if (!defined('PAPAYA_ADMIN_PAGE')) {
 require_once(dirname(__FILE__).'/../../inc.conf.php');
 require_once(dirname(__FILE__).'/../../inc.func.php');
 
-/** @var PapayaApplicationCms $application */
+/** @var Cms $application */
 $application = include_once(dirname(__FILE__).'/../../inc.application.php');
 $application->options->loadAndDefine();
 $application->messages->setUp($application->options);

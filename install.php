@@ -17,6 +17,8 @@
 * @version $Id: install.php 39757 2014-04-24 14:28:20Z weinert $
 */
 
+use Papaya\Application\Cms;
+
 /**
 * Configuration file
 */
@@ -26,7 +28,8 @@ require_once("./inc.func.php");
 define('PAPAYA_ADMIN_PAGE', TRUE);
 /**
  * check include path - try to include installer, and application object
- * @var PapayaApplicationCms $application Application object
+ *
+ * @var Cms $application Application object
  */
 if (defined('PAPAYA_DBG_DEVMODE') && PAPAYA_DBG_DEVMODE) {
   $application = include_once('./inc.application.php');

@@ -14,6 +14,7 @@
  */
 
 use Papaya\Administration\Permissions;
+use Papaya\Application\Cms;
 
 $runAtBrowser = FALSE;
 $runAtConsole = FALSE;
@@ -76,7 +77,7 @@ if (file_exists($path) && is_dir($path)) {
 */
 require_once __DIR__.'/inc.conf.php';
 
-/** @var PapayaApplicationCms $application */
+/** @var Cms $application */
 $application = include __DIR__.'/inc.application.php';
 $options = $application->options;
 
