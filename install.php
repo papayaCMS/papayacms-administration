@@ -1,29 +1,25 @@
 <?php
 /**
-* Installer
-*
-* @copyright 2002-2009 by papaya Software GmbH - All rights reserved.
-* @link http://www.papaya-cms.com/
-* @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License, version 2
-*
-* You can redistribute and/or modify this script under the terms of the GNU General Public
-* License (GPL) version 2, provided that the copyright and license notes, including these
-* lines, remain unmodified. papaya is distributed in the hope that it will be useful, but
-* WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-* FOR A PARTICULAR PURPOSE.
-*
-* @package Papaya
-* @subpackage Administration
-* @version $Id: install.php 39757 2014-04-24 14:28:20Z weinert $
-*/
+ * papaya CMS
+ *
+ * @copyright 2000-2018 by papayaCMS project - All rights reserved.
+ * @link http://www.papaya-cms.com/
+ * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License, version 2
+ *
+ *  You can redistribute and/or modify this script under the terms of the GNU General Public
+ *  License (GPL) version 2, provided that the copyright and license notes, including these
+ *  lines, remain unmodified. papaya is distributed in the hope that it will be useful, but
+ *  WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ *  FOR A PARTICULAR PURPOSE.
+ */
 
 use Papaya\Application\Cms;
 
 /**
 * Configuration file
 */
-require_once("./inc.conf.php");
-require_once("./inc.func.php");
+require_once __DIR__.'/inc.conf.php';
+require_once __DIR__.'/inc.func.php';
 
 define('PAPAYA_ADMIN_PAGE', TRUE);
 /**
@@ -32,9 +28,9 @@ define('PAPAYA_ADMIN_PAGE', TRUE);
  * @var Cms $application Application object
  */
 if (defined('PAPAYA_DBG_DEVMODE') && PAPAYA_DBG_DEVMODE) {
-  $application = include_once('./inc.application.php');
+  $application = include_once(__DIR__.'/inc.application.php');
 } else {
-  $application = @include_once('./inc.application.php');
+  $application = @include_once(__DIR__.'/inc.application.php');
 }
 
 if (!$application) {

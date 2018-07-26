@@ -13,15 +13,13 @@
  *  FOR A PARTICULAR PURPOSE.
  */
 
-use Papaya\Administration\Permissions;
-
 /**
 * Authentication
 */
 require_once("./inc.auth.php");
 
 if ($PAPAYA_SHOW_ADMIN_PAGE &&
-    $PAPAYA_USER->hasPerm(Permissions::IMAGE_GENERATOR)) {
+    $PAPAYA_USER->hasPerm(Papaya\Administration\Permissions::IMAGE_GENERATOR)) {
   initNavigation();
   $PAPAYA_LAYOUT->parameters()->set(
     'PAGE_TITLE', _gt('Administration').' - '._gt('Dynamic Images')
