@@ -13,8 +13,6 @@
  *  FOR A PARTICULAR PURPOSE.
  */
 
-use Papaya\Application\Cms;
-
 /**
 * Configuration file
 */
@@ -25,7 +23,7 @@ define('PAPAYA_ADMIN_PAGE', TRUE);
 /**
  * check include path - try to include installer, and application object
  *
- * @var Cms $application Application object
+ * @var Papaya\Application\Cms $application Application object
  */
 if (defined('PAPAYA_DBG_DEVMODE') && PAPAYA_DBG_DEVMODE) {
   $application = include_once(__DIR__.'/inc.application.php');
@@ -201,7 +199,7 @@ if (!$application) {
     $url->setScheme('https');
     $dialog->action($url->getUrl());
     $dialog->fields[] = new PapayaUiDialogFieldMessage(
-      PapayaMessage::SEVERITY_WARNING,
+      Papaya\Message::SEVERITY_WARNING,
       new PapayaUiStringTranslated(
         'If possible, please use https to access the administration interface.'
       )

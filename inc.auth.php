@@ -81,7 +81,7 @@ if (($path = $application->options->get('PAPAYA_PATH_DATA')) != '' &&
     (!file_exists($path.'.htaccess'))) {
   $application->messages->dispatch(
     new PapayaMessageDisplay(
-      PapayaMessage::SEVERITY_WARNING,
+      Papaya\Message::SEVERITY_WARNING,
       _gt(
         'The file ".htaccess" in the directory "papaya-data/" '.
         'is missing or not accessible. Please secure the directory.'
@@ -92,7 +92,7 @@ if (($path = $application->options->get('PAPAYA_PATH_DATA')) != '' &&
 if (!$application->options->get('PAPAYA_PASSWORD_REHASH', FALSE)) {
   $application->messages->dispatch(
     new PapayaMessageDisplay(
-      PapayaMessage::SEVERITY_WARNING,
+      Papaya\Message::SEVERITY_WARNING,
       _gt(
         'The password rehashing is not active. Please activate PAPAYA_PASSWORD_REHASH.'.
         ' Make sure the authentication tables are up to date before activating'.
