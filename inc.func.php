@@ -198,7 +198,7 @@ function setUpApplication($directoriesUp = 4) {
     $application->registerProfiles(
       new \Papaya\Application\Profiles\Cms(), \Papaya\Application::DUPLICATE_IGNORE
     );
-    $application->response = new PapayaResponse();
+    $application->response = new \Papaya\Response();
     $application->options->loadAndDefine();
   }
   return $application;
