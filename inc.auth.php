@@ -70,7 +70,7 @@ $application->pageReferences->setPreview(TRUE);
 
 $PAPAYA_USER = $application->administrationUser;
 
-$application->phrases = new PapayaPhrases(
+$application->phrases = new \Papaya\Phrases(
   new PapayaPhrasesStorageDatabase(),
   $application->languages->getLanguage($application->options['PAPAYA_UI_LANGUAGE'])
 );
