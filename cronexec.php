@@ -122,8 +122,9 @@ if ($runAtBrowser) {
   if (defined('PAPAYA_BROWSER_CRONJOBS') &&
       defined('PAPAYA_BROWSER_CRONJOBS_IP') && PAPAYA_BROWSER_CRONJOBS) {
     $ipAddresses = preg_split('(\s*,\s*)', trim(PAPAYA_BROWSER_CRONJOBS_IP));
-    if (isset($_SERVER['REMOTE_ADDR']) &&
-        PapayaFilterFactory::isIpAddress($_SERVER['REMOTE_ADDR'], TRUE)) {
+    if (
+      isset($_SERVER['REMOTE_ADDR']) &&
+      \Papaya\Filter\Factory::isIpAddress($_SERVER['REMOTE_ADDR'], TRUE)) {
       $remoteAddress = $_SERVER['REMOTE_ADDR'];
     } else {
       $remoteAddress = NULL;
