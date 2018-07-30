@@ -13,6 +13,8 @@
  *  FOR A PARTICULAR PURPOSE.
  */
 
+use Papaya\Message\Display;
+
 error_reporting(2047);
 
 if (!defined('PAPAYA_ADMIN_PAGE')) {
@@ -80,7 +82,7 @@ if (($path = $application->options->get('PAPAYA_PATH_DATA')) != '' &&
     file_exists($path) &&
     (!file_exists($path.'.htaccess'))) {
   $application->messages->dispatch(
-    new PapayaMessageDisplay(
+    new Display(
       Papaya\Message::SEVERITY_WARNING,
       _gt(
         'The file ".htaccess" in the directory "papaya-data/" '.
@@ -91,7 +93,7 @@ if (($path = $application->options->get('PAPAYA_PATH_DATA')) != '' &&
 }
 if (!$application->options->get('PAPAYA_PASSWORD_REHASH', FALSE)) {
   $application->messages->dispatch(
-    new PapayaMessageDisplay(
+    new Display(
       Papaya\Message::SEVERITY_WARNING,
       _gt(
         'The password rehashing is not active. Please activate PAPAYA_PASSWORD_REHASH.'.
