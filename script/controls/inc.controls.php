@@ -56,7 +56,7 @@ if (defined('PAPAYA_SESSION_NAME')) {
 $application->options->cache = \PapayaSessionOptions::CACHE_PRIVATE;
 $application->session->activate(FALSE);
 $application->phrases = new \Papaya\Phrases(
-  new \PapayaPhrasesStorageDatabase(),
+  new \Papaya\Phrases\Storage\Database(),
   $application->languages->getLanguage($application->options['PAPAYA_UI_LANGUAGE'])
 );
 

@@ -13,8 +13,6 @@
  *  FOR A PARTICULAR PURPOSE.
  */
 
-use Papaya\Message\Display;
-
 error_reporting(2047);
 
 if (!defined('PAPAYA_ADMIN_PAGE')) {
@@ -45,14 +43,14 @@ if (!($hasOptions = $application->options->loadAndDefine())) {
     redirectToInstaller();
   }
 } elseif ($application->options->get('PAPAYA_UI_SECURE', FALSE) &&
-          !PapayaUtilServerProtocol::isSecure()) {
+          !\PapayaUtilServerProtocol::isSecure()) {
   $url = 'https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
   redirectToURL($url);
 }
 
 $application->messages->setUp($application->options);
 if ($application->options->get('PAPAYA_LOG_RUNTIME_REQUEST', FALSE)) {
-  PapayaRequestLog::getInstance();
+  \PapayaRequestLog::getInstance();
 }
 
 /**
@@ -63,7 +61,7 @@ $application->session->setName(
   'sid'.$application->options->get('PAPAYA_SESSION_NAME', '').'admin'
 );
 
-$application->session->options->cache = PapayaSessionOptions::CACHE_NONE;
+$application->session->options->cache = \PapayaSessionOptions::CACHE_NONE;
 if ($redirect = $application->session->activate(TRUE)) {
   $redirect->send();
   exit();
@@ -73,7 +71,7 @@ $application->pageReferences->setPreview(TRUE);
 $PAPAYA_USER = $application->administrationUser;
 
 $application->phrases = new \Papaya\Phrases(
-  new PapayaPhrasesStorageDatabase(),
+  new \Papaya\Phrases\Storage\Database(),
   $application->languages->getLanguage($application->options['PAPAYA_UI_LANGUAGE'])
 );
 
@@ -82,8 +80,8 @@ if (($path = $application->options->get('PAPAYA_PATH_DATA')) != '' &&
     file_exists($path) &&
     (!file_exists($path.'.htaccess'))) {
   $application->messages->dispatch(
-    new Display(
-      Papaya\Message::SEVERITY_WARNING,
+    new \Papaya\Message\Display(
+      \Papaya\Message::SEVERITY_WARNING,
       _gt(
         'The file ".htaccess" in the directory "papaya-data/" '.
         'is missing or not accessible. Please secure the directory.'
@@ -93,8 +91,8 @@ if (($path = $application->options->get('PAPAYA_PATH_DATA')) != '' &&
 }
 if (!$application->options->get('PAPAYA_PASSWORD_REHASH', FALSE)) {
   $application->messages->dispatch(
-    new Display(
-      Papaya\Message::SEVERITY_WARNING,
+    new \Papaya\Message\Display(
+      \Papaya\Message::SEVERITY_WARNING,
       _gt(
         'The password rehashing is not active. Please activate PAPAYA_PASSWORD_REHASH.'.
         ' Make sure the authentication tables are up to date before activating'.
@@ -104,8 +102,8 @@ if (!$application->options->get('PAPAYA_PASSWORD_REHASH', FALSE)) {
   );
 }
 
-$PAPAYA_LAYOUT = new PapayaTemplateXslt(
-  dirname(__FILE__)."/skins/".$application->options->get('PAPAYA_UI_SKIN')."/style.xsl"
+$PAPAYA_LAYOUT = new \PapayaTemplateXslt(
+  __DIR__.'/skins/'.$application->options->get('PAPAYA_UI_SKIN').'/style.xsl'
 );
 
 $PAPAYA_USER->layout = $PAPAYA_LAYOUT;
