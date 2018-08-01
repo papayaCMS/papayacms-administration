@@ -195,7 +195,7 @@ if (!$application) {
   ) {
     $dialog = new \PapayaUiDialog();
     $dialog->caption = new \PapayaUiStringTranslated('Warning');
-    $url = new \PapayaUrlCurrent();
+    $url = new \Papaya\Url\Current();
     $url->setScheme('https');
     $dialog->action($url->getUrl());
     $dialog->fields[] = new \PapayaUiDialogFieldMessage(
