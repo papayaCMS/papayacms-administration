@@ -53,7 +53,7 @@ if (defined('PAPAYA_SESSION_NAME')) {
 } else {
   $application->session->setName('sidadmin');
 }
-$application->options->cache = \PapayaSessionOptions::CACHE_PRIVATE;
+$application->options->cache = \Papaya\Session\Options::CACHE_PRIVATE;
 $application->session->activate(FALSE);
 $application->phrases = new \Papaya\Phrases(
   new \Papaya\Phrases\Storage\Database(),

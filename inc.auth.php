@@ -61,7 +61,7 @@ $application->session->setName(
   'sid'.$application->options->get('PAPAYA_SESSION_NAME', '').'admin'
 );
 
-$application->session->options->cache = \PapayaSessionOptions::CACHE_NONE;
+$application->session->options->cache = \Papaya\Session\Options::CACHE_NONE;
 if ($redirect = $application->session->activate(TRUE)) {
   $redirect->send();
   exit();

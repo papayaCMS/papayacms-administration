@@ -13,9 +13,6 @@
  *  FOR A PARTICULAR PURPOSE.
  */
 
-use Papaya\Administration\Permissions;
-use Papaya\Application\Cms;
-
 $runAtBrowser = FALSE;
 $runAtConsole = FALSE;
 $verbose = TRUE;
@@ -77,7 +74,7 @@ if (file_exists($path) && is_dir($path)) {
 */
 require_once __DIR__.'/inc.conf.php';
 
-/** @var Cms $application */
+/** @var \Papaya\Application\Cms $application */
 $application = include __DIR__.'/inc.application.php';
 $options = $application->options;
 
@@ -104,7 +101,7 @@ if ($runAtBrowser && isset($_GET['job']) && $_GET['job'] > 0) {
   } else {
     $application->session->setName('sidadmin');
   }
-  $application->session->options->cache = PapayaSessionOptions::CACHE_NONE;
+  $application->session->options->cache = \Papaya\Session\Options::CACHE_NONE;
   if ($redirect = $application->session->activate(TRUE)) {
     $redirect->send();
     exit();
@@ -162,16 +159,16 @@ if ($verbose) {
   echo 'Start ('.date('Y-m-d H:i:s').").\n";
 }
 try {
-  $pid = new pidfile(constant('PAPAYA_PATH_CACHE').'papaya_cron.pid');
+  $pid = new \pidfile(constant('PAPAYA_PATH_CACHE').'papaya_cron.pid');
   if ($pid->execute($verbose)) {
-    $cron = new base_cronjobs;
+    $cron = new \base_cronjobs;
 
     if ($runAtBrowser &&
         isset($_GET['job']) && $_GET['job'] > 0) {
-      $PAPAYA_USER = new base_auth();
+      $PAPAYA_USER = new \base_auth();
       $PAPAYA_USER->initialize();
       if ($PAPAYA_USER->execLogin() &&
-          $PAPAYA_USER->hasPerm(Permissions::SYSTEM_CRONJOBS)) {
+          $PAPAYA_USER->hasPerm(\Papaya\Administration\Permissions::SYSTEM_CRONJOBS)) {
         if ($verbose) {
           echo 'Job id: '.(int)$_GET['job']."\n";
         }

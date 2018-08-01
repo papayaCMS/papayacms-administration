@@ -143,14 +143,14 @@ if (!$application) {
   include_once('./inc.glyphs.php');
 
   // check if the options table is present
-  $installer = new papaya_installer();
+  $installer = new \papaya_installer();
   $status = $installer->getCurrentStatus();
 
   $options = $application->options;
   $options->defineConstants();
 
   if ($options->get('PAPAYA_UI_SECURE', FALSE) &&
-      !PapayaUtilServerProtocol::isSecure()) {
+      !\PapayaUtilServerProtocol::isSecure()) {
     $url = 'https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
     redirectToURL($url);
   }
@@ -162,7 +162,7 @@ if (!$application) {
   /**
   * layout object
   */
-  $PAPAYA_LAYOUT = new PapayaTemplateXslt(
+  $PAPAYA_LAYOUT = new \PapayaTemplateXslt(
     dirname(__FILE__)."/skins/".$options->get('PAPAYA_UI_SKIN', 'default')."/style.xsl"
   );
 
@@ -181,7 +181,7 @@ if (!$application) {
     'sid'.$options->get('PAPAYA_SESSION_NAME', '').'admin'
   );
 
-  $application->session->options->cache = PapayaSessionOptions::CACHE_NONE;
+  $application->session->options->cache = \Papaya\Session\Options::CACHE_NONE;
   if ($redirect = $application->session->activate(TRUE)) {
     $redirect->send();
     exit();
@@ -189,23 +189,23 @@ if (!$application) {
 
   if (
     !(
-      PapayaUtilServerProtocol::isSecure() ||
-      preg_match('(^localhost(:\d+)?$)i',PapayaUtilServerName::get())
+      \PapayaUtilServerProtocol::isSecure() ||
+      preg_match('(^localhost(:\d+)?$)i',\PapayaUtilServerName::get())
     )
   ) {
-    $dialog = new PapayaUiDialog();
-    $dialog->caption = new PapayaUiStringTranslated('Warning');
-    $url = new PapayaUrlCurrent();
+    $dialog = new \PapayaUiDialog();
+    $dialog->caption = new \PapayaUiStringTranslated('Warning');
+    $url = new \PapayaUrlCurrent();
     $url->setScheme('https');
     $dialog->action($url->getUrl());
-    $dialog->fields[] = new PapayaUiDialogFieldMessage(
-      Papaya\Message::SEVERITY_WARNING,
-      new PapayaUiStringTranslated(
+    $dialog->fields[] = new \PapayaUiDialogFieldMessage(
+      \Papaya\Message::SEVERITY_WARNING,
+      new \PapayaUiStringTranslated(
         'If possible, please use https to access the administration interface.'
       )
     );
-    $dialog->buttons[] = new PapayaUiDialogButtonSubmit(
-      new PapayaUiStringTranslated('Use https')
+    $dialog->buttons[] = new \PapayaUiDialogButtonSubmit(
+      new \PapayaUiStringTranslated('Use https')
     );
     $PAPAYA_LAYOUT->add($dialog->getXml());
   }
