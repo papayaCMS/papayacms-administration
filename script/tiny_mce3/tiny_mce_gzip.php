@@ -13,8 +13,6 @@
  *  FOR A PARTICULAR PURPOSE.
  */
 
-use Papaya\Configuration\Cms;
-
 if (isset($_SERVER['PATH_TRANSLATED']) && $_SERVER['PATH_TRANSLATED'] !== '') {
   $adminPath = str_replace('\\', '/', dirname(dirname(dirname($_SERVER['PATH_TRANSLATED']))));
 } else {
@@ -36,8 +34,7 @@ require_once($adminPath.'inc.conf.php');
 require_once($adminPath.'inc.func.php');
 
 $application = setUpApplication();
-/** @var Cms $PAPAYA_OPTIONS */
-$PAPAYA_OPTIONS = $application['options'];
+$PAPAYA_OPTIONS = $application->options;
 $PAPAYA_OPTIONS->loadAndDefine();
 
 // Get input
@@ -201,7 +198,7 @@ function getFileContents($path) {
 }
 
 function getLoadingMarker($fileName) {
-  $protocol = PapayaUtilServerProtocol::get();
+  $protocol = \Papaya\Utility\Server\Protocol::get();
   $systemURL = $protocol.'://'.strtolower($_SERVER['HTTP_HOST']);
   $file = substr($fileName, strlen($_SERVER['DOCUMENT_ROOT']));
   $file = preg_replace('(^[/\\\'"\r\n]+)', '', $file);

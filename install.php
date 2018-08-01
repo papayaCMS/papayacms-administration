@@ -150,7 +150,7 @@ if (!$application) {
   $options->defineConstants();
 
   if ($options->get('PAPAYA_UI_SECURE', FALSE) &&
-      !\PapayaUtilServerProtocol::isSecure()) {
+      !\Papaya\Utility\Server\Protocol::isSecure()) {
     $url = 'https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
     redirectToURL($url);
   }
@@ -189,8 +189,8 @@ if (!$application) {
 
   if (
     !(
-      \PapayaUtilServerProtocol::isSecure() ||
-      preg_match('(^localhost(:\d+)?$)i',\PapayaUtilServerName::get())
+      \Papaya\Utility\Server\Protocol::isSecure() ||
+      preg_match('(^localhost(:\d+)?$)i', \Papaya\Utility\Server\Name::get())
     )
   ) {
     $dialog = new \PapayaUiDialog();

@@ -33,7 +33,7 @@ if (!($hasOptions = $application->options->loadAndDefine())) {
   }
 } elseif (defined('PAPAYA_UI_SECURE') &&
           PAPAYA_UI_SECURE &&
-          !PapayaUtilServerProtocol::isSecure()) {
+          !\Papaya\Utility\Server\Protocol::isSecure()) {
   $url = 'https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
   redirectToURL($url);
 }
@@ -60,7 +60,7 @@ $PAPAYA_USER = $application->getObject('AdministrationUser');
 $PAPAYA_USER->initialize();
 $PAPAYA_USER->execLogin();
 
-$protocol = PapayaUtilServerProtocol::get();
+$protocol = \Papaya\Utility\Server\Protocol::get();
 $url = $protocol.'://'.$_SERVER['HTTP_HOST'].
   str_replace('\\', '/', dirname($_SERVER['PHP_SELF'])).'/';
 redirectToURL($url);

@@ -43,7 +43,7 @@ if (!($hasOptions = $application->options->loadAndDefine())) {
     redirectToInstaller();
   }
 } elseif ($application->options->get('PAPAYA_UI_SECURE', FALSE) &&
-          !\PapayaUtilServerProtocol::isSecure()) {
+          !\Papaya\Utility\Server\Protocol::isSecure()) {
   $url = 'https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
   redirectToURL($url);
 }
@@ -122,7 +122,7 @@ if ($PAPAYA_SHOW_ADMIN_PAGE) {
   if ((!defined('PAPAYA_WEBSITE_REVISION')) &&
       (!empty($_SERVER['DOCUMENT_ROOT']))) {
 
-    $revisionFile = PapayaUtilFilePath::cleanup($_SERVER['DOCUMENT_ROOT']);
+    $revisionFile = \Papaya\Utility\File\Path::cleanup($_SERVER['DOCUMENT_ROOT']);
     $revisionFile .= $application->options->get('PAPAYA_PATH_WEB');
     $revisionFile .= 'revision.inc.php';
   } else {
