@@ -164,7 +164,7 @@ $PAPAYA_LAYOUT->parameters()->assign(
   )
 );
 
-$themeHandler = new PapayaThemeHandler();
+$themeHandler = new \Papaya\Theme\Handler();
 $contentCss = $application->options->get('PAPAYA_RICHTEXT_CONTENT_CSS');
 $localCssfile = $themeHandler->getLocalThemePath().$contentCss;
 if (file_exists($localCssfile) && is_file($localCssfile)) {
