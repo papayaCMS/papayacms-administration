@@ -50,7 +50,7 @@ if (!($hasOptions = $application->options->loadAndDefine())) {
 
 $application->messages->setUp($application->options);
 if ($application->options->get('PAPAYA_LOG_RUNTIME_REQUEST', FALSE)) {
-  \PapayaRequestLog::getInstance();
+  \Papaya\Request\Log::getInstance();
 }
 
 /**
