@@ -204,7 +204,7 @@ if (!$application) {
         'If possible, please use https to access the administration interface.'
       )
     );
-    $dialog->buttons[] = new \PapayaUiDialogButtonSubmit(
+    $dialog->buttons[] = new \Papaya\Ui\Dialog\Button\Submit(
       new \PapayaUiStringTranslated('Use https')
     );
     $PAPAYA_LAYOUT->add($dialog->getXml());
