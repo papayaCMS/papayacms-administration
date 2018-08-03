@@ -193,19 +193,19 @@ if (!$application) {
       preg_match('(^localhost(:\d+)?$)i', \Papaya\Utility\Server\Name::get())
     )
   ) {
-    $dialog = new \Papaya\Ui\Dialog();
-    $dialog->caption = new \Papaya\Ui\Text\Translated('Warning');
+    $dialog = new \Papaya\UI\Dialog();
+    $dialog->caption = new \Papaya\UI\Text\Translated('Warning');
     $url = new \Papaya\Url\Current();
     $url->setScheme('https');
     $dialog->action($url->getUrl());
-    $dialog->fields[] = new \Papaya\Ui\Dialog\Field\Message(
+    $dialog->fields[] = new \Papaya\UI\Dialog\Field\Message(
       \Papaya\Message::SEVERITY_WARNING,
-      new \Papaya\Ui\Text\Translated(
+      new \Papaya\UI\Text\Translated(
         'If possible, please use https to access the administration interface.'
       )
     );
-    $dialog->buttons[] = new \Papaya\Ui\Dialog\Button\Submit(
-      new \Papaya\Ui\Text\Translated('Use https')
+    $dialog->buttons[] = new \Papaya\UI\Dialog\Button\Submit(
+      new \Papaya\UI\Text\Translated('Use https')
     );
     $PAPAYA_LAYOUT->add($dialog->getXml());
   }
