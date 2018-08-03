@@ -207,7 +207,7 @@ if (!$application) {
     $dialog->buttons[] = new \Papaya\UI\Dialog\Button\Submit(
       new \Papaya\UI\Text\Translated('Use https')
     );
-    $PAPAYA_LAYOUT->add($dialog->getXml());
+    $PAPAYA_LAYOUT->add($dialog->getXML());
   }
 
   $installer->layout = $PAPAYA_LAYOUT;
