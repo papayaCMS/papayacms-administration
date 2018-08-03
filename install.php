@@ -195,9 +195,9 @@ if (!$application) {
   ) {
     $dialog = new \Papaya\UI\Dialog();
     $dialog->caption = new \Papaya\UI\Text\Translated('Warning');
-    $url = new \Papaya\Url\Current();
+    $url = new \Papaya\URL\Current();
     $url->setScheme('https');
-    $dialog->action($url->getUrl());
+    $dialog->action($url->getURL());
     $dialog->fields[] = new \Papaya\UI\Dialog\Field\Message(
       \Papaya\Message::SEVERITY_WARNING,
       new \Papaya\UI\Text\Translated(

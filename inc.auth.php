@@ -169,7 +169,7 @@ $contentCss = $application->options->get('PAPAYA_RICHTEXT_CONTENT_CSS');
 $localCssfile = $themeHandler->getLocalThemePath().$contentCss;
 if (file_exists($localCssfile) && is_file($localCssfile)) {
   $PAPAYA_LAYOUT->parameters()->set(
-    'PAPAYA_RICHTEXT_CONTENT_CSS', $themeHandler->getUrl().$contentCss
+    'PAPAYA_RICHTEXT_CONTENT_CSS', $themeHandler->getURL().$contentCss
   );
 }
 
