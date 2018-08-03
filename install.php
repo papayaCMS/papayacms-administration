@@ -193,7 +193,7 @@ if (!$application) {
       preg_match('(^localhost(:\d+)?$)i', \Papaya\Utility\Server\Name::get())
     )
   ) {
-    $dialog = new \PapayaUiDialog();
+    $dialog = new \Papaya\Ui\Dialog();
     $dialog->caption = new \PapayaUiStringTranslated('Warning');
     $url = new \Papaya\Url\Current();
     $url->setScheme('https');
