@@ -198,7 +198,7 @@ if (!$application) {
     $url = new \Papaya\Url\Current();
     $url->setScheme('https');
     $dialog->action($url->getUrl());
-    $dialog->fields[] = new \PapayaUiDialogFieldMessage(
+    $dialog->fields[] = new \Papaya\Ui\Dialog\Field\Message(
       \Papaya\Message::SEVERITY_WARNING,
       new \PapayaUiStringTranslated(
         'If possible, please use https to access the administration interface.'
