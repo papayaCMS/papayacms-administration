@@ -194,18 +194,18 @@ if (!$application) {
     )
   ) {
     $dialog = new \Papaya\Ui\Dialog();
-    $dialog->caption = new \PapayaUiStringTranslated('Warning');
+    $dialog->caption = new \Papaya\Ui\Text\Translated('Warning');
     $url = new \Papaya\Url\Current();
     $url->setScheme('https');
     $dialog->action($url->getUrl());
     $dialog->fields[] = new \Papaya\Ui\Dialog\Field\Message(
       \Papaya\Message::SEVERITY_WARNING,
-      new \PapayaUiStringTranslated(
+      new \Papaya\Ui\Text\Translated(
         'If possible, please use https to access the administration interface.'
       )
     );
     $dialog->buttons[] = new \Papaya\Ui\Dialog\Button\Submit(
-      new \PapayaUiStringTranslated('Use https')
+      new \Papaya\Ui\Text\Translated('Use https')
     );
     $PAPAYA_LAYOUT->add($dialog->getXml());
   }
