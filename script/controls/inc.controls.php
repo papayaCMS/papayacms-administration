@@ -1,23 +1,20 @@
 <?php
 /**
-*
-*
-* @copyright 2002-2007 by papaya Software GmbH - All rights reserved.
-* @link http://www.papaya-cms.com/
-* @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License, version 2
-*
-* You can redistribute and/or modify this script under the terms of the GNU General Public
-* License (GPL) version 2, provided that the copyright and license notes, including these
-* lines, remain unmodified. papaya is distributed in the hope that it will be useful, but
-* WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-* FOR A PARTICULAR PURPOSE.
-*
-* @package Papaya
-* @subpackage Scripts-Controls
-* @version $Id: inc.controls.php 39824 2014-05-20 08:31:38Z weinert $
-*/
+ * papaya CMS
+ *
+ * @copyright 2000-2018 by papayaCMS project - All rights reserved.
+ * @link http://www.papaya-cms.com/
+ * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License, version 2
+ *
+ *  You can redistribute and/or modify this script under the terms of the GNU General Public
+ *  License (GPL) version 2, provided that the copyright and license notes, including these
+ *  lines, remain unmodified. papaya is distributed in the hope that it will be useful, but
+ *  WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ *  FOR A PARTICULAR PURPOSE.
+ */
 
 
+use Papaya\Template\Xslt;
 
 if (!defined('PAPAYA_DOCUMENT_ROOT')) {
   if (isset($_SERVER['PATH_TRANSLATED']) && $_SERVER['PATH_TRANSLATED'] != '') {
@@ -67,7 +64,7 @@ $application->phrases = new PapayaPhrases(
 );
 
 $PAPAYA_USER = $application->getObject('AdministrationUser');
-$PAPAYA_USER->layout = $PAPAYA_LAYOUT = new PapayaTemplateXslt(
+$PAPAYA_USER->layout = $PAPAYA_LAYOUT = new Xslt(
   dirname(__FILE__)."/../../skins/".$application->options->get('PAPAYA_UI_SKIN')."/style.xsl"
 );
 $PAPAYA_USER->initialize();
