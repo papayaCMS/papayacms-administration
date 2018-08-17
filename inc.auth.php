@@ -102,7 +102,7 @@ if (!$application->options->get('PAPAYA_PASSWORD_REHASH', FALSE)) {
   );
 }
 
-$PAPAYA_LAYOUT = new \Papaya\Template\Xslt(
+$PAPAYA_LAYOUT = new \Papaya\Template\XSLT(
   dirname(__FILE__)."/skins/".$application->options->get('PAPAYA_UI_SKIN')."/style.xsl"
 );
 

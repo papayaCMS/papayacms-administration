@@ -14,7 +14,7 @@
  */
 
 
-use Papaya\Template\Xslt;
+use Papaya\Template\XSLT;
 
 if (!defined('PAPAYA_DOCUMENT_ROOT')) {
   if (isset($_SERVER['PATH_TRANSLATED']) && $_SERVER['PATH_TRANSLATED'] != '') {
@@ -64,7 +64,7 @@ $application->phrases = new PapayaPhrases(
 );
 
 $PAPAYA_USER = $application->getObject('AdministrationUser');
-$PAPAYA_USER->layout = $PAPAYA_LAYOUT = new Xslt(
+$PAPAYA_USER->layout = $PAPAYA_LAYOUT = new XSLT(
   dirname(__FILE__)."/../../skins/".$application->options->get('PAPAYA_UI_SKIN')."/style.xsl"
 );
 $PAPAYA_USER->initialize();

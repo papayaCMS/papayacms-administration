@@ -161,7 +161,7 @@ if (!$application) {
   /**
   * layout object
   */
-  $PAPAYA_LAYOUT = new \Papaya\Template\Xslt(
+  $PAPAYA_LAYOUT = new \Papaya\Template\XSLT(
     dirname(__FILE__)."/skins/".$options->get('PAPAYA_UI_SKIN', 'default')."/style.xsl"
   );
 
