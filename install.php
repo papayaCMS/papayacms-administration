@@ -1,37 +1,34 @@
 <?php
 /**
-* Installer
-*
-* @copyright 2002-2009 by papaya Software GmbH - All rights reserved.
-* @link http://www.papaya-cms.com/
-* @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License, version 2
-*
-* You can redistribute and/or modify this script under the terms of the GNU General Public
-* License (GPL) version 2, provided that the copyright and license notes, including these
-* lines, remain unmodified. papaya is distributed in the hope that it will be useful, but
-* WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-* FOR A PARTICULAR PURPOSE.
-*
-* @package Papaya
-* @subpackage Administration
-* @version $Id: install.php 39757 2014-04-24 14:28:20Z weinert $
-*/
+ * papaya CMS
+ *
+ * @copyright 2000-2018 by papayaCMS project - All rights reserved.
+ * @link http://www.papaya-cms.com/
+ * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License, version 2
+ *
+ *  You can redistribute and/or modify this script under the terms of the GNU General Public
+ *  License (GPL) version 2, provided that the copyright and license notes, including these
+ *  lines, remain unmodified. papaya is distributed in the hope that it will be useful, but
+ *  WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ *  FOR A PARTICULAR PURPOSE.
+ */
 
 /**
 * Configuration file
 */
-require_once("./inc.conf.php");
-require_once("./inc.func.php");
+require_once __DIR__.'/inc.conf.php';
+require_once __DIR__.'/inc.func.php';
 
 define('PAPAYA_ADMIN_PAGE', TRUE);
 /**
  * check include path - try to include installer, and application object
- * @var PapayaApplicationCms $application Application object
+ *
+ * @var Papaya\Application\Cms $application Application object
  */
 if (defined('PAPAYA_DBG_DEVMODE') && PAPAYA_DBG_DEVMODE) {
-  $application = include_once('./inc.application.php');
+  $application = include_once(__DIR__.'/inc.application.php');
 } else {
-  $application = @include_once('./inc.application.php');
+  $application = @include_once(__DIR__.'/inc.application.php');
 }
 
 if (!$application) {
@@ -146,14 +143,14 @@ if (!$application) {
   include_once('./inc.glyphs.php');
 
   // check if the options table is present
-  $installer = new papaya_installer();
+  $installer = new \papaya_installer();
   $status = $installer->getCurrentStatus();
 
   $options = $application->options;
   $options->defineConstants();
 
   if ($options->get('PAPAYA_UI_SECURE', FALSE) &&
-      !PapayaUtilServerProtocol::isSecure()) {
+      !\Papaya\Utility\Server\Protocol::isSecure()) {
     $url = 'https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
     redirectToURL($url);
   }
@@ -165,7 +162,7 @@ if (!$application) {
   /**
   * layout object
   */
-  $PAPAYA_LAYOUT = new PapayaTemplateXslt(
+  $PAPAYA_LAYOUT = new \PapayaTemplateXslt(
     dirname(__FILE__)."/skins/".$options->get('PAPAYA_UI_SKIN', 'default')."/style.xsl"
   );
 
@@ -184,7 +181,7 @@ if (!$application) {
     'sid'.$options->get('PAPAYA_SESSION_NAME', '').'admin'
   );
 
-  $application->session->options->cache = PapayaSessionOptions::CACHE_NONE;
+  $application->session->options->cache = \Papaya\Session\Options::CACHE_NONE;
   if ($redirect = $application->session->activate(TRUE)) {
     $redirect->send();
     exit();
@@ -192,25 +189,25 @@ if (!$application) {
 
   if (
     !(
-      PapayaUtilServerProtocol::isSecure() ||
-      preg_match('(^localhost(:\d+)?$)i',PapayaUtilServerName::get())
+      \Papaya\Utility\Server\Protocol::isSecure() ||
+      preg_match('(^localhost(:\d+)?$)i', \Papaya\Utility\Server\Name::get())
     )
   ) {
-    $dialog = new PapayaUiDialog();
-    $dialog->caption = new PapayaUiStringTranslated('Warning');
-    $url = new PapayaUrlCurrent();
+    $dialog = new \Papaya\UI\Dialog();
+    $dialog->caption = new \Papaya\UI\Text\Translated('Warning');
+    $url = new \Papaya\URL\Current();
     $url->setScheme('https');
-    $dialog->action($url->getUrl());
-    $dialog->fields[] = new PapayaUiDialogFieldMessage(
-      PapayaMessage::SEVERITY_WARNING,
-      new PapayaUiStringTranslated(
+    $dialog->action($url->getURL());
+    $dialog->fields[] = new \Papaya\UI\Dialog\Field\Message(
+      \Papaya\Message::SEVERITY_WARNING,
+      new \Papaya\UI\Text\Translated(
         'If possible, please use https to access the administration interface.'
       )
     );
-    $dialog->buttons[] = new PapayaUiDialogButtonSubmit(
-      new PapayaUiStringTranslated('Use https')
+    $dialog->buttons[] = new \Papaya\UI\Dialog\Button\Submit(
+      new \Papaya\UI\Text\Translated('Use https')
     );
-    $PAPAYA_LAYOUT->add($dialog->getXml());
+    $PAPAYA_LAYOUT->add($dialog->getXML());
   }
 
   $installer->layout = $PAPAYA_LAYOUT;

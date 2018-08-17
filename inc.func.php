@@ -1,21 +1,17 @@
 <?php
 /**
-* Admin functions
-*
-* @copyright 2002-2009 by papaya Software GmbH - All rights reserved.
-* @link http://www.papaya-cms.com/
-* @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License, version 2
-*
-* You can redistribute and/or modify this script under the terms of the GNU General Public
-* License (GPL) version 2, provided that the copyright and license notes, including these
-* lines, remain unmodified. papaya is distributed in the hope that it will be useful, but
-* WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-* FOR A PARTICULAR PURPOSE.
-*
-* @package Papaya
-* @subpackage Administration
-* @version $Id: inc.func.php 39757 2014-04-24 14:28:20Z weinert $
-*/
+ * papaya CMS
+ *
+ * @copyright 2000-2018 by papayaCMS project - All rights reserved.
+ * @link http://www.papaya-cms.com/
+ * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License, version 2
+ *
+ *  You can redistribute and/or modify this script under the terms of the GNU General Public
+ *  License (GPL) version 2, provided that the copyright and license notes, including these
+ *  lines, remain unmodified. papaya is distributed in the hope that it will be useful, but
+ *  WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ *  FOR A PARTICULAR PURPOSE.
+ */
 
 /**
 * Translate phrase
@@ -26,9 +22,9 @@
 * @return string
 */
 function _gt($phrase, $module = NULL) {
-  $application = PapayaApplication::getInstance();
-  if ($application->hasObject('Phrases') &&
-      trim($phrase) != '') {
+  /** @var Papaya\Application\Cms $application */
+  $application = \Papaya\Application::getInstance();
+  if ($application->hasObject('Phrases') && '' !== trim($phrase)) {
     return $application->phrases->getText($phrase, $module);
   }
   return $phrase;
@@ -43,11 +39,11 @@ function _gt($phrase, $module = NULL) {
 */
 function _gtfile($fileName) {
   if (isset($GLOBALS['PAPAYA_USER'])) {
-    $fileName = dirname(__FILE__).'/data/'.
+    $fileName = __DIR__.'/data/'.
       $GLOBALS['PAPAYA_USER']->options['PAPAYA_UI_LANGUAGE'].'/'.$fileName;
   } else {
-    $language = PapayaApplication::getInstance()->options->get('PAPAYA_UI_LANGUAGE', 'en-US');
-    $fileName = dirname(__FILE__).'/data/'.$language.'/'.$fileName;
+    $language = \Papaya\Application::getInstance()->options->get('PAPAYA_UI_LANGUAGE', 'en-US');
+    $fileName = __DIR__.'/data/'.$language.'/'.$fileName;
   }
   if ($fileName) {
     if ($fh = @fopen($fileName, 'r')) {
@@ -63,7 +59,7 @@ function _gtfile($fileName) {
  * Include file or redirect to
  *
  * @param string $includeFile
- * @return boolean|PapayaApplication|PapayaApplicationCms
+ * @return boolean|\Papaya\Application|\Papaya\Application\Cms
  * @access public
  */
 function includeOrRedirect($includeFile) {
@@ -84,11 +80,11 @@ function includeOrRedirect($includeFile) {
 * @access public
 */
 function redirectToInstaller() {
-  $protocol = (isset($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) === 'on')
+  $protocol = (isset($_SERVER['HTTPS']) && 'on' === strtolower($_SERVER['HTTPS']))
     ? 'https' : 'http';
   $url = $protocol.'://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']);
-  $url = strtr($url, '\\', '/');
-  if (substr($url, -1) != '/') {
+  $url = str_replace('\\', '/', $url);
+  if ('/' !== substr($url, -1)) {
     $url .= '/';
   }
   $url .= 'install.php';
@@ -97,7 +93,7 @@ function redirectToInstaller() {
 }
 
 function redirectToURL($url) {
-  if (PHP_SAPI == 'cgi' || PHP_SAPI == 'fast-cgi') {
+  if (PHP_SAPI === 'cgi' || PHP_SAPI === 'fast-cgi') {
     @header('Status: 302 Found');
   } else {
     @header('HTTP/1.1 302 Found');
@@ -107,10 +103,11 @@ function redirectToURL($url) {
 }
 
 /**
-* Initialize navigation
-*
-* @access public
-*/
+ * Initialize navigation
+ *
+ * @access public
+ * @param null $fileName
+ */
 function initNavigation($fileName = NULL) {
   $GLOBALS['PAPAYA_NAVIGATION'] = new papaya_navigation();
   $GLOBALS['PAPAYA_NAVIGATION']->layout = $GLOBALS['PAPAYA_LAYOUT'];
@@ -135,11 +132,11 @@ function controlScriptFileCaching(
   $etag = md5($fileName);
   $modified = @filemtime($fileName);
   if (isset($_SERVER['HTTP_IF_NONE_MATCH'])) {
-    if ($etag == $_SERVER['HTTP_IF_NONE_MATCH'] ||
-        '"'.$etag.'"' == $_SERVER['HTTP_IF_NONE_MATCH']) {
+    if ($etag === $_SERVER['HTTP_IF_NONE_MATCH'] ||
+        '"'.$etag.'"' === $_SERVER['HTTP_IF_NONE_MATCH']) {
       if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) &&
           $modified < (strtotime($_SERVER['HTTP_IF_MODIFIED_SINCE']) + $themeCacheTime)) {
-        if (PHP_SAPI == 'cgi' || PHP_SAPI == 'fast-cgi') {
+        if (PHP_SAPI === 'cgi' || PHP_SAPI === 'fast-cgi') {
           @header('Status: 304 Not Modified');
         } else {
           @header('HTTP/1.1 304 Not Modified');
@@ -184,24 +181,24 @@ function includeThemeDefinition() {
   $application = setUpApplication();
   $color = $application->options->get('PAPAYA_UI_THEME', 'green');
   $theme = $application->options->get('PAPAYA_UI_SKIN', 'default');
-  $themeFile = dirname(__FILE__).'/skins/'.$theme.'/theme_'.$color.'.php';
+  $themeFile = __DIR__.'/skins/'.$theme.'/theme_'.$color.'.php';
   include_once($themeFile);
 }
 
 /**
  * @param int $directoriesUp
- * @return PapayaApplication|PapayaApplicationCms
+ * @return \Papaya\Application|\Papaya\Application\Cms
  */
 function setUpApplication($directoriesUp = 4) {
   static $application;
   if (empty($application)) {
     setUpAutoloader($directoriesUp);
-    /** @var PapayaApplicationCms $application */
-    $application = PapayaApplication::getInstance();
+    /** @var \Papaya\Application\Cms $application */
+    $application = \Papaya\Application::getInstance();
     $application->registerProfiles(
-      new PapayaApplicationProfilesCms(), PapayaApplication::DUPLICATE_IGNORE
+      new \Papaya\Application\Profiles\Cms(), \Papaya\Application::DUPLICATE_IGNORE
     );
-    $application->response = new PapayaResponse();
+    $application->response = new \Papaya\Response();
     $application->options->loadAndDefine();
   }
   return $application;
@@ -217,7 +214,7 @@ function setUpAutoloader($directoriesUp = 4) {
     $path = dirname($path);
   }
   $path = str_replace('\\', '/', $path);
-  if (substr($path, -1) != '/') {
+  if ('/' !== substr($path, -1)) {
     $path .= '/';
   }
   if (file_exists($path.'../papaya.php')) {
