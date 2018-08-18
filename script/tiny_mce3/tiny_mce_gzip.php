@@ -1,22 +1,17 @@
 <?php
 /**
-* This file compresses the TinyMCE JavaScript using GZip and
-* enables the browser to do two requests instead of one for each .js file.
-*
-* @copyright 2002-2007 by papaya Software GmbH - All rights reserved.
-* @link http://www.papaya-cms.com/
-* @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License, version 2
-*
-* You can redistribute and/or modify this script under the terms of the GNU General Public
-* License (GPL) version 2, provided that the copyright and license notes, including these
-* lines, remain unmodified. papaya is distributed in the hope that it will be useful, but
-* WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-* FOR A PARTICULAR PURPOSE.
-*
-* @package Papaya
-* @subpackage Administration-TinyMCE
-* @version $Id: tiny_mce_gzip.php 38708 2013-09-11 15:09:51Z weinert $
-*/
+ * papaya CMS
+ *
+ * @copyright 2000-2018 by papayaCMS project - All rights reserved.
+ * @link http://www.papaya-cms.com/
+ * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License, version 2
+ *
+ *  You can redistribute and/or modify this script under the terms of the GNU General Public
+ *  License (GPL) version 2, provided that the copyright and license notes, including these
+ *  lines, remain unmodified. papaya is distributed in the hope that it will be useful, but
+ *  WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ *  FOR A PARTICULAR PURPOSE.
+ */
 
 if (isset($_SERVER['PATH_TRANSLATED']) && $_SERVER['PATH_TRANSLATED'] !== '') {
   $adminPath = str_replace('\\', '/', dirname(dirname(dirname($_SERVER['PATH_TRANSLATED']))));
@@ -39,8 +34,7 @@ require_once($adminPath.'inc.conf.php');
 require_once($adminPath.'inc.func.php');
 
 $application = setUpApplication();
-/** @var PapayaConfigurationCms $PAPAYA_OPTIONS */
-$PAPAYA_OPTIONS = $application['options'];
+$PAPAYA_OPTIONS = $application->options;
 $PAPAYA_OPTIONS->loadAndDefine();
 
 // Get input
@@ -204,7 +198,7 @@ function getFileContents($path) {
 }
 
 function getLoadingMarker($fileName) {
-  $protocol = PapayaUtilServerProtocol::get();
+  $protocol = \Papaya\Utility\Server\Protocol::get();
   $systemURL = $protocol.'://'.strtolower($_SERVER['HTTP_HOST']);
   $file = substr($fileName, strlen($_SERVER['DOCUMENT_ROOT']));
   $file = preg_replace('(^[/\\\'"\r\n]+)', '', $file);

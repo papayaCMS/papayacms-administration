@@ -1,21 +1,17 @@
 <?php
 /**
-* Logout
-*
-* @copyright 2002-2009 by papaya Software GmbH - All rights reserved.
-* @link http://www.papaya-cms.com/
-* @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License, version 2
-*
-* You can redistribute and/or modify this script under the terms of the GNU General Public
-* License (GPL) version 2, provided that the copyright and license notes, including these
-* lines, remain unmodified. papaya is distributed in the hope that it will be useful, but
-* WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-* FOR A PARTICULAR PURPOSE.
-*
-* @package Papaya
-* @subpackage Administration
-* @version $Id: end.php 39824 2014-05-20 08:31:38Z weinert $
-*/
+ * papaya CMS
+ *
+ * @copyright 2000-2018 by papayaCMS project - All rights reserved.
+ * @link http://www.papaya-cms.com/
+ * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License, version 2
+ *
+ *  You can redistribute and/or modify this script under the terms of the GNU General Public
+ *  License (GPL) version 2, provided that the copyright and license notes, including these
+ *  lines, remain unmodified. papaya is distributed in the hope that it will be useful, but
+ *  WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ *  FOR A PARTICULAR PURPOSE.
+ */
 
 if (!defined('PAPAYA_ADMIN_PAGE')) {
   /**
@@ -28,7 +24,7 @@ if (!defined('PAPAYA_ADMIN_PAGE')) {
 require_once("./inc.conf.php");
 require_once("./inc.func.php");
 
-/** @var PapayaApplicationCms $application */
+/** @var \Papaya\Application\Cms $application */
 $application = includeOrRedirect(dirname(__FILE__).'/inc.application.php');
 
 if (!($hasOptions = $application->options->loadAndDefine())) {
@@ -37,7 +33,7 @@ if (!($hasOptions = $application->options->loadAndDefine())) {
   }
 } elseif (defined('PAPAYA_UI_SECURE') &&
           PAPAYA_UI_SECURE &&
-          !PapayaUtilServerProtocol::isSecure()) {
+          !\Papaya\Utility\Server\Protocol::isSecure()) {
   $url = 'https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
   redirectToURL($url);
 }
@@ -56,7 +52,7 @@ if (defined('PAPAYA_SESSION_NAME')) {
 $locking = papaya_locking::getInstance();
 $locking->removeLocks($application->session->id);
 
-$application->session->options->cache = PapayaSessionOptions::CACHE_NONE;
+$application->session->options->cache = \Papaya\Session\Options::CACHE_NONE;
 $application->session->activate(FALSE);
 $application->session->destroy();
 
@@ -64,7 +60,7 @@ $PAPAYA_USER = $application->getObject('AdministrationUser');
 $PAPAYA_USER->initialize();
 $PAPAYA_USER->execLogin();
 
-$protocol = PapayaUtilServerProtocol::get();
+$protocol = \Papaya\Utility\Server\Protocol::get();
 $url = $protocol.'://'.$_SERVER['HTTP_HOST'].
   str_replace('\\', '/', dirname($_SERVER['PHP_SELF'])).'/';
 redirectToURL($url);

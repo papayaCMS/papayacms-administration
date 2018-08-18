@@ -35,7 +35,7 @@ require_once("./inc.func.php");
 */
 require_once('./inc.glyphs.php');
 
-/** @var PapayaApplicationCms $application */
+/** @var Papaya\Application\Cms $application */
 $application = includeOrRedirect('./inc.application.php');
 
 if (!($hasOptions = $application->options->loadAndDefine())) {
@@ -43,14 +43,14 @@ if (!($hasOptions = $application->options->loadAndDefine())) {
     redirectToInstaller();
   }
 } elseif ($application->options->get('PAPAYA_UI_SECURE', FALSE) &&
-          !PapayaUtilServerProtocol::isSecure()) {
+          !\Papaya\Utility\Server\Protocol::isSecure()) {
   $url = 'https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
   redirectToURL($url);
 }
 
 $application->messages->setUp($application->options);
 if ($application->options->get('PAPAYA_LOG_RUNTIME_REQUEST', FALSE)) {
-  PapayaRequestLog::getInstance();
+  \Papaya\Request\Log::getInstance();
 }
 
 /**
@@ -61,7 +61,7 @@ $application->session->setName(
   'sid'.$application->options->get('PAPAYA_SESSION_NAME', '').'admin'
 );
 
-$application->session->options->cache = PapayaSessionOptions::CACHE_NONE;
+$application->session->options->cache = \Papaya\Session\Options::CACHE_NONE;
 if ($redirect = $application->session->activate(TRUE)) {
   $redirect->send();
   exit();
@@ -70,8 +70,8 @@ $application->pageReferences->setPreview(TRUE);
 
 $PAPAYA_USER = $application->administrationUser;
 
-$application->phrases = new PapayaPhrases(
-  new PapayaPhrasesStorageDatabase(),
+$application->phrases = new \Papaya\Phrases(
+  new \Papaya\Phrases\Storage\Database(),
   $application->languages->getLanguage($application->options['PAPAYA_UI_LANGUAGE'])
 );
 
@@ -80,8 +80,8 @@ if (($path = $application->options->get('PAPAYA_PATH_DATA')) != '' &&
     file_exists($path) &&
     (!file_exists($path.'.htaccess'))) {
   $application->messages->dispatch(
-    new PapayaMessageDisplay(
-      PapayaMessage::SEVERITY_WARNING,
+    new \Papaya\Message\Display(
+      \Papaya\Message::SEVERITY_WARNING,
       _gt(
         'The file ".htaccess" in the directory "papaya-data/" '.
         'is missing or not accessible. Please secure the directory.'
@@ -91,8 +91,8 @@ if (($path = $application->options->get('PAPAYA_PATH_DATA')) != '' &&
 }
 if (!$application->options->get('PAPAYA_PASSWORD_REHASH', FALSE)) {
   $application->messages->dispatch(
-    new PapayaMessageDisplay(
-      PapayaMessage::SEVERITY_WARNING,
+    new \Papaya\Message\Display(
+      \Papaya\Message::SEVERITY_WARNING,
       _gt(
         'The password rehashing is not active. Please activate PAPAYA_PASSWORD_REHASH.'.
         ' Make sure the authentication tables are up to date before activating'.
@@ -103,7 +103,7 @@ if (!$application->options->get('PAPAYA_PASSWORD_REHASH', FALSE)) {
 }
 
 $PAPAYA_LAYOUT = new \Papaya\Template\XSLT(
-  dirname(__FILE__)."/skins/".$application->options->get('PAPAYA_UI_SKIN')."/style.xsl"
+  __DIR__.'/skins/'.$application->options->get('PAPAYA_UI_SKIN').'/style.xsl'
 );
 
 $PAPAYA_USER->layout = $PAPAYA_LAYOUT;
@@ -122,7 +122,7 @@ if ($PAPAYA_SHOW_ADMIN_PAGE) {
   if ((!defined('PAPAYA_WEBSITE_REVISION')) &&
       (!empty($_SERVER['DOCUMENT_ROOT']))) {
 
-    $revisionFile = PapayaUtilFilePath::cleanup($_SERVER['DOCUMENT_ROOT']);
+    $revisionFile = \Papaya\Utility\File\Path::cleanup($_SERVER['DOCUMENT_ROOT']);
     $revisionFile .= $application->options->get('PAPAYA_PATH_WEB');
     $revisionFile .= 'revision.inc.php';
   } else {
@@ -164,12 +164,12 @@ $PAPAYA_LAYOUT->parameters()->assign(
   )
 );
 
-$themeHandler = new PapayaThemeHandler();
+$themeHandler = new \Papaya\Theme\Handler();
 $contentCss = $application->options->get('PAPAYA_RICHTEXT_CONTENT_CSS');
 $localCssfile = $themeHandler->getLocalThemePath().$contentCss;
 if (file_exists($localCssfile) && is_file($localCssfile)) {
   $PAPAYA_LAYOUT->parameters()->set(
-    'PAPAYA_RICHTEXT_CONTENT_CSS', $themeHandler->getUrl().$contentCss
+    'PAPAYA_RICHTEXT_CONTENT_CSS', $themeHandler->getURL().$contentCss
   );
 }
 
