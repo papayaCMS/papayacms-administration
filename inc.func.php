@@ -22,7 +22,7 @@
 * @return string
 */
 function _gt($phrase, $module = NULL) {
-  /** @var Papaya\Application\Cms $application */
+  /** @var Papaya\Application\CMS $application */
   $application = \Papaya\Application::getInstance();
   if ($application->hasObject('Phrases') && '' !== trim($phrase)) {
     return $application->phrases->getText($phrase, $module);
@@ -59,7 +59,7 @@ function _gtfile($fileName) {
  * Include file or redirect to
  *
  * @param string $includeFile
- * @return boolean|\Papaya\Application|\Papaya\Application\Cms
+ * @return boolean|\Papaya\Application|\Papaya\Application\CMS
  * @access public
  */
 function includeOrRedirect($includeFile) {
@@ -187,16 +187,16 @@ function includeThemeDefinition() {
 
 /**
  * @param int $directoriesUp
- * @return \Papaya\Application|\Papaya\Application\Cms
+ * @return \Papaya\Application|\Papaya\Application\CMS
  */
 function setUpApplication($directoriesUp = 4) {
   static $application;
   if (empty($application)) {
     setUpAutoloader($directoriesUp);
-    /** @var \Papaya\Application\Cms $application */
+    /** @var \Papaya\Application\CMS $application */
     $application = \Papaya\Application::getInstance();
     $application->registerProfiles(
-      new \Papaya\Application\Profiles\Cms(), \Papaya\Application::DUPLICATE_IGNORE
+      new \Papaya\Application\Profiles\CMS(), \Papaya\Application::DUPLICATE_IGNORE
     );
     $application->response = new \Papaya\Response();
     $application->options->loadAndDefine();

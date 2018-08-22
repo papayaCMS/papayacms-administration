@@ -35,7 +35,7 @@ require_once("./inc.func.php");
 */
 require_once('./inc.glyphs.php');
 
-/** @var Papaya\Application\Cms $application */
+/** @var Papaya\Application\CMS $application */
 $application = includeOrRedirect('./inc.application.php');
 
 if (!($hasOptions = $application->options->loadAndDefine())) {

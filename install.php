@@ -23,7 +23,7 @@ define('PAPAYA_ADMIN_PAGE', TRUE);
 /**
  * check include path - try to include installer, and application object
  *
- * @var Papaya\Application\Cms $application Application object
+ * @var Papaya\Application\CMS $application Application object
  */
 if (defined('PAPAYA_DBG_DEVMODE') && PAPAYA_DBG_DEVMODE) {
   $application = include_once(__DIR__.'/inc.application.php');

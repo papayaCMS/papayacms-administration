@@ -39,7 +39,7 @@ if (!defined('PAPAYA_ADMIN_PAGE')) {
 require_once __DIR__.'/../../inc.conf.php';
 require_once __DIR__.'/../../inc.func.php';
 
-/** @var \Papaya\Application\Cms $application */
+/** @var \Papaya\Application\CMS $application */
 $application = include_once(__DIR__.'/../../inc.application.php');
 $application->options->loadAndDefine();
 $application->messages->setUp($application->options);

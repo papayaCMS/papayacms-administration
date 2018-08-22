@@ -24,7 +24,7 @@ if (!defined('PAPAYA_ADMIN_PAGE')) {
 require_once("./inc.conf.php");
 require_once("./inc.func.php");
 
-/** @var \Papaya\Application\Cms $application */
+/** @var \Papaya\Application\CMS $application */
 $application = includeOrRedirect(dirname(__FILE__).'/inc.application.php');
 
 if (!($hasOptions = $application->options->loadAndDefine())) {

@@ -15,8 +15,8 @@
 
 require_once(PAPAYA_DOCUMENT_ROOT.'../vendor/autoload.php');
 
-/** @var Papaya\Application\Cms $application */
+/** @var Papaya\Application\CMS $application */
 $application = \Papaya\Application::getInstance();
-$application->registerProfiles(new Papaya\Application\Profiles\Cms());
+$application->registerProfiles(new Papaya\Application\Profiles\CMS());
 
 return $application;
