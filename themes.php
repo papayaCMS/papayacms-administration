@@ -22,7 +22,7 @@ use Papaya\Administration\Theme\Editor;
 require_once("./inc.auth.php");
 
 if ($PAPAYA_SHOW_ADMIN_PAGE &&
-    $PAPAYA_USER->hasPerm(Permissions::SYSTEM_THEMESET_MANAGE)) {
+    $PAPAYA_USER->hasPerm(Permissions::SYSTEM_THEME_SKIN_MANAGE)) {
 
   initNavigation();
   $PAPAYA_LAYOUT->parameters()->set(
