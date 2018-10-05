@@ -443,10 +443,10 @@
     <xsl:when test="$item/caption">
       <span class="itemTitle"><xsl:apply-templates select="$item/caption"/></span>
     </xsl:when>
-    <xsl:when test="$item/@emphased and $item/@href and $item/@title != ''">
+    <xsl:when test="($item/@emphasized or $item/@emphased) and $item/@href and $item/@title != ''">
       <a href="{$item/@href}" class="itemTitle"><b><xsl:value-of select="$item/@title"/></b></a>
     </xsl:when>
-    <xsl:when test="$item/@emphased and $item/@title != ''">
+    <xsl:when test="($item/@emphasized or $item/@emphased) and $item/@title != ''">
       <span class="itemTitle"><b><xsl:value-of select="$item/@title"/></b></span>
     </xsl:when>
     <xsl:when test="$item/@href and $item/@title != ''">
