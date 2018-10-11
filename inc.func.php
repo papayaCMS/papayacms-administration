@@ -25,7 +25,7 @@ function _gt($phrase, $module = NULL) {
   /** @var Papaya\Application\CMS $application */
   $application = \Papaya\Application::getInstance();
   if ($application->hasObject('Phrases') && '' !== trim($phrase)) {
-    return $application->phrases->getText($phrase, $module);
+    return $application->administrationPhrases->getText($phrase, $module);
   }
   return $phrase;
 }

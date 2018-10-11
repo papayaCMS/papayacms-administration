@@ -55,10 +55,6 @@ if (defined('PAPAYA_SESSION_NAME')) {
 }
 $application->options->cache = \Papaya\Session\Options::CACHE_PRIVATE;
 $application->session->activate(FALSE);
-$application->phrases = new \Papaya\Phrases(
-  new \Papaya\Phrases\Storage\Database(),
-  $application->languages->getLanguage($application->options['PAPAYA_UI_LANGUAGE'])
-);
 
 $PAPAYA_USER = $application->getObject('AdministrationUser');
 $PAPAYA_USER->layout = $PAPAYA_LAYOUT = new \Papaya\Template\XSLT(
@@ -75,7 +71,7 @@ if (
   PAPAYA_UI_LANGUAGE !== $PAPAYA_USER->options['PAPAYA_UI_LANGUAGE']
 ) {
   //user has a different ui language reset object
-  $application->phrases->setLanguage(
+  $application->administrationPhrases->setLanguage(
     $application->languages->getLanguage($PAPAYA_USER->options['PAPAYA_UI_LANGUAGE'])
   );
 }

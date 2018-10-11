@@ -70,11 +70,6 @@ $application->pageReferences->setPreview(TRUE);
 
 $PAPAYA_USER = $application->administrationUser;
 
-$application->phrases = new \Papaya\Phrases(
-  new \Papaya\Phrases\Storage\Database(),
-  $application->languages->getLanguage($application->options['PAPAYA_UI_LANGUAGE'])
-);
-
 if (($path = $application->options->get('PAPAYA_PATH_DATA')) != '' &&
     strpos($path, $_SERVER['DOCUMENT_ROOT']) !== FALSE &&
     file_exists($path) &&
@@ -185,7 +180,7 @@ if ($hasOptions &&
     'PAPAYA_UI_LANGUAGE', $PAPAYA_USER->options['PAPAYA_UI_LANGUAGE']
   );
   //user has a different ui language reset object
-  $application->phrases->setLanguage(
+  $application->administrationPhrases->setLanguage(
     $application->languages->getLanguage($PAPAYA_USER->options['PAPAYA_UI_LANGUAGE'])
   );
 } else {
