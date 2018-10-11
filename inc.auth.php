@@ -197,8 +197,7 @@ if ($PAPAYA_SHOW_ADMIN_PAGE) {
   $PAPAYA_LAYOUT->parameters()->set(
     'PAPAYA_VERSION', defined('PAPAYA_VERSION_STRING') ? PAPAYA_VERSION_STRING : ''
   );
-
-  initLanguageSelect();
+  $PAPAYA_LAYOUT->add($application->administrationLanguage->getXML(), 'title-menu');
   initRichtextSelect();
 } elseif ($hasOptions) {
   $PAPAYA_LAYOUT->parameters()->set('PAGE_USER', _gt('unknown'));

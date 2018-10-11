@@ -114,11 +114,6 @@ function initNavigation($fileName = NULL) {
   $GLOBALS['PAPAYA_NAVIGATION']->initialize($fileName);
 }
 
-function initLanguageSelect() {
-  $lngSelect = base_language_select::getInstance();
-  $GLOBALS['PAPAYA_LAYOUT']->add($lngSelect->getContentLanguageLinksXML(), 'title-menu');
-}
-
 function initRichtextSelect() {
   $rtSelect = base_switch_richtext::getInstance();
   $GLOBALS['PAPAYA_LAYOUT']->add($rtSelect->getSwitchRichtextLinksXML(), 'title-menu');
