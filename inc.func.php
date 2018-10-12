@@ -114,11 +114,6 @@ function initNavigation($fileName = NULL) {
   $GLOBALS['PAPAYA_NAVIGATION']->initialize($fileName);
 }
 
-function initRichtextSelect() {
-  $rtSelect = base_switch_richtext::getInstance();
-  $GLOBALS['PAPAYA_LAYOUT']->add($rtSelect->getSwitchRichtextLinksXML(), 'title-menu');
-}
-
 function controlScriptFileCaching(
   $fileName, $isPrivate = TRUE, $allowGzip = TRUE, $directoriesUp = 4
 ) {

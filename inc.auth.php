@@ -130,24 +130,11 @@ if ($PAPAYA_SHOW_ADMIN_PAGE) {
     $projectTitle .= ' ('.PAPAYA_WEBSITE_REVISION.')';
   }
 }
-$PAPAYA_LAYOUT->parameters()->set('PAGE_PROJECT', $projectTitle);
 
-$useRichtext = $application->session->values()->get('PAPAYA_SESS_USE_RICHTEXT');
-$useRichtext = (isset($useRichtext)) ? (bool)$useRichtext : TRUE;
-$PAPAYA_LAYOUT->parameters()->set(
-  'PAPAYA_USE_RICHTEXT',
-  isset($PAPAYA_USER->options['PAPAYA_USE_RICHTEXT']) &&
-  $PAPAYA_USER->options['PAPAYA_USE_RICHTEXT'] &&
-  $useRichtext
-);
-
-if (defined('PAPAYA_USE_RICHTEXT_EDITOR')) {
-  $PAPAYA_LAYOUT->parameters()->set(
-    'PAPAYA_USE_RICHTEXT_EDITOR', $application->options->get('PAPAYA_USE_RICHTEXT_EDITOR', TRUE)
-  );
-}
 $PAPAYA_LAYOUT->parameters()->assign(
   array(
+    'PAGE_PROJECT' => $projectTitle,
+    'PAPAYA_USE_RICHTEXT' => $application->administrationRichText->isActive(),
     'PAPAYA_RICHTEXT_TEMPLATES_FULL' =>
       $application->options->get('PAPAYA_RICHTEXT_TEMPLATES_FULL'),
     'PAPAYA_RICHTEXT_TEMPLATES_SIMPLE' =>
@@ -198,7 +185,7 @@ if ($PAPAYA_SHOW_ADMIN_PAGE) {
     'PAPAYA_VERSION', defined('PAPAYA_VERSION_STRING') ? PAPAYA_VERSION_STRING : ''
   );
   $PAPAYA_LAYOUT->add($application->administrationLanguage->getXML(), 'title-menu');
-  initRichtextSelect();
+  $PAPAYA_LAYOUT->add($application->administrationRichText->getXML(), 'title-menu');
 } elseif ($hasOptions) {
   $PAPAYA_LAYOUT->parameters()->set('PAGE_USER', _gt('unknown'));
 } else {
@@ -206,7 +193,7 @@ if ($PAPAYA_SHOW_ADMIN_PAGE) {
 }
 
 if ((!defined('PAPAYA_VERSION_STRING'))) {
-  define('PAPAYA_VERSION_STRING', '5');
+  define('PAPAYA_VERSION_STRING', '');
 }
 
 ob_start('outputCompressionHandler');
