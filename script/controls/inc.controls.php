@@ -44,16 +44,7 @@ $application = include_once(__DIR__.'/../../inc.application.php');
 $application->options->loadAndDefine();
 $application->messages->setUp($application->options);
 
-/**
-* @ignore
-*/
-define('PAPAYA_ADMIN_SESSION', TRUE);
-if (defined('PAPAYA_SESSION_NAME')) {
-  $application->session->setName('sid'.PAPAYA_SESSION_NAME.'admin');
-} else {
-  $application->session->setName('sidadmin');
-}
-$application->options->cache = \Papaya\Session\Options::CACHE_PRIVATE;
+$application->session->isAdministration(TRUE);
 $application->session->activate(FALSE);
 
 $PAPAYA_USER = $application->getObject('AdministrationUser');

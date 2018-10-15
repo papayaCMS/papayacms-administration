@@ -176,12 +176,7 @@ if (!$application) {
   );
 
   //create session
-  define('PAPAYA_ADMIN_SESSION', TRUE);
-  $application->session->setName(
-    'sid'.$options->get('PAPAYA_SESSION_NAME', '').'admin'
-  );
-
-  $application->session->options->cache = \Papaya\Session\Options::CACHE_NONE;
+  $application->session->isAdministration(TRUE);
   if ($redirect = $application->session->activate(TRUE)) {
     $redirect->send();
     exit();

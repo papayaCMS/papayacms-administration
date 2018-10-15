@@ -49,26 +49,10 @@ if (!($hasOptions = $application->options->loadAndDefine())) {
 }
 
 $administrationUI = new \Papaya\Administration\UI($application);
+$administrationUI->execute();
 
-$application->messages->setUp($application->options);
-if ($application->options->get('PAPAYA_LOG_RUNTIME_REQUEST', FALSE)) {
-  \Papaya\Request\Log::getInstance();
-}
 
-/**
-* @ignore
-*/
-define('PAPAYA_ADMIN_SESSION', TRUE);
-$application->session->setName(
-  'sid'.$application->options->get('PAPAYA_SESSION_NAME', '').'admin'
-);
 
-$application->session->options->cache = \Papaya\Session\Options::CACHE_NONE;
-if ($redirect = $application->session->activate(TRUE)) {
-  $redirect->send();
-  exit();
-}
-$application->pageReferences->setPreview(TRUE);
 
 $PAPAYA_USER = $application->administrationUser;
 

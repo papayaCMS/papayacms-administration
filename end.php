@@ -39,20 +39,9 @@ if (!($hasOptions = $application->options->loadAndDefine())) {
 }
 
 $application->messages->setUp($application->options);
-
-/**
-* @ignore
-*/
-define('PAPAYA_ADMIN_SESSION', TRUE);
-if (defined('PAPAYA_SESSION_NAME')) {
-  $application->session->setName('sid'.PAPAYA_SESSION_NAME.'admin');
-} else {
-  $application->session->setName('sidadmin');
-}
+$application->session->isAdministration(TRUE);
 $locking = papaya_locking::getInstance();
 $locking->removeLocks($application->session->id);
-
-$application->session->options->cache = \Papaya\Session\Options::CACHE_NONE;
 $application->session->activate(FALSE);
 $application->session->destroy();
 
