@@ -48,6 +48,8 @@ if (!($hasOptions = $application->options->loadAndDefine())) {
   redirectToURL($url);
 }
 
+$administrationUI = new \Papaya\Administration\UI($application);
+
 $application->messages->setUp($application->options);
 if ($application->options->get('PAPAYA_LOG_RUNTIME_REQUEST', FALSE)) {
   \Papaya\Request\Log::getInstance();
@@ -97,9 +99,7 @@ if (!$application->options->get('PAPAYA_PASSWORD_REHASH', FALSE)) {
   );
 }
 
-$PAPAYA_LAYOUT = new \Papaya\Template\XSLT(
-  __DIR__.'/skins/'.$application->options->get('PAPAYA_UI_SKIN').'/style.xsl'
-);
+$PAPAYA_LAYOUT = $administrationUI->template();
 
 $PAPAYA_USER->layout = $PAPAYA_LAYOUT;
 $PAPAYA_USER->initialize();
