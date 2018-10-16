@@ -13,7 +13,10 @@
  *  FOR A PARTICULAR PURPOSE.
  */
 
+use Papaya\Utility;
+
 error_reporting(2047);
+
 
 if (!defined('PAPAYA_ADMIN_PAGE')) {
   /**
@@ -25,99 +28,53 @@ if (!defined('PAPAYA_ADMIN_PAGE')) {
 /**
 * configuration
 */
-require_once("./inc.conf.php");
+require_once __DIR__.'/inc.conf.php';
 /**
 * administration interface
 */
-require_once("./inc.func.php");
-/**
-* images
-*/
-require_once('./inc.glyphs.php');
+require_once __DIR__.'/inc.func.php';
 
 /** @var Papaya\Application\CMS $application */
 $application = includeOrRedirect('./inc.application.php');
 
 if (!($hasOptions = $application->options->loadAndDefine())) {
-  if (!headers_sent()) {
-    redirectToInstaller();
-  }
-} elseif ($application->options->get('PAPAYA_UI_SECURE', FALSE) &&
-          !\Papaya\Utility\Server\Protocol::isSecure()) {
-  $url = 'https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-  redirectToURL($url);
+  $redirect = new \Papaya\Response\Redirect('install.php');
+  $redirect->send(TRUE);
+} elseif (
+  $application->options->get('PAPAYA_UI_SECURE', FALSE) &&
+  !Utility\Server\Protocol::isSecure()
+) {
+  $redirect = new \Papaya\Response\Redirect\Secure();
+  $redirect->send(TRUE);
+}
+
+$revisionFile = Utility\File\Path::getDocumentRoot($application->options).'revision.inc.php';
+if (file_exists($revisionFile) && is_readable($revisionFile)) {
+  include $revisionFile;
 }
 
 $administrationUI = new \Papaya\Administration\UI($application);
 $administrationUI->execute();
 
-
-
-
 $PAPAYA_USER = $application->administrationUser;
-
-if (($path = $application->options->get('PAPAYA_PATH_DATA')) != '' &&
-    strpos($path, $_SERVER['DOCUMENT_ROOT']) !== FALSE &&
-    file_exists($path) &&
-    (!file_exists($path.'.htaccess'))) {
-  $application->messages->dispatch(
-    new \Papaya\Message\Display(
-      \Papaya\Message::SEVERITY_WARNING,
-      _gt(
-        'The file ".htaccess" in the directory "papaya-data/" '.
-        'is missing or not accessible. Please secure the directory.'
-      )
-    )
-  );
-}
-if (!$application->options->get('PAPAYA_PASSWORD_REHASH', FALSE)) {
-  $application->messages->dispatch(
-    new \Papaya\Message\Display(
-      \Papaya\Message::SEVERITY_WARNING,
-      _gt(
-        'The password rehashing is not active. Please activate PAPAYA_PASSWORD_REHASH.'.
-        ' Make sure the authentication tables are up to date before activating'.
-        ' this option, otherwise the logins can become locked.'
-      )
-    )
-  );
-}
-
 $PAPAYA_LAYOUT = $administrationUI->template();
 
 $PAPAYA_USER->layout = $PAPAYA_LAYOUT;
 $PAPAYA_USER->initialize();
-if ($hasOptions) {
-  $PAPAYA_SHOW_ADMIN_PAGE = (bool)$PAPAYA_USER->execLogin();
-} else {
-  $PAPAYA_SHOW_ADMIN_PAGE = FALSE;
-}
-
-$PAPAYA_LAYOUT->parameters()->set('PAPAYA_LOGINPAGE', $PAPAYA_SHOW_ADMIN_PAGE ? FALSE : TRUE);
-
-$projectTitle = PAPAYA_PROJECT_TITLE;
-
-if ($PAPAYA_SHOW_ADMIN_PAGE) {
-  if ((!defined('PAPAYA_WEBSITE_REVISION')) &&
-      (!empty($_SERVER['DOCUMENT_ROOT']))) {
-
-    $revisionFile = \Papaya\Utility\File\Path::cleanup($_SERVER['DOCUMENT_ROOT']);
-    $revisionFile .= $application->options->get('PAPAYA_PATH_WEB');
-    $revisionFile .= 'revision.inc.php';
-  } else {
-    $revisionFile .= '../revision.inc.php';
-  }
-  if (is_readable($revisionFile)) {
-    include_once($revisionFile);
-  }
-  if (defined('PAPAYA_WEBSITE_REVISION') && trim(PAPAYA_WEBSITE_REVISION) != '') {
-    $projectTitle .= ' ('.PAPAYA_WEBSITE_REVISION.')';
-  }
-}
+$application->administrationUser->execLogin();
+$application->administrationPhrases->setLanguage(
+  $application->languages->getLanguage(
+    $application->administrationUser->options->get('PAPAYA_UI_LANGUAGE')
+  )
+);
 
 $PAPAYA_LAYOUT->parameters()->assign(
   array(
-    'PAGE_PROJECT' => $projectTitle,
+    'PAGE_PROJECT' => trim(constant('PAPAYA_PROJECT_TITLE')),
+    'PAGE_REVISION' => trim(constant('PAPAYA_WEBSITE_REVISION')),
+    'PAPAYA_DBG_DEVMODE' => $application->options->get('PAPAYA_DBG_DEVMODE', FALSE),
+    'PAPAYA_LOGINPAGE' => !$application->administrationUser->isValid,
+    'PAPAYA_UI_LANGUAGE' => $application->administrationUser->options['PAPAYA_UI_LANGUAGE'],
     'PAPAYA_USE_RICHTEXT' => $application->administrationRichText->isActive(),
     'PAPAYA_RICHTEXT_TEMPLATES_FULL' =>
       $application->options->get('PAPAYA_RICHTEXT_TEMPLATES_FULL'),
@@ -139,35 +96,8 @@ if (file_exists($localCssfile) && is_file($localCssfile)) {
   );
 }
 
-
-$PAPAYA_LAYOUT->parameters()->set(
-  'PAPAYA_DBG_DEVMODE', $application->options->get('PAPAYA_DBG_DEVMODE')
-);
-
-if ($hasOptions &&
-    isset($PAPAYA_USER->options['PAPAYA_UI_LANGUAGE']) &&
-    $application->options['PAPAYA_UI_LANGUAGE'] != $PAPAYA_USER->options['PAPAYA_UI_LANGUAGE']) {
-  $PAPAYA_LAYOUT->parameters()->set(
-    'PAPAYA_UI_LANGUAGE', $PAPAYA_USER->options['PAPAYA_UI_LANGUAGE']
-  );
-  //user has a different ui language reset object
-  $application->administrationPhrases->setLanguage(
-    $application->languages->getLanguage($PAPAYA_USER->options['PAPAYA_UI_LANGUAGE'])
-  );
-} else {
-  $PAPAYA_LAYOUT->parameters()->set(
-    'PAPAYA_UI_LANGUAGE', $application->options['PAPAYA_UI_LANGUAGE']
-  );
-}
-
-if ($PAPAYA_SHOW_ADMIN_PAGE) {
-  if ((!defined('PAPAYA_VERSION_STRING')) && is_readable(dirname(__FILE__).'/inc.version.php')) {
-    include_once(dirname(__FILE__)."/inc.version.php");
-  }
+if ($application->administrationUser->isValid) {
   $PAPAYA_LAYOUT->parameters()->set('PAGE_USER', $PAPAYA_USER->user['fullname']);
-  $PAPAYA_LAYOUT->parameters()->set(
-    'PAPAYA_VERSION', defined('PAPAYA_VERSION_STRING') ? PAPAYA_VERSION_STRING : ''
-  );
   $PAPAYA_LAYOUT->add($application->administrationLanguage->getXML(), 'title-menu');
   $PAPAYA_LAYOUT->add($application->administrationRichText->getXML(), 'title-menu');
 } elseif ($hasOptions) {
@@ -176,9 +106,7 @@ if ($PAPAYA_SHOW_ADMIN_PAGE) {
   $PAPAYA_LAYOUT->parameters()->set('PAGE_USER', 'none');
 }
 
-if ((!defined('PAPAYA_VERSION_STRING'))) {
-  define('PAPAYA_VERSION_STRING', '');
-}
+$PAPAYA_SHOW_ADMIN_PAGE = $application->administrationUser->isValid;
 
 ob_start('outputCompressionHandler');
 header('Content-type: text/html; charset=utf-8');

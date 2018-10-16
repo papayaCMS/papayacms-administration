@@ -1,4 +1,18 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
+<!--
+  ~ papaya CMS
+  ~
+  ~ @copyright 2000-2018 by papayaCMS project - All rights reserved.
+  ~ @link http://www.papaya-cms.com/
+  ~ @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License, version 2
+  ~
+  ~  You can redistribute and/or modify this script under the terms of the GNU General Public
+  ~  License (GPL) version 2, provided that the copyright and license notes, including these
+  ~  lines, remain unmodified. papaya is distributed in the hope that it will be useful, but
+  ~  WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+  ~  FOR A PARTICULAR PURPOSE.
+  -->
+
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 <xsl:import href="controls/generics.xsl"/>
@@ -22,7 +36,8 @@
 <xsl:param name="PAGE_ICON" />
 <xsl:param name="PAGE_USER" />
 <xsl:param name="PAGE_PROJECT">Project</xsl:param>
-<xsl:param name="PAPAYA_VERSION"></xsl:param>
+<xsl:param name="PAGE_REVISION" select="''"/>
+<xsl:param name="PAPAYA_VERSION" select="''"/>
 <xsl:param name="PAPAYA_MESSAGES_INBOX_NEW" select="0"/>
 <xsl:param name="PAPAYA_MESSAGES_INBOX_LINK">msgbox.php?msg:folder_id=0</xsl:param>
 
@@ -62,7 +77,13 @@
   <html>
     <head>
       <meta name="robots" content="noindex, nofollow" />
-      <title><xsl:value-of select="$PAGE_PROJECT" />: <xsl:value-of select="$PAGE_TITLE" /> - papaya CMS</title>
+      <title>
+        <xsl:value-of select="$PAGE_PROJECT" />
+        <xsl:if test="not($PAPAYA_LOGINPAGE) and $PAGE_REVISION != ''">
+          <xsl:value-of select="concat('(', $PAGE_REVISION, ')')"/>
+        </xsl:if>
+        <xsl:text>: </xsl:text>
+        <xsl:value-of select="$PAGE_TITLE" /> - papaya CMS</title>
       <link rel="stylesheet" type="text/css" href="{$PAPAYA_PATH_SKIN}css.style.php?rev={$PAPAYA_VERSION}&amp;theme={$PAPAYA_UI_THEME}"/>
       <link rel="stylesheet" type="text/css" href="./script/jquery/css/papaya/jquery-ui-1.8.21.custom.css"/>
       <link rel="SHORTCUT ICON" href="{$PAPAYA_PATH_SKIN}pics/{$PAPAYA_UI_THEME}/favicon.ico" />
@@ -253,9 +274,17 @@
       <xsl:attribute name="title">
         <xsl:call-template name="translate-phrase">
           <xsl:with-param name="phrase">Website</xsl:with-param>
-        </xsl:call-template>: <xsl:value-of select="$PAGE_PROJECT" />
+        </xsl:call-template>
+        <xsl:text>: </xsl:text>
+        <xsl:value-of select="$PAGE_PROJECT" />
+        <xsl:if test="not($PAPAYA_LOGINPAGE) and $PAGE_REVISION != ''">
+          <xsl:value-of select="concat('(', $PAGE_REVISION, ')')"/>
+        </xsl:if>
       </xsl:attribute>
       <xsl:value-of select="$PAGE_PROJECT" />
+      <xsl:if test="not($PAPAYA_LOGINPAGE) and $PAGE_REVISION != ''">
+        <xsl:value-of select="concat('(', $PAGE_REVISION, ')')"/>
+      </xsl:if>
     </a>
     <xsl:text> - </xsl:text>
     <span class="user">
@@ -273,7 +302,14 @@
     <div id="footerArtworkLeft">
       <div id="footerArtworkRight">
         <div id="footerArtworkOverlay">
-          <span class="versionString"><a href="http://www.papaya-cms.com/" target="_blank">papaya CMS <xsl:value-of select="$PAPAYA_VERSION"/></a></span>
+          <span class="versionString">
+            <a href="http://www.papaya-cms.com/" target="_blank">
+              <xsl:text>papaya CMS </xsl:text>
+              <xsl:if test="not($PAPAYA_LOGINPAGE) and $PAPAYA_VERSION != ''">
+                (<xsl:value-of select="$PAPAYA_VERSION"/>)
+              </xsl:if>
+            </a>
+          </span>
         </div>
       </div>
     </div>

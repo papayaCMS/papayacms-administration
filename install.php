@@ -137,11 +137,6 @@ if (!$application) {
   <?php
   // @codingStandardsIgnoreEnd
 } else {
-  /**
-  * button glyphs
-  */
-  include_once('./inc.glyphs.php');
-
   // check if the options table is present
   $installer = new \papaya_installer();
   $status = $installer->getCurrentStatus();
