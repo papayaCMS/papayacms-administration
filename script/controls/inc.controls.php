@@ -27,12 +27,6 @@ if (!defined('PAPAYA_DOCUMENT_ROOT')) {
    */
   define('PAPAYA_DOCUMENT_ROOT', $path);
 }
-if (!defined('PAPAYA_ADMIN_PAGE')) {
-  /**
-  * @ignore
-  */
-  define('PAPAYA_ADMIN_PAGE', TRUE);
-}
 /**
 * inclusion of base or additional libraries
 */

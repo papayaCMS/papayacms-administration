@@ -17,14 +17,6 @@ use Papaya\Utility;
 
 error_reporting(2047);
 
-
-if (!defined('PAPAYA_ADMIN_PAGE')) {
-  /**
-  * This is an administration page
-  * @ignore
-  */
-  define('PAPAYA_ADMIN_PAGE', TRUE);
-}
 /**
 * configuration
 */

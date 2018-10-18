@@ -13,10 +13,15 @@
  *  FOR A PARTICULAR PURPOSE.
  */
 
-require_once(PAPAYA_DOCUMENT_ROOT.'../vendor/autoload.php');
+if (!defined('PAPAYA_ADMIN_PAGE')) {
+  define('PAPAYA_ADMIN_PAGE', TRUE);
+}
+
+require_once PAPAYA_DOCUMENT_ROOT.'../vendor/autoload.php';
 
 /** @var Papaya\Application\CMS $application */
 $application = \Papaya\Application::getInstance();
 $application->registerProfiles(new Papaya\Application\Profiles\CMS());
+$application->request->isAdministration = TRUE;
 
 return $application;

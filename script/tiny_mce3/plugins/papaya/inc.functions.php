@@ -27,9 +27,6 @@
 */
 function initializeAdministrationPage() {
   error_reporting(2047);
-  if (!defined('PAPAYA_ADMIN_PAGE')) {
-    define('PAPAYA_ADMIN_PAGE', TRUE);
-  }
   $path = dirname(dirname(dirname(dirname(dirname($_SERVER['SCRIPT_FILENAME'])))));
   if (file_exists($path.'/../../papaya.php')) {
     include_once($path.'/../../papaya.php');

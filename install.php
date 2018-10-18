@@ -19,7 +19,6 @@
 require_once __DIR__.'/inc.conf.php';
 require_once __DIR__.'/inc.func.php';
 
-define('PAPAYA_ADMIN_PAGE', TRUE);
 /**
  * check include path - try to include installer, and application object
  *

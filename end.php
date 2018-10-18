@@ -13,14 +13,6 @@
  *  FOR A PARTICULAR PURPOSE.
  */
 
-if (!defined('PAPAYA_ADMIN_PAGE')) {
-  /**
-  * This is an administration page
-  * @ignore
-  */
-  define('PAPAYA_ADMIN_PAGE', TRUE);
-}
-
 require_once("./inc.conf.php");
 require_once("./inc.func.php");
 
