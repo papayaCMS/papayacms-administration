@@ -42,7 +42,7 @@ $application->session->isAdministration(TRUE);
 $application->session->activate(FALSE);
 
 $PAPAYA_USER = $application->getObject('AdministrationUser');
-$PAPAYA_USER->layout = $PAPAYA_LAYOUT = new \Papaya\Template\XSLT(
+$PAPAYA_USER->layout = new \Papaya\Template\XSLT(
   __DIR__.'/../../skins/'.$application->options->get('PAPAYA_UI_SKIN').'/style.xsl'
 );
 $PAPAYA_USER->initialize();

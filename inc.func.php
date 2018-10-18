@@ -151,20 +151,33 @@ function controlScriptFileCaching(
 
 function outputCompressionHandler($buffer, $mode) {
   static $output = TRUE;
-  if ($output &&
-      !headers_sent() &&
-      function_exists('ob_gzhandler') &&
-      @ini_get('zlib.output_compression') != TRUE) {
+  if ($output && canUseOutputCompressionHandler()) {
     $output = FALSE;
-    $compressed = ob_gzhandler(
-      $buffer,
-      $mode
-    );
-    return $compressed;
-  } elseif ($output) {
+    /** @noinspection PhpComposerExtensionStubsInspection */
+    return ob_gzhandler($buffer, $mode);
+  }
+  if ($output) {
     return $buffer;
   }
   return NULL;
+}
+
+function canUseOutputCompressionHandler() {
+  if (
+    function_exists('ob_gzhandler') &&
+    TRUE !== (bool)@ini_get('zlib.output_compression') &&
+    !headers_sent()
+  ) {
+    $status = ob_get_status(TRUE);
+    array_pop($status);
+    return 0 === count(
+      array_filter(
+        $status,
+        function($status) { return !isset($status['buffer_used']) || 0 !== $status['buffer_used']; }
+      )
+    );
+  }
+  return FALSE;
 }
 
 function includeThemeDefinition() {

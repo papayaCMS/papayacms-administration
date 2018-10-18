@@ -34,7 +34,7 @@
 <xsl:param name="PAGE_TITLE" />
 <xsl:param name="PAGE_TITLE_ALIGN" select="true()"/>
 <xsl:param name="PAGE_ICON" />
-<xsl:param name="PAGE_USER" />
+<xsl:param name="PAGE_USER" select="''"/>
 <xsl:param name="PAGE_PROJECT">Project</xsl:param>
 <xsl:param name="PAGE_REVISION" select="''"/>
 <xsl:param name="PAPAYA_VERSION" select="''"/>
@@ -286,13 +286,15 @@
         <xsl:value-of select="concat('(', $PAGE_REVISION, ')')"/>
       </xsl:if>
     </a>
-    <xsl:text> - </xsl:text>
-    <span class="user">
-      <xsl:value-of select="$PAGE_USER" />
-      <xsl:if test="$PAPAYA_MESSAGES_INBOX_NEW &gt; 0">
-        (<a href="{$PAPAYA_MESSAGES_INBOX_LINK}"><xsl:value-of select="$PAPAYA_MESSAGES_INBOX_NEW" /></a>)
-      </xsl:if>
-    </span>
+    <xsl:if test="$PAGE_USER != ''">
+      <xsl:text> - </xsl:text>
+      <span class="user">
+        <xsl:value-of select="$PAGE_USER" />
+        <xsl:if test="$PAPAYA_MESSAGES_INBOX_NEW &gt; 0">
+          (<a href="{$PAPAYA_MESSAGES_INBOX_LINK}"><xsl:value-of select="$PAPAYA_MESSAGES_INBOX_NEW" /></a>)
+        </xsl:if>
+      </span>
+    </xsl:if>
     <xsl:call-template name="application-page-links"/>
   </div>
 </xsl:template>

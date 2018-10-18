@@ -13,6 +13,8 @@
  *  FOR A PARTICULAR PURPOSE.
  */
 
+error_reporting(2047);
+
 if (defined('PAPAYA_DOCUMENT_ROOT')) {
   $path = PAPAYA_DOCUMENT_ROOT;
 } else {

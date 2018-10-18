@@ -15,10 +15,9 @@
 
 use Papaya\Request\Log;
 
-$PAPAYA_LAYOUT->parameters()->set(
-  'PAPAYA_UI_THEME', $application->options->get('PAPAYA_UI_THEME', 'green')
-);
-print $PAPAYA_LAYOUT->getOutput();
+ob_start('outputCompressionHandler');
+header('Content-type: text/html; charset=utf-8');
+print $administrationUI->getOutput();
 
 if ($application->options->get('PAPAYA_LOG_RUNTIME_REQUEST', FALSE)) {
   $application->database->close();

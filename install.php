@@ -164,8 +164,7 @@ if (!$application) {
     array(
       'PAGE_TITLE' => _gt('Administration').' - '._gt('Installation / Update'),
       'PAGE_ICON' => $application->images['categories-installer'],
-      'PAGE_PROJECT' => '',
-      'PAGE_USER' => 'NO USER'
+      'PAGE_PROJECT' => ''
     )
   );
 

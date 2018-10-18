@@ -15,8 +15,6 @@
 
 use Papaya\Utility;
 
-error_reporting(2047);
-
 /**
 * configuration
 */
@@ -51,7 +49,7 @@ $administrationUI->execute();
 $PAPAYA_USER = $application->administrationUser;
 $PAPAYA_LAYOUT = $administrationUI->template();
 
-$PAPAYA_USER->layout = $PAPAYA_LAYOUT;
+$PAPAYA_USER->layout = $administrationUI->template();
 $PAPAYA_USER->initialize();
 $application->administrationUser->execLogin();
 $application->administrationPhrases->setLanguage(
@@ -60,46 +58,5 @@ $application->administrationPhrases->setLanguage(
   )
 );
 
-$PAPAYA_LAYOUT->parameters()->assign(
-  array(
-    'PAGE_PROJECT' => trim(constant('PAPAYA_PROJECT_TITLE')),
-    'PAGE_REVISION' => trim(constant('PAPAYA_WEBSITE_REVISION')),
-    'PAPAYA_DBG_DEVMODE' => $application->options->get('PAPAYA_DBG_DEVMODE', FALSE),
-    'PAPAYA_LOGINPAGE' => !$application->administrationUser->isValid,
-    'PAPAYA_UI_LANGUAGE' => $application->administrationUser->options['PAPAYA_UI_LANGUAGE'],
-    'PAPAYA_USE_RICHTEXT' => $application->administrationRichText->isActive(),
-    'PAPAYA_RICHTEXT_TEMPLATES_FULL' =>
-      $application->options->get('PAPAYA_RICHTEXT_TEMPLATES_FULL'),
-    'PAPAYA_RICHTEXT_TEMPLATES_SIMPLE' =>
-      $application->options->get('PAPAYA_RICHTEXT_TEMPLATES_SIMPLE'),
-    'PAPAYA_RICHTEXT_LINK_TARGET' =>
-      $application->options->get('PAPAYA_RICHTEXT_LINK_TARGET'),
-    'PAPAYA_RICHTEXT_BROWSER_SPELLCHECK' =>
-      $application->options->get('PAPAYA_RICHTEXT_BROWSER_SPELLCHECK')
-  )
-);
-
-$themeHandler = new \Papaya\Theme\Handler();
-$contentCss = $application->options->get('PAPAYA_RICHTEXT_CONTENT_CSS');
-$localCssfile = $themeHandler->getLocalThemePath().$contentCss;
-if (file_exists($localCssfile) && is_file($localCssfile)) {
-  $PAPAYA_LAYOUT->parameters()->set(
-    'PAPAYA_RICHTEXT_CONTENT_CSS', $themeHandler->getURL().$contentCss
-  );
-}
-
-if ($application->administrationUser->isValid) {
-  $PAPAYA_LAYOUT->parameters()->set('PAGE_USER', $PAPAYA_USER->user['fullname']);
-  $PAPAYA_LAYOUT->add($application->administrationLanguage->getXML(), 'title-menu');
-  $PAPAYA_LAYOUT->add($application->administrationRichText->getXML(), 'title-menu');
-} elseif ($hasOptions) {
-  $PAPAYA_LAYOUT->parameters()->set('PAGE_USER', _gt('unknown'));
-} else {
-  $PAPAYA_LAYOUT->parameters()->set('PAGE_USER', 'none');
-}
-
 $PAPAYA_SHOW_ADMIN_PAGE = $application->administrationUser->isValid;
-
-ob_start('outputCompressionHandler');
-header('Content-type: text/html; charset=utf-8');
 
