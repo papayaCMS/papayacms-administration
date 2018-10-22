@@ -39,7 +39,7 @@
 <xsl:param name="PAGE_REVISION" select="''"/>
 <xsl:param name="PAPAYA_VERSION" select="''"/>
 <xsl:param name="PAPAYA_MESSAGES_INBOX_NEW" select="0"/>
-<xsl:param name="PAPAYA_MESSAGES_INBOX_LINK">msgbox.php?msg:folder_id=0</xsl:param>
+<xsl:param name="PAPAYA_MESSAGES_INBOX_LINK">messages?msg:folder_id=0</xsl:param>
 
 <xsl:param name="PAPAYA_UI_THEME">green</xsl:param>
 <xsl:param name="PAPAYA_PATH_SKIN">skins/default/</xsl:param>

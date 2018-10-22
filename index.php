@@ -13,15 +13,5 @@
  *  FOR A PARTICULAR PURPOSE.
  */
 
-if (
-  preg_match('(.*/(?<route>[^?#/]+))', $_SERVER['REQUEST_URI'], $match) &&
-  'index' !== $match['route']
-) {
-  require __DIR__.'/inc.auth.php';
-  require __DIR__.'/inc.footer.php';
-} else {
-  /**
-   * include overview page
-   */
-  require __DIR__.'/overview.php';
-}
+require __DIR__.'/inc.auth.php';
+require __DIR__.'/inc.footer.php';

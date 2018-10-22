@@ -1,4 +1,18 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
+<!--
+  ~ papaya CMS
+  ~
+  ~ @copyright 2000-2018 by papayaCMS project - All rights reserved.
+  ~ @link http://www.papaya-cms.com/
+  ~ @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License, version 2
+  ~
+  ~  You can redistribute and/or modify this script under the terms of the GNU General Public
+  ~  License (GPL) version 2, provided that the copyright and license notes, including these
+  ~  lines, remain unmodified. papaya is distributed in the hope that it will be useful, but
+  ~  WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+  ~  FOR A PARTICULAR PURPOSE.
+  -->
+
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 <xsl:template name="float-fix">
@@ -159,7 +173,7 @@
   <xsl:choose>
     <xsl:when test="$icon-src = '-'">./pics/tpoint.gif</xsl:when>
     <xsl:when test="starts-with($icon-src, './')"><xsl:value-of select="$icon-src"/></xsl:when>
-    <xsl:when test="starts-with($icon-src, 'module:')">modglyph.php?module=<xsl:value-of select="substring($icon-src, 8, 32)"/>&amp;src=<xsl:value-of select="substring($icon-src, 41)"/>&amp;size=<xsl:value-of select="$icon-size"/>&amp;behavior=.png</xsl:when>
+    <xsl:when test="starts-with($icon-src, 'module:')">extensions.image?module=<xsl:value-of select="substring($icon-src, 8, 32)"/>&amp;src=<xsl:value-of select="substring($icon-src, 41)"/>&amp;size=<xsl:value-of select="$icon-size"/>&amp;behavior=.png</xsl:when>
     <xsl:otherwise>pics/icons/<xsl:value-of select="$icon-size"/>x<xsl:value-of select="$icon-size"/>/<xsl:value-of select="$icon-src"/></xsl:otherwise>
   </xsl:choose>
 </xsl:template>
