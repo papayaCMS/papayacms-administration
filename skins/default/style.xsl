@@ -90,6 +90,7 @@
       <xsl:call-template name="application-page-scripts" />
     </head>
     <xsl:choose>
+      <xsl:when test="$PAGE_MODE = 'frameset'"><xsl:call-template name="application-frameset" /></xsl:when>
       <xsl:when test="$PAGE_MODE = 'frame'"><xsl:call-template name="application-frame" /></xsl:when>
       <xsl:otherwise><xsl:call-template name="application-page" /></xsl:otherwise>
     </xsl:choose>
@@ -110,9 +111,13 @@
   </body>
 </xsl:template>
 
+<xsl:template name="application-frameset">
+  <xsl:call-template name="jquery-embed" />
+  <xsl:copy-of select="/page/centercol/*"/>
+</xsl:template>
+
 <xsl:template name="application-frame">
   <body class="framePage">
-    <xsl:call-template name="application-page-menus"/>
     <xsl:call-template name="application-page-main"/>
     <xsl:call-template name="jquery-embed" />
   </body>

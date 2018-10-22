@@ -1,22 +1,17 @@
 <?php
 /**
-*
-*
-* @copyright 2002-2007 by papaya Software GmbH - All rights reserved.
-* @link http://www.papaya-cms.com/
-* @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License, version 2
-*
-* You can redistribute and/or modify this script under the terms of the GNU General Public
-* License (GPL) version 2, provided that the copyright and license notes, including these
-* lines, remain unmodified. papaya is distributed in the hope that it will be useful, but
-* WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-* FOR A PARTICULAR PURPOSE.
-*
-* @package Papaya
-* @subpackage Scripts-Controls
-* @version $Id: browseimg.php 39752 2014-04-24 10:55:28Z weinert $
-* @codingStandardsIgnoreFile
-*/
+ * papaya CMS
+ *
+ * @copyright 2000-2018 by papayaCMS project - All rights reserved.
+ * @link http://www.papaya-cms.com/
+ * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License, version 2
+ *
+ *  You can redistribute and/or modify this script under the terms of the GNU General Public
+ *  License (GPL) version 2, provided that the copyright and license notes, including these
+ *  lines, remain unmodified. papaya is distributed in the hope that it will be useful, but
+ *  WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ *  FOR A PARTICULAR PURPOSE.
+ */
 
 /**
 * incusion of base or additional libraries
@@ -32,9 +27,9 @@ require_once(dirname(__FILE__).'/inc.controls.php');
           type="text/css" href="../../skins/<?php echo $PAPAYA_SKIN; ?>/css.popups.php">
     <script type="text/javascript" src="../imgbrowser.js"></script>
     <script type="text/javascript">
-var linkList = "../../mediafilebrw.php?mdb[mode]=list";
-var linkPreview = "../../mediafilebrw.php?mdb[mode]=preview&mdb[imagesonly]=1";
-var linkThumbs = "../../mediafilebrw.php?mdb[mode]=thumbs&mdb[dialog]=no&mdb[imagesonly]=1";
+var linkList = "../../content.file.browser?mdb[mode]=list";
+var linkPreview = "../../content.file.browser?mdb[mode]=preview&mdb[imagesonly]=1";
+var linkThumbs = "../../content.file.browser?mdb[mode]=thumbs&mdb[dialog]=no&mdb[imagesonly]=1";
 
 var mediaFileData = {};
 var papayaContext = null;
@@ -75,12 +70,12 @@ function setMediaFileData(fileId, fileData) {
     <frameset cols="300,*" style="border-width: 3px;" frameborder="yes" border="3"
       framespacing="3" bordercolor="#FFFFFF">
       <frameset rows="*,200">
-        <frame src="../../mediafilebrw.php?mdb[mode]=list" id="frmFolders"/>
+        <frame src="../../content.file.browser?mdb[mode]=list" id="frmFolders"/>
         <frame id="frmPreview" scrolling="no"
-          src="../../mediafilebrw.php?mdb[mode]=preview&amp;mdb[imagesonly]=1"/>
+          src="../../content.file.browser?mdb[mode]=preview&amp;mdb[imagesonly]=1"/>
       </frameset>
       <frame id="frmThumbs"
-        src="../../mediafilebrw.php?mdb[mode]=thumbs&amp;mdb[dialog]=no&amp;mdb[imagesonly]=1"/>
+        src="../../content.file.browser?mdb[mode]=thumbs&amp;mdb[dialog]=no&amp;mdb[imagesonly]=1"/>
     </frameset>
     <frame src="browsebtns.php" style="border: none;"/>
   </frameset>

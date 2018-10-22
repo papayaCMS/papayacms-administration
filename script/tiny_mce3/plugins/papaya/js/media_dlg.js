@@ -1,3 +1,17 @@
+/*
+ * papaya CMS
+ *
+ * @copyright 2000-2018 by papayaCMS project - All rights reserved.
+ * @link http://www.papaya-cms.com/
+ * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License, version 2
+ *
+ *  You can redistribute and/or modify this script under the terms of the GNU General Public
+ *  License (GPL) version 2, provided that the copyright and license notes, including these
+ *  lines, remain unmodified. papaya is distributed in the hope that it will be useful, but
+ *  WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ *  FOR A PARTICULAR PURPOSE.
+ */
+
 /**
 * @version $Id: media_dlg.js 38113 2013-02-12 15:43:25Z smekal $
 * @author <a href="mailto:info@papaya-cms.com">Thomas Weinert</a>
@@ -491,7 +505,7 @@ PapayaMediaForm = JsonClass(
 
     showPreview : function() {
       var iframe = document.getElementById('file_preview');
-      var url = '../../../../mediafilebrw.php?mdb[mode]=preview&mdb[imagesonly]=1&mdb[file]=' + encodeURI(this.mediaData.id);
+      var url = '../../../../content.file.browser?mdb[mode]=preview&mdb[imagesonly]=1&mdb[file]=' + encodeURI(this.mediaData.id);
       if (iframe) {
         if (iframe.setAttribute) {
           iframe.setAttribute('src', url);
