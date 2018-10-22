@@ -80,7 +80,7 @@
       <title>
         <xsl:value-of select="$PAGE_PROJECT" />
         <xsl:if test="not($PAPAYA_LOGINPAGE) and $PAGE_REVISION != ''">
-          <xsl:value-of select="concat('(', $PAGE_REVISION, ')')"/>
+          <xsl:value-of select="concat(' (', $PAGE_REVISION, ')')"/>
         </xsl:if>
         <xsl:text>: </xsl:text>
         <xsl:value-of select="$PAGE_TITLE" /> - papaya CMS</title>
@@ -278,12 +278,12 @@
         <xsl:text>: </xsl:text>
         <xsl:value-of select="$PAGE_PROJECT" />
         <xsl:if test="not($PAPAYA_LOGINPAGE) and $PAGE_REVISION != ''">
-          <xsl:value-of select="concat('(', $PAGE_REVISION, ')')"/>
+          <xsl:value-of select="concat(' (', $PAGE_REVISION, ')')"/>
         </xsl:if>
       </xsl:attribute>
       <xsl:value-of select="$PAGE_PROJECT" />
       <xsl:if test="not($PAPAYA_LOGINPAGE) and $PAGE_REVISION != ''">
-        <xsl:value-of select="concat('(', $PAGE_REVISION, ')')"/>
+        <xsl:value-of select="concat(' (', $PAGE_REVISION, ')')"/>
       </xsl:if>
     </a>
     <xsl:if test="$PAGE_USER != ''">
