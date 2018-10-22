@@ -21,17 +21,8 @@ if ($response = $administrationUI->execute()) {
   $response->send(TRUE);
 }
 
-$PAPAYA_USER = $application->administrationUser;
 $PAPAYA_LAYOUT = $administrationUI->template();
-
-$PAPAYA_USER->layout = $administrationUI->template();
-$PAPAYA_USER->initialize();
-$application->administrationUser->execLogin();
-$application->administrationPhrases->setLanguage(
-  $application->languages->getLanguage(
-    $application->administrationUser->options->get('PAPAYA_UI_LANGUAGE')
-  )
-);
-
+$PAPAYA_USER = $application->administrationUser;
 $PAPAYA_SHOW_ADMIN_PAGE = $application->administrationUser->isValid;
+
 
