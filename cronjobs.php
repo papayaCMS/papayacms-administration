@@ -22,7 +22,6 @@ require_once("./inc.auth.php");
 
 if ($PAPAYA_SHOW_ADMIN_PAGE &&
     $PAPAYA_USER->hasPerm(Permissions::SYSTEM_CRONJOBS)) {
-  initNavigation('options.php');
   $PAPAYA_LAYOUT->parameters()->set(
     'PAGE_TITLE', _gt('Administration').' - '._gt('Settings').' - '._gt('Cronjobs')
   );

@@ -69,10 +69,6 @@ if (file_exists($path) && is_dir($path)) {
   echo 'Can not use path: '.htmlspecialchars($path.'/')."\n";
   exit;
 }
-/**
-* Configuration
-*/
-require_once __DIR__.'/inc.conf.php';
 
 /** @var \Papaya\Application\CMS $application */
 $application = include __DIR__.'/inc.application.php';

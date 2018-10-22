@@ -21,7 +21,6 @@ use Papaya\Administration\Permissions;
 require_once("./inc.auth.php");
 if ($PAPAYA_SHOW_ADMIN_PAGE &&
     $PAPAYA_USER->hasPerm(Permissions::SYSTEM_MIMETYPES_MANAGE)) {
-  initNavigation('options.php');
   $PAPAYA_LAYOUT->parameters()->set(
     'PAGE_TITLE', _gt('Administration').' - '._gt('Settings').' - '._gt('Mime Types')
   );

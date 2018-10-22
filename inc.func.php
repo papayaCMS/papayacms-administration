@@ -102,18 +102,6 @@ function redirectToURL($url) {
   exit;
 }
 
-/**
- * Initialize navigation
- *
- * @access public
- * @param null $fileName
- */
-function initNavigation($fileName = NULL) {
-  $GLOBALS['PAPAYA_NAVIGATION'] = new papaya_navigation();
-  $GLOBALS['PAPAYA_NAVIGATION']->layout = $GLOBALS['PAPAYA_LAYOUT'];
-  $GLOBALS['PAPAYA_NAVIGATION']->initialize($fileName);
-}
-
 function controlScriptFileCaching(
   $fileName, $isPrivate = TRUE, $allowGzip = TRUE, $directoriesUp = 4
 ) {

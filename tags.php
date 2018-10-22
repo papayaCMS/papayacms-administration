@@ -22,7 +22,6 @@ require_once("./inc.auth.php");
 
 if ($PAPAYA_SHOW_ADMIN_PAGE &&
     $PAPAYA_USER->hasPerm(Permissions::TAG_MANAGE)) {
-  initNavigation();
   $PAPAYA_LAYOUT->parameters()->set('PAGE_TITLE', _gt('Content').' - '._gt('Tags'));
   $PAPAYA_LAYOUT->parameters()->set('PAGE_ICON', $PAPAYA_IMAGES['items-tag']);
 

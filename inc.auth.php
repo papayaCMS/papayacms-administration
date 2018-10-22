@@ -13,38 +13,13 @@
  *  FOR A PARTICULAR PURPOSE.
  */
 
-use Papaya\Utility;
-
-/**
-* configuration
-*/
-require_once __DIR__.'/inc.conf.php';
-/**
-* administration interface
-*/
-require_once __DIR__.'/inc.func.php';
-
 /** @var Papaya\Application\CMS $application */
-$application = includeOrRedirect('./inc.application.php');
+$application = include __DIR__.'/inc.application.php';
 
-if (!($hasOptions = $application->options->loadAndDefine())) {
-  $redirect = new \Papaya\Response\Redirect('install.php');
-  $redirect->send(TRUE);
-} elseif (
-  $application->options->get('PAPAYA_UI_SECURE', FALSE) &&
-  !Utility\Server\Protocol::isSecure()
-) {
-  $redirect = new \Papaya\Response\Redirect\Secure();
-  $redirect->send(TRUE);
+$administrationUI = new \Papaya\Administration\UI(__DIR__, $application);
+if ($response = $administrationUI->execute()) {
+  $response->send(TRUE);
 }
-
-$revisionFile = Utility\File\Path::getDocumentRoot($application->options).'revision.inc.php';
-if (file_exists($revisionFile) && is_readable($revisionFile)) {
-  include $revisionFile;
-}
-
-$administrationUI = new \Papaya\Administration\UI($application);
-$administrationUI->execute();
 
 $PAPAYA_USER = $application->administrationUser;
 $PAPAYA_LAYOUT = $administrationUI->template();

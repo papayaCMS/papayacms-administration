@@ -34,6 +34,5 @@ if ($PAPAYA_SHOW_ADMIN_PAGE) {
 
   $module->initialize();
   $module->execute();
-  initNavigation();
 }
 require('inc.footer.php');
