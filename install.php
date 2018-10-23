@@ -17,7 +17,6 @@
 * Configuration file
 */
 require_once __DIR__.'/inc.conf.php';
-require_once __DIR__.'/inc.func.php';
 
 /**
  * check include path - try to include installer, and application object
@@ -25,9 +24,9 @@ require_once __DIR__.'/inc.func.php';
  * @var Papaya\Application\CMS $application Application object
  */
 if (defined('PAPAYA_DBG_DEVMODE') && PAPAYA_DBG_DEVMODE) {
-  $application = include_once(__DIR__.'/inc.application.php');
+  $application = include __DIR__.'/inc.application.php';
 } else {
-  $application = @include_once(__DIR__.'/inc.application.php');
+  $application = @include __DIR__.'/inc.application.php';
 }
 
 if (!$application) {

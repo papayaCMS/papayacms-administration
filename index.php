@@ -13,6 +13,11 @@
  *  FOR A PARTICULAR PURPOSE.
  */
 
+/**
+* Configuration file
+*/
+require_once __DIR__.'/inc.conf.php';
+
 /** @var Papaya\Application\CMS $application */
 $application = include __DIR__.'/inc.application.php';
 

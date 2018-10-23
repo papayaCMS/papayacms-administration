@@ -31,7 +31,6 @@ if (!defined('PAPAYA_DOCUMENT_ROOT')) {
 * inclusion of base or additional libraries
 */
 require_once __DIR__.'/../../inc.conf.php';
-require_once __DIR__.'/../../inc.func.php';
 
 /** @var \Papaya\Application\CMS $application */
 $application = include_once(__DIR__.'/../../inc.application.php');

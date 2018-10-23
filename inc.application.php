@@ -18,7 +18,6 @@ if (!defined('PAPAYA_ADMIN_PAGE')) {
 }
 
 require_once __DIR__.'/../../vendor/autoload.php';
-require_once __DIR__.'/inc.conf.php';
 require_once __DIR__.'/inc.func.php';
 
 $revisionFile = __DIR__.'/../revision.inc.php';
