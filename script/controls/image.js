@@ -15,7 +15,7 @@
 function initializeImageData(imgDataStr) {
   if (imgDataStr != null && imgDataStr != '') {
     var paramname = 'rpc';
-    var url = '../../xmltree.php?'
+    var url = '../../xml-api?'
       + paramname + '[cmd]=image_data&'
       + paramname + '[image_conf]=' + escape(imgDataStr);
     loadXMLDoc(url, true);

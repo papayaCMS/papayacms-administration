@@ -13,5 +13,14 @@
  *  FOR A PARTICULAR PURPOSE.
  */
 
-require __DIR__.'/inc.auth.php';
-require __DIR__.'/inc.footer.php';
+/** @var Papaya\Application\CMS $application */
+$application = include __DIR__.'/inc.application.php';
+
+$administrationUI = new \Papaya\Administration\UI(__DIR__, $application);
+if ($response = $administrationUI->execute()) {
+  ob_start('outputCompressionHandler');
+  $response->send(TRUE);
+}
+
+$PAPAYA_LAYOUT = $administrationUI->template();
+$PAPAYA_USER = $application->administrationUser;
