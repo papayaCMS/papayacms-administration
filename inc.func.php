@@ -87,7 +87,7 @@ function redirectToInstaller() {
   if ('/' !== substr($url, -1)) {
     $url .= '/';
   }
-  $url .= 'install.php';
+  $url .= 'install';
   redirectToURL($url);
   exit;
 }

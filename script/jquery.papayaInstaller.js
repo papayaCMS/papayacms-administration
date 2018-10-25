@@ -1,3 +1,17 @@
+/*
+ * papaya CMS
+ *
+ * @copyright 2000-2018 by papayaCMS project - All rights reserved.
+ * @link http://www.papaya-cms.com/
+ * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License, version 2
+ *
+ *  You can redistribute and/or modify this script under the terms of the GNU General Public
+ *  License (GPL) version 2, provided that the copyright and license notes, including these
+ *  lines, remain unmodified. papaya is distributed in the hope that it will be useful, but
+ *  WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ *  FOR A PARTICULAR PURPOSE.
+ */
+
 /**
 * papaya Installer
 *
@@ -7,7 +21,7 @@
 (function($) {
   $.papayaInstaller = {
 
-    url : 'install.php',
+    url : 'install',
     options : {},
     tables : [],
     tableUpdatesRequired : 0,
@@ -40,7 +54,7 @@
           this.initDefaultData(0);
           break;
         case 'goto' :
-          document.location.href = 'auth.php';
+          document.location.href = 'administration.users';
           break;
         }
       }
@@ -471,7 +485,7 @@
 
     rpcCallbackInstallerAuthNeeded : function(parameters) {
       alert(parameters.filter('[name="message"]').attr('value'));
-      document.location.href = 'install.php?login';
+      document.location.href = 'install?login';
     },
 
     sendRequest : function(parameters, settings) {

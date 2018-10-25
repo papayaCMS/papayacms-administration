@@ -17,12 +17,17 @@ if (!defined('PAPAYA_ADMIN_PAGE')) {
   define('PAPAYA_ADMIN_PAGE', TRUE);
 }
 
-require_once __DIR__.'/../../vendor/autoload.php';
-require_once __DIR__.'/inc.func.php';
+if (file_exists(__DIR__.'/../../vendor/autoload.php')) {
+  require __DIR__.'/../../vendor/autoload.php';
+} elseif (file_exists(__DIR__.'/../vendor/autoload.php')) {
+  /** @noinspection PhpIncludeInspection */
+  require __DIR__.'/../vendor/autoload.php';
+}
+require __DIR__.'/inc.func.php';
 
 $revisionFile = __DIR__.'/../revision.inc.php';
 if (file_exists($revisionFile) && is_readable($revisionFile)) {
-  include_once __DIR__.'/../revision.inc.php';
+  include __DIR__.'/../revision.inc.php';
 }
 
 /** @var Papaya\Application\CMS $application */

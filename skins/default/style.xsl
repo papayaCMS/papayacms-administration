@@ -30,7 +30,7 @@
 
 <xsl:import href="controls/javascript.xsl"/>
 
-<!-- Seitenparamter / globale Variablen -->
+<!-- page parameters / global variables -->
 <xsl:param name="PAGE_TITLE" />
 <xsl:param name="PAGE_TITLE_ALIGN" select="true()"/>
 <xsl:param name="PAGE_ICON" />
@@ -50,8 +50,9 @@
 <xsl:param name="PAPAYA_UI_LANGUAGE">en-US</xsl:param>
 <xsl:param name="PAGE_SELF">index.php</xsl:param>
 
-<xsl:param name="PAGE_MODE"/>
-<xsl:param name="PAPAYA_LOGINPAGE" select="false()"/>
+<!-- PAGE_MODE: page, frameset, frame, installer-->
+<xsl:param name="PAGE_MODE">page</xsl:param>
+<xsl:param name="PAPAYA_USER_AUTHORIZED" select="false()"/>
 
 <xsl:param name="PAPAYA_USE_JS_WRAPPER" select="true()" />
 <xsl:param name="PAPAYA_USE_JS_GZIP" select="true()" />
@@ -79,7 +80,7 @@
       <meta name="robots" content="noindex, nofollow" />
       <title>
         <xsl:value-of select="$PAGE_PROJECT" />
-        <xsl:if test="not($PAPAYA_LOGINPAGE) and $PAGE_REVISION != ''">
+        <xsl:if test="$PAPAYA_USER_AUTHORIZED and $PAGE_REVISION != ''">
           <xsl:value-of select="concat(' (', $PAGE_REVISION, ')')"/>
         </xsl:if>
         <xsl:text>: </xsl:text>
@@ -124,7 +125,7 @@
 </xsl:template>
 
 <xsl:template name="application-page-navigation">
-  <xsl:if test="not($PAPAYA_LOGINPAGE)">
+  <xsl:if test="$PAPAYA_USER_AUTHORIZED and not($PAGE_MODE = 'installer')">
     <div id="pageNavigation">
       <a href="#pageMenuBar">Menu</a><xsl:text> * </xsl:text>
       <xsl:if test="leftcol">
@@ -274,7 +275,9 @@
     </div>
   </div>
   <div id="titleMenu">
-    <xsl:call-template name="application-page-links-right"/>
+    <xsl:if test="$PAPAYA_USER_AUTHORIZED and not($PAGE_MODE = 'installer')">
+      <xsl:call-template name="application-page-links-right"/>
+    </xsl:if>
     <a href="../" target="_blank">
       <xsl:attribute name="title">
         <xsl:call-template name="translate-phrase">
@@ -282,12 +285,12 @@
         </xsl:call-template>
         <xsl:text>: </xsl:text>
         <xsl:value-of select="$PAGE_PROJECT" />
-        <xsl:if test="not($PAPAYA_LOGINPAGE) and $PAGE_REVISION != ''">
+        <xsl:if test="$PAPAYA_USER_AUTHORIZED and $PAGE_REVISION != ''">
           <xsl:value-of select="concat(' (', $PAGE_REVISION, ')')"/>
         </xsl:if>
       </xsl:attribute>
       <xsl:value-of select="$PAGE_PROJECT" />
-      <xsl:if test="not($PAPAYA_LOGINPAGE) and $PAGE_REVISION != ''">
+      <xsl:if test="$PAPAYA_USER_AUTHORIZED and $PAGE_REVISION != ''">
         <xsl:value-of select="concat(' (', $PAGE_REVISION, ')')"/>
       </xsl:if>
     </a>
@@ -300,7 +303,9 @@
         </xsl:if>
       </span>
     </xsl:if>
-    <xsl:call-template name="application-page-links"/>
+    <xsl:if test="$PAPAYA_USER_AUTHORIZED and not($PAGE_MODE = 'installer')">
+       <xsl:call-template name="application-page-links"/>
+    </xsl:if>
   </div>
 </xsl:template>
 
@@ -312,7 +317,7 @@
           <span class="versionString">
             <a href="http://www.papaya-cms.com/" target="_blank">
               <xsl:text>papaya CMS </xsl:text>
-              <xsl:if test="not($PAPAYA_LOGINPAGE) and $PAPAYA_VERSION != ''">
+              <xsl:if test="$PAPAYA_USER_AUTHORIZED and $PAPAYA_VERSION != ''">
                 (<xsl:value-of select="$PAPAYA_VERSION"/>)
               </xsl:if>
             </a>
@@ -324,7 +329,7 @@
 </xsl:template>
 
 <xsl:template name="application-page-buttons">
-  <xsl:if test="not($PAPAYA_LOGINPAGE)">
+  <xsl:if test="$PAPAYA_USER_AUTHORIZED and not($PAGE_MODE = 'installer')">
     <xsl:variable name="captionLogOut">
       <xsl:call-template name="translate-phrase">
         <xsl:with-param name="phrase">Logout</xsl:with-param>
@@ -343,7 +348,7 @@
 </xsl:template>
 
 <xsl:template name="application-page-menus">
-  <xsl:if test="menus/menu">
+  <xsl:if test="menus/menu and $PAPAYA_USER_AUTHORIZED and not($PAGE_MODE = 'installer')">
     <div id="pageMenuBar">
       <xsl:for-each select="menus/menu[@ident = 'main']">
         <xsl:call-template name="menu-bar">
@@ -422,8 +427,8 @@
 
 <xsl:template name="application-page-scripts">
   <script type="text/javascript" src="./script/jquery/js/jquery-1.7.2.min.js"></script>
-  <xsl:if test="not($PAPAYA_LOGINPAGE)">
-    <script type="text/javascript" src="{$PAPAYA_PATH_SKIN}js.style.php?rev={$PAPAYA_VERSION}"></script>
+  <script type="text/javascript" src="{$PAPAYA_PATH_SKIN}js.style.php?rev={$PAPAYA_VERSION}"></script>
+  <xsl:if test="$PAPAYA_USER_AUTHORIZED">
 
     <xsl:choose>
       <xsl:when test="$PAPAYA_USE_JS_WRAPPER and not($PAPAYA_DBG_DEVMODE)">
@@ -465,25 +470,23 @@
         </xsl:if>
       </xsl:otherwise>
     </xsl:choose>
-    <xsl:if test="scripts/script">
-      <xsl:for-each select="scripts/script">
-        <script type="{@type}">
-          <xsl:if test="@src">
-            <xsl:attribute name="src"><xsl:value-of select="@src"/></xsl:attribute>
-          </xsl:if>
-          <xsl:if test="@language">
-            <xsl:attribute name="language"><xsl:value-of select="@language"/></xsl:attribute>
-          </xsl:if>
-          <xsl:if test="text() != ''">
-            <xsl:comment>
-              <xsl:value-of select="." disable-output-escaping="yes"/>
-            //</xsl:comment>
-          </xsl:if>
-          <xsl:text> </xsl:text>
-        </script>
-      </xsl:for-each>
-    </xsl:if>
   </xsl:if>
+  <xsl:for-each select="scripts/script">
+    <script type="{@type}">
+      <xsl:if test="@src">
+        <xsl:attribute name="src"><xsl:value-of select="@src"/></xsl:attribute>
+      </xsl:if>
+      <xsl:if test="@language">
+        <xsl:attribute name="language"><xsl:value-of select="@language"/></xsl:attribute>
+      </xsl:if>
+      <xsl:if test="text() != ''">
+        <xsl:comment>
+          <xsl:value-of select="." disable-output-escaping="yes"/>
+        //</xsl:comment>
+      </xsl:if>
+      <xsl:text> </xsl:text>
+    </script>
+  </xsl:for-each>
 </xsl:template>
 
 <xsl:template name="jquery-embed">
