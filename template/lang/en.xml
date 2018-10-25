@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ papaya CMS
+  ~
+  ~ @copyright 2000-2018 by papayaCMS project - All rights reserved.
+  ~ @link http://www.papaya-cms.com/
+  ~ @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License, version 2
+  ~
+  ~  You can redistribute and/or modify this script under the terms of the GNU General Public
+  ~  License (GPL) version 2, provided that the copyright and license notes, including these
+  ~  lines, remain unmodified. papaya is distributed in the hope that it will be useful, but
+  ~  WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+  ~  FOR A PARTICULAR PURPOSE.
+  -->
+
+<phrases>
+  <phrase ident="Information">Information</phrase>
+  <phrase ident="Question">Question</phrase>
+  <phrase ident="Warning">Warning</phrase>
+  <phrase ident="Error">Error</phrase>
+  <phrase ident="Messages">Messages</phrase>
+  <phrase ident="Logout">Logout</phrase>
+  <phrase ident="Help">Help</phrase>
+  <phrase ident="Website">Website</phrase>
+  <phrase ident="Actions">Actions</phrase>
+  <phrase ident="Content Toolbar">Content Toolbar</phrase>
+  <phrase ident="Content changed">Changes are not saved and will be lost if you leave this page.</phrase>
+</phrases>
