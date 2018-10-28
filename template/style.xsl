@@ -85,9 +85,9 @@
         </xsl:if>
         <xsl:text>: </xsl:text>
         <xsl:value-of select="$PAGE_TITLE" /> - papaya CMS</title>
-      <link rel="stylesheet" type="text/css" href="{$PAPAYA_PATH_SKIN}css.style.php?rev={$PAPAYA_VERSION}&amp;theme={$PAPAYA_UI_THEME}"/>
+      <link rel="stylesheet" type="text/css" href="styles/css?rev={$PAPAYA_VERSION}&amp;theme={$PAPAYA_UI_THEME}"/>
       <link rel="stylesheet" type="text/css" href="./script/jquery/css/papaya/jquery-ui-1.8.21.custom.css"/>
-      <link rel="SHORTCUT ICON" href="{$PAPAYA_PATH_SKIN}pics/{$PAPAYA_UI_THEME}/favicon.ico" />
+      <link rel="SHORTCUT ICON" href="styles/themes/{$PAPAYA_UI_THEME}.ico" />
       <xsl:call-template name="application-page-scripts" />
     </head>
     <xsl:choose>
@@ -102,11 +102,12 @@
   <body class="page">
     <div class="pageBorder">
       <xsl:call-template name="application-page-navigation"/>
-      <xsl:call-template name="application-page-title"/>
+      <xsl:call-template name="application-page-header"/>
       <xsl:call-template name="application-page-menus"/>
       <xsl:call-template name="application-page-main"/>
       <xsl:call-template name="application-page-footer"/>
     </div>
+    <xsl:call-template name="artwork-progress-bar"/>
     <xsl:call-template name="jquery-embed" />
     <xsl:call-template name="richtext-embed" />
   </body>
@@ -249,30 +250,23 @@
   </div>
 </xsl:template>
 
-<xsl:template name="application-page-title">
+<xsl:template name="application-page-header">
   <div id="title">
-    <div id="titleArtworkLeft">
-      <div id="titleArtworkRight">
-        <div id="titleArtworkOverlay">
-          <xsl:call-template name="application-page-buttons"/>
-          <xsl:variable name="glyphsrc">
-            <xsl:choose>
-              <xsl:when test="starts-with($PAGE_ICON, './')"><xsl:value-of select="$PAGE_ICON"/></xsl:when>
-              <xsl:otherwise>pics/icons/22x22/<xsl:value-of select="$PAGE_ICON"/></xsl:otherwise>
-            </xsl:choose>
-          </xsl:variable>
-          <img src="{$PAPAYA_PATH_SKIN}pics/logo.png" class="papayaLogo" alt="">
-            <xsl:if test="$PAGE_TITLE_ALIGN and leftcol">
-               <xsl:attribute name="style">margin-right: <xsl:value-of select="number(substring-before($COLUMNWIDTH_LEFT, 'px')) - 100"/>px</xsl:attribute>
-            </xsl:if>
-          </img>
-          <xsl:if test="$PAGE_ICON and ($PAGE_ICON != '')">
-            <img src="{$glyphsrc}" class="pageLogo" alt="" />
-          </xsl:if>
-          <h1 id="titleText"><xsl:value-of select="$PAGE_TITLE" /></h1>
-        </div>
-      </div>
+    <xsl:call-template name="title-artwork"/>
+    <xsl:call-template name="application-page-buttons"/>
+    <xsl:variable name="glyphsrc">
+      <xsl:choose>
+        <xsl:when test="starts-with($PAGE_ICON, './')"><xsl:value-of select="$PAGE_ICON"/></xsl:when>
+        <xsl:otherwise>pics/icons/22x22/<xsl:value-of select="$PAGE_ICON"/></xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <div class="papayaLogo">
+      <xsl:copy-of select="document('svg/papaya-logo.svg')/*"/>
     </div>
+    <xsl:if test="$PAGE_ICON and ($PAGE_ICON != '')">
+      <img src="{$glyphsrc}" class="pageLogo" alt="" />
+    </xsl:if>
+    <h1 id="titleText"><xsl:value-of select="$PAGE_TITLE" /></h1>
   </div>
   <div id="titleMenu">
     <xsl:if test="$PAPAYA_USER_AUTHORIZED and not($PAGE_MODE = 'installer')">
@@ -311,20 +305,15 @@
 
 <xsl:template name="application-page-footer">
   <div id="footer">
-    <div id="footerArtworkLeft">
-      <div id="footerArtworkRight">
-        <div id="footerArtworkOverlay">
-          <span class="versionString">
-            <a href="http://www.papaya-cms.com/" target="_blank">
-              <xsl:text>papaya CMS </xsl:text>
-              <xsl:if test="$PAPAYA_USER_AUTHORIZED and $PAPAYA_VERSION != ''">
-                (<xsl:value-of select="$PAPAYA_VERSION"/>)
-              </xsl:if>
-            </a>
-          </span>
-        </div>
-      </div>
-    </div>
+    <xsl:call-template name="artwork-overlay"/>
+    <span class="versionString">
+      <a href="http://www.papaya-cms.com/" target="_blank">
+        <xsl:text>papaya CMS </xsl:text>
+        <xsl:if test="$PAPAYA_USER_AUTHORIZED and $PAPAYA_VERSION != ''">
+          (<xsl:value-of select="$PAPAYA_VERSION"/>)
+        </xsl:if>
+      </a>
+    </span>
   </div>
 </xsl:template>
 
@@ -426,8 +415,8 @@
 </xsl:template>
 
 <xsl:template name="application-page-scripts">
-  <script type="text/javascript" src="./script/jquery/js/jquery-1.7.2.min.js"></script>
-  <script type="text/javascript" src="{$PAPAYA_PATH_SKIN}js.style.php?rev={$PAPAYA_VERSION}"></script>
+  <script type="text/javascript" src="./script/jquery/js/jquery-1.7.2.min.js"><xsl:text> </xsl:text></script>
+  <script type="text/javascript" src="./styles/js?rev={$PAPAYA_VERSION}"><xsl:text> </xsl:text></script>
   <xsl:if test="$PAPAYA_USER_AUTHORIZED">
 
     <xsl:choose>
@@ -571,13 +560,48 @@
 </xsl:template>
 
 <xsl:template name="richtext-embed-content-css">
-  <xsl:value-of select="$PAPAYA_PATH_SKIN"/>
-  <xsl:text>css.richtext.php?rev=</xsl:text>
+  <xsl:text>styles/css.richtext?rev=</xsl:text>
   <xsl:value-of select="$PAPAYA_VERSION"/>
-  <xsl:if test="$PAPAYA_RICHTEXT_CONTENT_CSS">
-    <xsl:text>,</xsl:text>
-    <xsl:value-of select="$PAPAYA_RICHTEXT_CONTENT_CSS"/>
-  </xsl:if>
+  <xsl:text>&amp;theme=</xsl:text>
+  <xsl:value-of select="$PAPAYA_UI_THEME"/>
 </xsl:template>
+
+  <xsl:template name="title-artwork">
+    <div class="artwork artworkLeft">
+      <xsl:copy-of select="document('svg/leaf-left.svg')/*"/>
+    </div>
+    <div class="artwork artworkRight">
+      <xsl:copy-of select="document('svg/leaf-right.svg')/*"/>
+    </div>
+    <xsl:call-template name="artwork-overlay"/>
+  </xsl:template>
+
+  <xsl:template name="artwork-overlay">
+    <div class="artwork artworkOverlay">
+      <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="dots" width="4" height="4" patternUnits="userSpaceOnUse">
+            <rect x="2" y="2" width="1" height="1" fill="#F00"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#dots)"/>
+      </svg>
+    </div>
+  </xsl:template>
+
+  <xsl:template name="artwork-progress-bar">
+    <div id="progressBarArtwork" style="width: 1px; height: 1px; position: absolute; left: -100px;">
+      <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="stripes" x="0" width="20" height="20" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+            <rect x="10" y="-5" width="10" height="30"/>
+            <animate attributeType="XML" attributeName="x" from="0" to="20"
+        dur="2s" repeatCount="indefinite"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#stripes)"/>
+      </svg>
+    </div>
+  </xsl:template>
 
 </xsl:stylesheet>

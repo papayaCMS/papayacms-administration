@@ -1,3 +1,17 @@
+/*
+ * papaya CMS
+ *
+ * @copyright 2000-2018 by papayaCMS project - All rights reserved.
+ * @link http://www.papaya-cms.com/
+ * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License, version 2
+ *
+ *  You can redistribute and/or modify this script under the terms of the GNU General Public
+ *  License (GPL) version 2, provided that the copyright and license notes, including these
+ *  lines, remain unmodified. papaya is distributed in the hope that it will be useful, but
+ *  WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ *  FOR A PARTICULAR PURPOSE.
+ */
+
 var currentTimeOut = null;
 var packageCount = 0;
 var packagePosition = 0;
@@ -6,7 +20,7 @@ var limitPackageId = 0;
 function checkDatabaseStructure() {
   clearTimeout(currentTimeOut);
   limitPackageId = 0;
-  var rpcURL = 'modules.php?mods[cmd]=rpc_count';
+  var rpcURL = 'administration.plugins?mods[cmd]=rpc_count';
   loadXMLDoc(rpcURL, true);
   return false;
 }
@@ -23,7 +37,7 @@ function checkPackageStructure(packageId) {
 
 function checkTableStructure(packageId, tableName) {
   clearTimeout(currentTimeOut);
-  var rpcURL = 'modules.php?mods[cmd]=rpc_check';
+  var rpcURL = 'administration.plugins?mods[cmd]=rpc_check';
   if (typeof packageId != 'undefined' && packageId) {
     rpcURL += '&mods[rpc_pkg_id]=' + escape(packageId);
   }
@@ -88,7 +102,7 @@ function importTableData(pkgId, table, pathIdent, file, offset) {
     PapayaLightBox.init('Import', 'Close');
     PapayaLightBox.update('Importing data: ...\n', 0);
   }
-  var rpcURL = 'modules.php?mods[cmd]=rpc_import_table_data';
+  var rpcURL = 'administration.plugins?mods[cmd]=rpc_import_table_data';
   rpcURL += '&mods[pkg_id]=' + escape(pkgId);
   rpcURL += '&mods[table]=' + escape(table);
   rpcURL += '&mods[path]=' + escape(pathIdent);

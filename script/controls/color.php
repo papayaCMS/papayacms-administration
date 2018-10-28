@@ -1,22 +1,17 @@
 <?php
 /**
-*
-*
-* @copyright 2002-2007 by papaya Software GmbH - All rights reserved.
-* @link http://www.papaya-cms.com/
-* @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License, version 2
-*
-* You can redistribute and/or modify this script under the terms of the GNU General Public
-* License (GPL) version 2, provided that the copyright and license notes, including these
-* lines, remain unmodified. papaya is distributed in the hope that it will be useful, but
-* WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-* FOR A PARTICULAR PURPOSE.
-*
-* @package Papaya
-* @subpackage Scripts-Controls
-* @version $Id: color.php 39752 2014-04-24 10:55:28Z weinert $
-* @codingStandardsIgnoreFile
-*/
+ * papaya CMS
+ *
+ * @copyright 2000-2018 by papayaCMS project - All rights reserved.
+ * @link http://www.papaya-cms.com/
+ * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License, version 2
+ *
+ *  You can redistribute and/or modify this script under the terms of the GNU General Public
+ *  License (GPL) version 2, provided that the copyright and license notes, including these
+ *  lines, remain unmodified. papaya is distributed in the hope that it will be useful, but
+ *  WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ *  FOR A PARTICULAR PURPOSE.
+ */
 
 /**
 * incusion of base or additional libraries
@@ -28,8 +23,7 @@ require_once(dirname(__FILE__).'/inc.controls.php');
   <head>
     <title><?php echo _gt('Color'); ?></title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    <link rel="stylesheet" type="text/css"
-          href="../../skins/<?php echo $PAPAYA_SKIN; ?>/css.popups.php">
+    <link rel="stylesheet" type="text/css" href="../../styles/css.popup">
     <style type="text/css">
       table {
         border-collapse: collapse;
@@ -56,9 +50,17 @@ require_once(dirname(__FILE__).'/inc.controls.php');
   </head>
   <body id="popup">
     <div class="title">
-      <div class="titleArtworkOverlay">
-	  <h1 id="popupTitle"><?php echo _gt('Select color');?></h1>
+      <div class="artworkOverlay">
+        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="dots" width="4" height="4" patternUnits="userSpaceOnUse">
+              <rect x="2" y="2" width="1" height="1" fill="#F00"> </rect>
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#dots)"> </rect>
+        </svg>
       </div>
+      <h1 id="popupTitle"><?php echo _gt('Select color');?></h1>
     </div>
     <form action="#" class="colorSelector">
       <table>

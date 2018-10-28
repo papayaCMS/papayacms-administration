@@ -1,0 +1,1850 @@
+/*
+ * papaya CMS
+ *
+ * @copyright 2000-2018 by papayaCMS project - All rights reserved.
+ * @link http://www.papaya-cms.com/
+ * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License, version 2
+ *
+ *  You can redistribute and/or modify this script under the terms of the GNU General Public
+ *  License (GPL) version 2, provided that the copyright and license notes, including these
+ *  lines, remain unmodified. papaya is distributed in the hope that it will be useful, but
+ *  WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ *  FOR A PARTICULAR PURPOSE.
+ */
+
+body, div, ul, li, input, select, textarea {
+  box-sizing: border-box;
+}
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+  margin-top:-2px;
+  margin-bottom: -2px;
+}
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: /*$window.background-color*/ #FFFFFF;
+  font-size: 10px;
+  display: inline-block;
+  min-width: 100%;
+}
+body div.pageBorder {
+  padding: 10px;
+  box-sizing: border-box;
+  display: inline-block;
+  width: 100%;
+}
+body.framePage {
+  padding: 0;
+  background-color: /*$workarea.background-color*/ #EAE9E6;
+  min-width: 20px;
+}
+body.framePage #workarea {
+  border: none;
+}
+
+img {
+  border: none;
+}
+li {
+  list-style-position: inside;
+}
+table {
+  empty-cells: show;
+}
+
+div.fixFloat {
+  height: 0;
+  line-height: 0;
+  clear: both;
+  overflow: hidden;
+  border: none;
+}
+div.fixLine {
+  font-size: 1px;
+}
+span.allowWrap {
+  font-size: 1px;
+  width: 1px;
+}
+
+.nonGraphicBrowser {
+  display: none;
+  visibility: hidden;
+}
+
+/* icons */
+img.dialogIconLarge {
+  width: 48px;
+  height: 48px;
+  margin: 20px;
+  float: left;
+}
+
+span.glyphGroup img {
+  margin-right: 0.5em;
+  margin-left: 0.5em;
+}
+img.glyph16 {
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+}
+img.glyph22 {
+  width: 22px;
+  height: 22px;
+  vertical-align: middle;
+}
+img.glyph48 {
+  width: 48px;
+  height: 48px;
+  vertical-align: middle;
+}
+
+/* header */
+#title {
+  position: relative;
+  color: /*$header.color*/ #FFFFFF;
+  font-weight: bold;
+  font-size: 18px;
+  border-bottom: 1px solid /*$window.background-color*/ #FFFFFF;
+  background-color: /*$header.background-color*/ #9EAB2D;
+  background: linear-gradient(
+    to bottom,
+    /*$header.gradient-top.background-color*/ #AEBA51,
+    /*$header.gradient-top.background-color*/#AEBA51 50%,
+    /*$header.gradient-bottom.background-color*/#A0AE32 50%,
+    /*$header.gradient-bottom.background-color*/#A0AE32
+  );
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  min-height: 40px;
+}
+#title .artworkLeft,
+#title .artworkRight,
+#title .artworkOverlay {
+  position: absolute;
+  top: 0;
+  overflow: hidden;
+  height: 100%;
+}
+#title .artworkLeft {
+  left: 0;
+  border-top-left-radius: 20px;
+}
+#title .artworkRight {
+  right: 0;
+  border-top-right-radius: 20px;
+}
+#title .artworkRight path,
+#title .artworkLeft path {
+  fill: /*$header.artwork.background-color*/ #FFFFFF;
+  opacity: /*$header.artwork.opacity*/ 0.2;
+}
+#title .artworkOverlay {
+  left: 0;
+  right: 0;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+#title .artworkOverlay #dots rect {
+  fill: /*$header.artwork.background-color*/ #FFFFFF;
+  opacity: /*$header.artwork.opacity*/ 0.2;
+}
+#title .papayaLogo {
+  width: 100px;
+  height: 30px;
+  border: none;
+  float: left;
+  margin: 4px 100px 0 4px;
+}
+#title .papayaLogo path {
+  fill: #FFFFFF;
+}
+#title .pageLogo {
+ width: 22px;
+ height: 22px;
+ float: left;
+ margin: 8px 10px 0 20px;
+}
+#titleButtons {
+  float: right;
+  padding: 8px 10px 0 10px;
+  line-height: 22px;
+}
+#titleButtons img {
+  border: none;
+  margin: 0;
+  margin-left: 10px;
+}
+#titleText {
+  font-size: 18px;
+  -moz-opacity: 0.8;
+  opacity: 0.8;
+  margin: 0;
+  padding: 0;
+  padding-top: 8px;
+  margin-right: 100px;
+}
+
+/* local page navigation */
+#pageNavigation {
+  display: none;
+  visibility: hidden;
+}
+a.pageNavigation {
+  display: none;
+  visibility: hidden;
+}
+
+/* footer bar */
+#footer {
+  background-color: /*$footer.background-color*/ #9EAB2D;
+  color: /*$footer.color*/ #FFFFFF;
+  font-weight: bold;
+  font-size: 10px;
+  text-align: right;
+  border-top: 1px solid /*$window.background-color*/ #FFFFFF;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  position: relative;
+  padding: 6px;
+  min-height: 20px;
+}
+#footer .artworkOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+}
+#footer .versionString {
+  padding-right: 20px;
+}
+#footer .projectString {
+  float: left;
+}
+#footer a {
+  color: /*$footer.color*/ #FFFFFF;
+  text-decoration: none;
+}
+
+/* title menu bar */
+#titleMenu {
+  background-color: /*$subtitle.background-color*/ #A09E98;
+  background: linear-gradient(
+    to bottom,
+    /*$subtitle.gradient-top.background-color*/ #CBCBCB,
+    /*$subtitle.gradient-bottom.background-color*/#A09E98
+  );
+  color: /*$subtitle.color*/ #555753;
+  text-align: left;
+  font-size: 10px;
+  padding: 2px 5px;
+  line-height: 20px;
+  font-weight: bold;
+}
+#titleMenu ul.links {
+  display: inline;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  line-height: 20px;
+}
+#titleMenu ul.links li {
+  display: inline;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  line-height: 20px;
+  border-left: 1px solid /*$subtitle.color*/ #555753;
+  padding-left: 5px;
+}
+#titleMenu ul.links li.caption,
+#titleMenu ul.links li.selected {
+  border: none;
+  padding: 0;
+}
+#titleMenu ul.links li img {
+  vertical-align: middle;
+  display: inline;
+  margin-bottom: 1px;
+  -moz-opacity: 0.4;
+  opacity: 0.4;
+}
+#titleMenu ul.links li.caption img,
+#titleMenu ul.links li.selected img,
+#titleMenu ul.links li:hover img {
+  -moz-opacity: 1;
+  opacity: 1;
+}
+#titleMenu ul.rightLinks {
+  float: right;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  padding-right: 5px;
+  line-height: 20px;
+}
+#titleMenu ul.rightLinks li {
+  display: inline;
+  margin-left: 5px;
+  line-height: 20px;
+}
+#titleMenu ul.rightLinks li a {
+  border: 1px solid #000000;
+  padding: 2px 8px;
+}
+#titleMenu ul.rightLinks li.selected a {
+  background-color: /*$highlight.background-color*/ #9EAB2D;
+  color: /*$highlight.color*/ #FFFFFF;
+}
+#titleMenu ul.rightLinks li.caption {
+  border: none;
+}
+#titleMenu .user {
+  font-weight: bold;
+}
+#titleMenu a {
+  color: /*$subtitle.color*/ #555753;
+  text-decoration: none;
+}
+
+/* menu bar */
+#pageMenuBar {
+  background-color: /*$workarea.background-color*/ #EAE9E6;
+  clear: both;
+  min-width: 970px;
+}
+div.toolBar {
+  background-color: /*$workarea.background-color*/ #EAE9E6;
+  border: 1px solid /*$border.inset.color*/ #BBB9B0;
+  border-bottom: 1px solid /*$border.raised.color*/ #FFFFFF;
+  border-right: 1px solid /*$border.raised.color*/ #FFFFFF;
+  margin-bottom: 10px;
+}
+div.menuBar {
+  border-top: 1px solid /*$border.raised.color*/ #FFFFFF;
+  border-bottom: 1px solid /*$border.inset.color*/ #BBB9B0;
+  clear: both;
+}
+div.toolBar div.menuBar {
+  border: 1px solid /*$border.raised.color*/ #FFFFFF;
+  border-bottom: 1px solid /*$border.inset.color*/ #BBB9B0;
+  border-right: 1px solid /*$border.inset.color*/ #BBB9B0;
+}
+div.menuBar ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: block;
+}
+div.menuBar ul li {
+  padding: 0;
+  border: 1px solid /*$workarea.background-color*/ #EAE9E6;
+}
+div.menuBar ul li.button {
+  float: left;
+  padding: 2px 0 0 0;
+}
+div.menuBar ul li.combobox {
+  float: left;
+  padding: 0 2px;
+}
+div.menuBar ul li.combobox form {
+  padding: 0;
+  margin: 0;
+  width: auto;
+}
+div.menuBar ul li.separator {
+  float: left;
+  border-left: 1px solid /*$border.inset.color*/ #BBB9B0;
+  border-right: 1px solid /*$border.raised.color*/ #FFFFFF;
+  color: /*$workarea.background-color*/ #EAE9E6;
+  margin-right: 2px;
+  width: 0;
+  overflow: hidden;
+  line-height: 20px;
+}
+div.menuBar ul li.button a.caption {
+  white-space: nowrap;
+  text-decoration: none;
+  color: /*$workarea.color*/ #000000;
+  font-size: 10px;
+  line-height: 16px;
+  display: block;
+  padding: 0;
+  margin-left: 20px;
+  margin-right: 6px;
+}
+div.menuBar ul li.button.text-only a.caption {
+  margin-left: 6px;
+}
+div.menuBar ul li.combobox span.caption {
+  white-space: nowrap;
+  text-decoration: none;
+  color: /*$workarea.color*/ #000000;
+  font-size: 10px;
+  line-height: 16px;
+  padding: 0;
+  margin-right: 5px;
+}
+
+div.menuBar ul li.selected {
+  border: 1px solid /*$border.inset.color*/ #BBB9B0;
+  border-right-color: /*$border.raised.color*/ #FFFFFF;
+  border-bottom-color: /*$border.raised.color*/ #FFFFFF;
+  background-color: /*$border.raised.color*/ #FFFFFF;
+}
+div.menuBar ul li.button a.icon img {
+  border: none;
+  width: 16px;
+  height: 16px;
+  float: left;
+  margin: 0;
+  margin-left: 2px;
+  vertical-align: bottom;
+}
+
+div.menuBar .group {
+  border: 1px solid /*$header.background-color*/ #9EAB2D;
+  border-top: none;
+  float: left;
+  margin: 2px;
+}
+div.menuBar .group .name {
+  clear: both;
+  font-size: 9px;
+  color: /*$header.color*/ #FFFFFF;
+  background-color: /*$header.background-color*/ #9EAB2D;
+  text-align: center;
+}
+div.menuBar .group .buttons {
+  display: table;
+  float: none;
+}
+div.menuBar .group ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: table-row;
+  float: none;
+  line-height: 12px;
+}
+div.menuBar .group ul li {
+  display: table-cell;
+  float: none;
+  min-width: 45px;
+  border: 1px solid /*$workarea.background-color*/ #EAE9E6;
+  padding: 0 2px;
+}
+div.menuBar .group ul li.selected {
+  border: 1px solid /*$border.inset.color*/ #BBB9B0;
+  border-right-color: /*$border.raised.color*/ #FFFFFF;
+  border-bottom-color: /*$border.raised.color*/ #FFFFFF;
+  background-color: /*$border.raised.color*/ #FFFFFF;
+}
+div.menuBar .group ul li a.icon {
+  display: block;
+  text-decoration: none;
+  padding: 2px;
+  text-align: center;
+}
+div.menuBar .group ul li a.icon img {
+  border: none;
+  width: 22px;
+  height: 22px;
+  float: none;
+  display: block;
+  margin: 0 auto 0 auto;
+}
+div.menuBar .group ul li a.caption {
+  display: block;
+  font-size: 10px;
+  padding: 0 2px 0 2px;
+  margin: 0;
+  text-decoration: none;
+  color: /*$workarea.color*/ #000000;
+  text-align: center;
+  white-space: nowrap;
+}
+/* menubar combos */
+div.menuBar form {
+  float: left;
+  padding: 0 2px 0 0;
+  margin: 0;
+}
+div.menuBar form select {
+  border: 1px solid /*$border.inset.color*/ #BBB9B0;
+  max-width: 300px;
+}
+
+div.hierarchyMenu {
+  background-color: /*$subtitle.background-color*/ #9C9C9B;
+  background: linear-gradient(
+    to bottom,
+    /*$subtitle.gradient-top.background-color*/ #CBCBCB,
+    /*$subtitle.gradient-bottom.background-color*/#A09E98
+  );
+  border: 1px solid /*$border.raised.color*/ #FFFFFF;
+  border-bottom: 1px solid /*$border.inset.color*/ #BBB9B0;
+  border-right: 1px solid /*$border.inset.color*/ #BBB9B0;
+  color: /*$subtitle.color*/ #555753;
+}
+div.hierarchyMenu ul {
+  background-color: /*$title.background-color*/ #848484;
+  background: linear-gradient(
+    to bottom,
+    /*$title.gradient-top.background-color*/ #989898,
+    /*$title.gradient-bottom.background-color*/#707070
+  );
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  display: table-row;
+}
+div.hierarchyMenu ul li.item {
+  color: /*$title.color*/ #FFFFFF;
+  display: table-cell;
+  white-space: nowrap;
+  padding-left: 14px;
+  padding-right: 4px;
+  line-height: 18px;
+  position: relative;
+}
+div.hierarchyMenu ul li.item:after {
+  display: block;
+  position: absolute;
+  right: -6px;
+  top: 2px;
+  content: "\00A0";
+  width: 13px;
+  height: 13px;
+  border-top: 1px solid /*$border.raised.color*/ #FFFFFF;
+  border-right: 1px solid /*$border.raised.color*/ #FFFFFF;
+  transform: rotate(45deg);
+  background: linear-gradient(
+    to right bottom,
+    /*$title.gradient-top.background-color*/ #989898,
+    /*$title.gradient-bottom.background-color*/#707070
+  );
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 0%);
+}
+div.hierarchyMenu ul li.item.first {
+  padding-left: 4px;
+}
+div.hierarchyMenu ul li.item.last {
+  background-position: right -35px;
+  display: block;
+}
+div.hierarchyMenu ul li.item .caption {
+  text-decoration: none;
+  font-size: 11px;
+  padding: 0;
+  color: /*$title.color*/ #FFFFFF;
+  line-height: 17px;
+}
+div.hierarchyMenu ul li.item a.caption {
+  font-weight: bold;
+}
+div.hierarchyMenu ul li.item .icon img {
+  border: none;
+  width: 16px;
+  height: 16px;
+  margin: 1px;
+  vertical-align: middle;
+}
+
+/* working area */
+#workarea {
+  display: inline-block;
+  min-width: 100%;
+  border-top: 1px solid white;
+  background-color: /*$workarea.background-color*/ #EAE9E6;
+  clear: both;
+  padding: 10px 0;
+}
+
+table.columnGrid {
+  background-color: /*$workarea.background-color*/ #EAE9E6;
+  width: 100%;
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+table.columnGrid td {
+  vertical-align: top;
+}
+table.columnGrid td.columnToolbar {
+  min-width: 200px;
+  padding: 0 10px 0 10px;
+}
+table.columnGrid td.columnLeft {
+  min-width: 200px;
+  padding: 0 0 10px 10px;
+}
+table.columnGrid td.columnCenter {
+  min-width: 200px;
+  padding: 0 10px;
+}
+table.columnGrid td.columnRight {
+  min-width: 200px;
+  padding: 0 10px 10px 0;
+}
+
+
+
+/******************************************************************************
+   GUI Controls
+******************************************************************************/
+
+/* panel */
+#workarea div.panel {
+  background-color: /*$workarea.background-color*/ #EAE9E6;
+  border: 1px solid /*$border.inset.color*/ #BBB9B0;
+  border-bottom-color: /*$border.raised.color*/ #FFFFFF;
+  border-right-color: /*$border.raised.color*/ #FFFFFF;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+#workarea div.panel h2.panelHeader {
+  border: 1px solid /*$border.raised.color*/ #FFFFFF;
+  border-bottom-color: /*$border.inset.color*/ #BBB9B0;
+  border-right-color: /*$border.inset.color*/ #BBB9B0;
+  background-color: /*$title.background-color*/ #848484;
+  background: linear-gradient(
+    to bottom,
+    /*$title.gradient-top.background-color*/ #989898,
+    /*$title.gradient-bottom.background-color*/#707070
+  );
+  margin: 0;
+  padding: 0 4px;
+  font-size: 12px;
+  color: /*$title.color*/ #FFFFFF;
+  line-height: 18px;
+  height: 20px;
+}
+
+#workarea form.dialogChanged div.panel h2.panelHeader {
+  background-color: /*changed.background-color*/ #e58900;
+  background: linear-gradient(
+    to bottom,
+    /*changed.gradient-top.background-color*/ #fbb400,
+    /*changed.gradient-bottom.background-color*/#e58900
+  );
+  margin: 0;
+  padding: 0 4px;
+  font-size: 12px;
+  color: /*$changed.color*/ #FFFFFF;
+  line-height: 18px;
+  height: 20px;
+}
+#workarea .panelIcon {
+  float: left;
+  vertical-align: bottom;
+  padding-top: 1px;
+  padding-right: 4px;
+  height: 20px;
+}
+
+#workarea .panelInfoButton {
+  float: right;
+  vertical-align: bottom;
+  padding-top: 1px;
+  height: 20px;
+}
+
+#workarea div.panel div.panelBody {
+  border: 1px solid /*$border.raised.color*/ #FFFFFF;
+  border-bottom-color: /*$border.inset.color*/ #BBB9B0;
+  border-right-color: /*$border.inset.color*/ #BBB9B0;
+  border-top: none;
+  width: 100%;
+}
+#workarea div.panel div.panelBody > table,
+#workarea div.panel div.panelBody > form {
+  float: left;
+}
+#workarea div.panel div.panelBody:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+#workarea div.panel div.panelBody div.menuBar ul li.button a.caption {
+  margin: 2px;
+}
+
+#workarea div.panel div.statusBar {
+  border-top: 1px solid /*$border.inset.color*/ #BBB9B0;
+  font-size: 11px;
+}
+
+#workarea div.panel div.statusBarArtWork {
+  border-bottom: 1px solid /*$border.raised.color*/ #FFFFFF;
+  padding: 2px;
+  padding-left: 5px;
+}
+
+/* listview */
+#workarea table.listview {
+  width: 100%;
+  border-spacing: 0;
+  empty-cells: show;
+  border-collapse: separate;
+}
+#workarea table.listview tr.columns th {
+  border: 1px solid /*$border.raised.color*/ #FFFFFF;
+  border-bottom-color: /*$border.inset.color*/ #BBB9B0;
+  border-right-color: /*$border.inset.color*/ #BBB9B0;
+  background-color: /*$workarea.background-color*/ #EAE9E6;
+  font-size: 10px;
+  line-height: 16px;
+  padding: 0 2px;
+  font-weight: normal;
+  text-align: left;
+}
+#workarea table.listview tr.columns th.first {
+  border-left: none;
+}
+#workarea table.listview tr.columns th.last {
+  border-right: none;
+}
+#workarea table.listview tr.columns th img.columnBullet {
+  float: right;
+  margin-right: 4px;
+  margin-top: 4px;
+}
+
+#workarea table.listview tr,
+#workarea table.listview tr.odd {
+  background-color: /*$list-item-odd.background-color*/ #FFFFFF;
+}
+#workarea table.listview tr.even {
+  background-color: /*$list-item-even.background-color*/ #F1F0EE;
+}
+#workarea table.listview tr:hover {
+  background-color: /*$highlight.background-color*/ #9EAB2D;
+}
+#workarea table.listview tr td {
+  color: /*$list.item.color*/ #000000;
+  font-size: 11px;
+  text-align: left;
+}
+#workarea table.listview tr a {
+  color: /*$list.item.color*/ #000000;
+  text-decoration: none;
+}
+#workarea table.listview tr.selected, table.listview tr.selected td {
+  background-color: /*$highlight.background-color*/ #9EAB2D;
+  color: /*$highlight.color*/ #FFFFFF;
+}
+#workarea table.listview tr.selected a {
+  color: /*$highlight.color*/ #FFFFFF;
+}
+#workarea table.listview tr td {
+  line-height: 16px;
+  padding: 2px;
+  vertical-align: top;
+}
+#workarea table.listview tr.hasInput td:first-of-type {
+  padding-left: 20px;
+  position: relative;
+}
+#workarea table.listview .itemInput {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+#workarea table.listview .itemInput input {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+#workarea table.listview .itemInput label {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+#workarea table.listview .nodeIcon img {
+  width: 16px;
+  height: 16px;
+  vertical-align: bottom;
+  margin-right: 2px;
+}
+#workarea table.listview .itemIcon img {
+  width: 16px;
+  height: 16px;
+  vertical-align: bottom;
+  margin-right: 2px;
+}
+#workarea table.listview .itemSubTitle {
+  display: block;
+  padding-left: 18px;
+  font-style: italic;
+  clear: both;
+}
+
+/* listview  with large icons (tiles) */
+#workarea div.listviewBackground {
+  background-color: /*$list-item-odd.background-color*/ #FFFFFF;
+  padding: 10px;
+}
+#workarea div.listitemTile {
+  float: left;
+  width: 210px;
+  margin: 5px;
+  position: relative;
+}
+#workarea div.listitemTile .itemInput {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  line-height: 1em;
+}
+#workarea div.listitemTile .itemInput label {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+#workarea div.listitemTile .itemInput input {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+}
+#workarea div.listitemTile div.tile {
+  height: 70px;
+  padding: 5px;
+  border: 1px solid /*$list-item-even.background-color*/ #F1F0EE;
+  background-color: /*$list-item-odd.background-color*/ #FFFFFF;
+}
+#workarea div.listitemTile div.icon {
+  float: left;
+  width: 48px;
+  height: 48px;
+  margin-right: 10px;
+  text-align: center;
+  line-height: 48px;
+}
+#workarea div.listitemTile div.icon img.glyph {
+  display: inline;
+  max-width: 48px;
+  max-height: 48px;
+}
+#workarea div.listitemTile div.subitems {
+  float: right;
+  text-align: right;
+}
+#workarea div.listitemTile .data {
+  padding-top: 10px;
+  color: /*$list.item.color*/ #000000;
+  font-size: 12px;
+  font-weight: bold;
+  overflow: hidden;
+}
+#workarea div.listitemTile .data a {
+  color: /*$list.item.color*/ #000000;
+  font-size: 12px;
+  text-decoration: none;
+  font-weight: bold;
+}
+#workarea div.listitemTile .data .description {
+  display: block;
+  font-size: 0.8em;
+  font-weight: normal;
+}
+
+#workarea div.listitemTile div.tile:hover,
+#workarea div.listitemTile div.selected {
+  background-color: /*$highlight.background-color*/ #9EAB2D;
+}
+#workarea div.listitemTile:hover .data,
+#workarea div.listitemTile:hover .data a,
+#workarea div.listitemTile div.selected .data,
+#workarea div.listitemTile div.selected .data a {
+  color: /*$highlight.color*/ #FFFFFF;
+}
+
+#workarea div.topToolbar {
+  clear: both;
+}
+
+#workarea div.bottomToolbar {
+  border-top: 1px solid /*$border.raised.color*/ #FFFFFF;
+  border-bottom: none;
+  clear: both;
+}
+
+#workarea .listviewMenu {
+  border-top: 1px solid /*$border.inset.color*/ #BBB9B0;
+  clear: both;
+}
+#workarea .listviewMenu .menuBar {
+  border-bottom: none;
+}
+
+/* Listview with thumbnails */
+#workarea div.listitemThumbnail {
+  width: 128px;
+  font-size: 10px;
+  text-align: center;
+  color: /*$list-item-odd.background-color*/ #FFFFFF;
+  text-decoration: none;
+  line-height: 124px;
+  height: 124px;
+  vertical-align: middle;
+  float: left;
+  margin: 4px;
+  position: relative;
+}
+#workarea div.listitemThumbnail div.thumbnail {
+  line-height: 100px;
+  height: 124px;
+  padding: 4px;
+  vertical-align: middle;
+  text-decoration: none;
+  border: 1px solid /*$list-item-even.background-color*/ #F1F0EE;
+  background-color: /*$list-item-odd.background-color*/ #FFFFFF;
+}
+#workarea div.listitemThumbnail .itemInput {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  line-height: 1em;
+}
+#workarea div.listitemThumbnail .itemInput label {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+#workarea div.listitemThumbnail .itemInput input {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+}
+#workarea div.listitemThumbnail div.thumbnail div.image {
+  vertical-align: middle;
+  text-decoration: none;
+}
+#workarea div.listitemThumbnail div.thumbnail img {
+  display: inline;
+  vertical-align: middle;
+  margin: auto;
+  max-width: 100px;
+  max-height: 80px;
+}
+#workarea div.listitemThumbnail div.data a {
+  display: block;
+  color: /*$list.item.color*/ #000000;
+  line-height: 14px;
+  text-decoration: none;
+  overflow: hidden;
+}
+#workarea div.listitemThumbnail div.thumbnail:hover,
+#workarea div.listitemThumbnail div.selected {
+  color: /*$highlight.color*/ #FFFFFF;
+  background-color: /*$highlight.background-color*/ #9EAB2D;
+}
+#workarea div.listitemThumbnail div.thumbnail:hover div.data a,
+#workarea div.listitemThumbnail div.selected div.data a {
+  color: /*$highlight.color*/ #FFFFFF;
+  background-color: /*$highlight.background-color*/ #9EAB2D;
+}
+
+/* sheet */
+#workarea .sheetBackGround {
+  border: 1px solid /*$sheet.shadow.color*/ #9E9B8F;
+  border-bottom-color: /*$border.raised.color*/ #FFFFFF;
+  border-right-color: /*$border.raised.color*/ #FFFFFF;
+  background-color: /*$sheet.margin.color*/ #BBB9B0;
+  padding: 10px 6px 6px 10px;
+  margin-bottom: 10px;
+}
+#workarea .sheetShadow {
+  border-right: 4px solid  /*$sheet.shadow.color*/ #9E9B8F;
+  border-bottom: 4px solid  /*$sheet.shadow.color*/ #9E9B8F;
+  margin-left: auto;
+  margin-right: auto;
+}
+#workarea .sheet {
+  background: /*$sheet.background-color*/ #FFFFFF url(pics/back_blossom.jpg) no-repeat right top;
+  border: 1px solid /*$sheet.border.color*/ #6E6E6E;
+  font-size: 12px;
+}
+#workarea .sheet .teletype {
+  font-family: "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Lucida Console", monospace;
+  padding: 10px;
+  font-size: 14px;
+}
+#workarea .sheet a {
+  color: /*$link.color*/ #9EAB2D;
+}
+#workarea .sheet .header {
+  padding: 10px;
+  border-bottom: 1px dotted  /*$sheet.shadow.color*/ #9E9B8F;
+}
+#workarea .sheet .header .headertitle {
+  font-weight: bold;
+  font-size: 14px;
+  padding: 1px 0;
+}
+#workarea .sheet .header .headersubtitle {
+  padding: 1px 0;
+}
+#workarea .sheet .header .infos {
+  padding-top: 5px;
+  color:  /*$sheet.shadow.color*/ #9E9B8F;
+}
+#workarea .sheet li {
+  list-style-position: outside;
+}
+
+/* dialogs */
+#workarea form {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+#workarea table.dialog {
+  float: left;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  border-spacing: 0;
+}
+#workarea table.dialog th.subtitle {
+  background-color: /*$subtitle.background-color*/ #9C9C9B;
+  background: linear-gradient(
+    to bottom,
+    /*$subtitle.gradient-top.background-color*/ #CBCBCB,
+    /*$subtitle.gradient-bottom.background-color*/#A09E98
+  );
+  color: /*$subtitle.color*/ #555753;
+  font-size: 12px;
+  padding: 2px 5px;
+}
+#workarea table.dialog tr.odd {
+  background-color: /*$dialog.line.odd.background-color*/ #EAE9E6;
+}
+#workarea table.dialog tr.even {
+  background-color: /*$dialog.line.even.background-color*/ #F1F0EE;
+}
+#workarea table.dialog td.caption {
+  font-size: 12px;
+  width: 150px;
+  line-height: 20px;
+  padding: 1px;
+  text-align: left;
+}
+#workarea table.dialogXSmall td.caption {
+  width: 40px;
+  min-width: 40px;
+}
+#workarea table.dialogSmall td.caption {
+  width: 50px;
+  min-width: 50px;
+}
+#workarea table.dialogXLarge td.caption {
+  width: 200px;
+  min-width: 200px;
+}
+#workarea table.dialog td.infos {
+  font-size: 12px;
+  width: 40px;
+  min-width: 40px;
+  text-align: right;
+  padding-right: 4px;
+  padding-top: 2px;
+}
+#workarea table.dialog td.element  {
+  min-width: 50px;
+  font-size: 12px;
+  line-height: 20px;
+}
+#workarea table.dialog td.element a {
+  color: /*$workarea.color*/ #000000;
+  text-decoration: none;
+}
+#workarea table.dialogGrid {
+  width: 100%;
+  padding: 5px;
+  font-size: 10px;
+}
+
+/*listview in dialog */
+#workarea table.dialog div.panel {
+  margin: 0;
+}
+#workarea table.dialog table.listview tr.odd {
+  background-color: /*$list-item-odd.background-color*/ #FFFFFF;
+}
+#workarea table.dialog table.listview tr.even {
+  background-color: /*$list-item-even.background-color*/ #F1F0EE;
+}
+
+/* grid view */
+#workarea table.grid td {
+  font-size: 11px;
+}
+#workarea table.grid th {
+  font-size: 25px;
+}
+#workarea table.grid a {
+  color:  /*$highlight.background-color*/ #9EAB2D;
+  text-decoration: none;
+}
+#workarea table.grid tr.odd {
+  background-color: /*$list-item-odd.background-color*/ #FFFFFF;
+}
+#workarea table.grid tr.top td {
+  border-top: 1px solid /*$workarea.background-color*/ #EAE9E6;
+}
+#workarea table.grid tr.even {
+  background-color: /*$list-item-even.background-color*/ #F1F0EE;
+}
+#workarea table.grid tr th {
+  border-top: 1px solid /*$workarea.background-color*/ #EAE9E6;
+  border-right: 1px solid /*$workarea.background-color*/ #EAE9E6;
+}
+#workarea table.grid tr th.odd {
+  background-color: /*$list-item-odd.background-color*/ #FFFFFF;
+}
+#workarea table.grid tr th.even {
+  background-color: /*$list-item-even.background-color*/ #F1F0EE;
+}
+
+/* iframes */
+iframe {
+  border: none;
+  background-color: /*$window.background-color*/ #FFFFFF;
+}
+
+/* icon panel */
+#workarea .iconPanel {
+  border: 1px solid /*$iconpanel.border.inset.color*/ #6E6E6E;
+  border-bottom-color: /*$border.raised.color*/ #FFFFFF;
+  border-right-color: /*$border.raised.color*/ #FFFFFF;
+  background-color: /*$iconpanel.background-color*/ #9E9B8F;
+  padding: 0;
+  margin-bottom: 10px;
+}
+#workarea .iconPanel ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+#workarea .iconPanel ul li {
+  text-align: center;
+  margin: 10px 4px;
+}
+#workarea .iconPanel ul li a {
+  font-size: 12px;
+  text-decoration: none;
+  color: /*$iconpanel.color*/ #FFFFFF;
+  display: block;
+}
+#workarea .iconPanel .iconPanelTitle {
+  border: 1px solid /*$border.raised.color*/ #FFFFFF;
+  border-bottom-color: /*$iconpanel.border.inset.color*/ #6E6E6E;
+  border-right-color: /*$iconpanel.border.inset.color*/ #6E6E6E;
+  background-color: /*$workarea.background-color*/ #EAE9E6;
+}
+#workarea .iconPanel .iconPanelTitle a {
+  color: /*$workarea.color*/ #000000;
+  font-size: 12px;
+  text-decoration: none;
+  display: block;
+  padding: 1px 2px 2px 4px;
+  font-weight: bold;
+}
+
+#workarea .buttonBar {
+  border: 1px solid /*$border.inset.color*/ #BBB9B0;
+  border-bottom-color: /*$border.raised.color*/ #FFFFFF;
+  border-right-color: /*$border.raised.color*/ #FFFFFF;
+  margin-bottom: 10px;
+  vertical-align: middle;
+}
+#workarea .buttonBarArtWork {
+  border: 1px solid /*$border.raised.color*/ #FFFFFF;
+  border-bottom-color: /*$border.inset.color*/ #BBB9B0;
+  border-right-color: /*$border.inset.color*/ #BBB9B0;
+  text-align: center;
+}
+#workarea .buttonBar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+#workarea .buttonBar ul li {
+  list-style-type: none;
+  display: inline;
+  line-height: 16px;
+  font-size: 12px;
+  vertical-align: middle;
+}
+#workarea .buttonBar ul li a {
+  text-decoration: none;
+  color: /*$list.item.color*/ #000000;
+}
+#workarea .buttonBar ul.leftButtons {
+  float: left;
+}
+#workarea .buttonBar ul.rightButtons {
+  float: right;
+}
+#workarea .buttonBar ul.centerButtons {
+  display: inline;
+}
+
+/******************************************************************************
+   Form Controls
+******************************************************************************/
+.dialogButtonsBottom {
+  border-top: 1px solid /*$border.inset.color*/ #BBB9B0;
+  text-align: right;
+  margin-top: 2px;
+  clear: both;
+}
+.dialogButtonsBottom .dialogButtonsArtWork {
+  border-top: 1px solid /*$border.raised.color*/ #FFFFFF;
+  padding: 2px;
+}
+.dialogButtonsTop {
+  border-bottom: 1px solid /*$border.raised.color*/ #FFFFFF;
+  text-align: right;
+  margin-bottom: 2px;
+}
+.dialogButtonsTop .dialogButtonsArtWork {
+  border-bottom: 1px solid /*$border.inset.color*/ #BBB9B0;
+  padding: 2px;
+}
+button:focus {
+  outline: none;
+}
+button {
+  background: transparent;
+  border: 1px solid /*$border.raised.color*/ #FFFFFF;
+  border-bottom-color: /*$border.inset.color*/ #BBB9B0;
+  border-right-color: /*$border.inset.color*/ #BBB9B0;
+  cursor: pointer;
+  margin-left: 2px;
+}
+button.selected {
+  border: 1px solid /*$border.inset.color*/ #BBB9B0;
+  border-bottom-color: /*$border.raised.color*/ #FFFFFF;
+  border-right-color: /*$border.raised.color*/ #FFFFFF;
+}
+button.dialogPopupButton {
+  border: none;
+  background: transparent;
+}
+button.dialogImageButton {
+  border: none;
+}
+button.dialogButton img {
+  margin: 0;
+  margin-right: 4px;
+  float: left;
+}
+
+img.dialogImage, div.dialogImage {
+  float: left;
+  padding: 10px;
+}
+.dialogText {
+  padding: 10px;
+  padding-top: 20px;
+  font-size: 13px;
+  font-weight: bold;
+  margin-left: 60px;
+}
+
+
+.dialogScale {
+  width: 100%;
+}
+
+input.dialogInput, input.dialogPassword,
+input.dialogImage, input.dialogFixedImage, input.dialogMediaFile,
+select.dialogSelect, select.dialogList, input.dialogPageId, input.dialogGeoPos,
+input.dialogInputDate, input.dialogInputDateTime, input.dialogInputColor,
+textarea.dialogTextarea, textarea.dialogSimpleRichtext, textarea.dialogRichtext {
+  border: 1px solid /*$border.inset.color*/ #BBB9B0;
+  background-color: /*$input.background-color*/ #FFFFFF;
+  color: /*$input.color*/ #000000;
+}
+input.dialogInput:focus, input.dialogPassword:focus,
+input.dialogImage:focus, input.dialogFixedImage:focus, input.dialogMediaFile:focus,
+select.dialogSelect:focus, select.dialogList:focus, input.dialogPageId:focus, input.dialogGeoPos:focus,
+input.dialogInputDate:focus, input.dialogInputDateTime:focus, input.dialogInputColor:focus,
+textarea.dialogTextarea:focus,
+textarea.dialogSimpleRichtext:focus, textarea.dialogRichtext:focus {
+  border: 1px solid /*$border.focus.background-color*/ #9EAB2D;
+  background-color: /*$focus.background-color*/ #F3F5DB;
+  color: /*$focus.color*/ #000000;
+}
+input.dialogDisabled, input.dialogDisabled:focus,
+select.dialogDisabled, select.dialogDisabled:focus {
+  border: 1px solid /*$border.inset.color*/ #BBB9B0;
+  background-color: /*$dialog.line.even.background-color*/ #F1F0EE;
+  color: /*$dialog.color*/ #000000;
+}
+span.dialogCheckbox input {
+  border: 1px solid /*$border.inset.color*/ #BBB9B0;
+  background-color: /*$input.background-color*/ #FFFFFF;
+  color: /*$input.color*/ #000000;
+}
+span.dialogCheckbox input:focus {
+  border: 1px solid /*$border.focus.background-color*/ #9EAB2D;
+  background-color: /*$focus.background-color*/ #F3F5DB;
+  color: /*$focus.color*/ #000000;
+}
+
+select.dialogSelect optgroup,
+select.dialogList optgroup {
+  background-color: /*$subtitle.background-color*/ #9C9C9B;
+  background: linear-gradient(
+    to bottom,
+    /*$subtitle.gradient-top.background-color*/ #CBCBCB,
+    /*$subtitle.gradient-bottom.background-color*/#A09E98
+  );
+  color: /*$subtitle.color*/ #555753;
+  font-style: normal;
+  line-height: 16px;
+  text-align: center;
+}
+select.dialogSelect option,
+select.dialogList option {
+  background-color: /*$list-item-odd.background-color*/ #FFFFFF;
+  color: /*$list.item.color*/ #000000;
+  line-height: 16px;
+  text-align: left;
+}
+select.dialogSelect option.even,
+select.dialogList option.even {
+  background-color: /*$list-item-even.background-color*/ #F1F0EE;
+  color: /*$list.item.color*/ #000000;
+}
+
+div.dialogMessage {
+  font-size: 13px;
+  font-weight: bold;
+}
+div.dialogMessage .dialogMessageImage {
+  width: 48px;
+  height: 48px;
+  float: left;
+  margin: 10px;
+}
+div.dialogMessage .message {
+  padding: 20px;
+}
+
+input.dialogSearch {
+  background-image: url(pics/search.png);
+  background-position: left;
+  background-repeat: no-repeat;
+}
+
+span.dialogRadio {
+  white-space: nowrap;
+}
+span.dialogCheckBox {
+  white-space: nowrap;
+}
+span.dialogRadio label {
+  cursor: pointer;
+}
+table.dialog td.error input,
+table.dialog td.error textarea,
+table.dialog td.error select {
+  background-color: #FDE3E3;
+  border: 1px solid /*$border.inset.color*/ #BBB9B0;
+}
+
+/* login dialog */
+#workarea #loginDialog {
+  margin: 50px auto 50px auto;
+  width: 400px;
+  font-size: 12px;
+}
+#workarea #loginDialog div.fields {
+  width: 300px;
+  float: left;
+  margin-bottom: 1em;
+  margin-top: 1em;
+}
+#workarea #loginDialog label {
+  display: block;
+  float: left;
+  width: 110px;
+  padding: 2px 5px 2px 0;
+}
+#workarea #loginDialog .buttons {
+  text-align: right;
+  padding: 4px;
+}
+#workarea #loginDialog input {
+  float: left;
+  width: 180px;
+  margin: 2px;
+  background-color: /*$input.background-color*/ #FFFFFF;
+  color: /*$input.color*/ #000000;
+}
+#workarea #loginDialog input:focus {
+  border: 1px solid /*$border.focus.background-color*/ #9EAB2D;
+  background-color: /*$focus.background-color*/ #F3F5DB;
+  color: /*$focus.color*/ #000000;
+}
+#workarea #loginDialog .message {
+  padding: 1em 1em 1em 0;
+  font-weight: bold;
+}
+#workarea #loginDialog a {
+  color: /*$link.color*/ #9EAB2D;
+}
+
+/* javascript progress dialog */
+#lightBox, .lightBox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  z-index: 500;
+  -moz-opacity: 0.5;
+  opacity: 0.5;
+}
+#lightBox {
+  display: none;
+}
+#lightBoxDialog, .lightBoxFrame {
+  position: absolute;
+  z-index: 501;
+}
+#lightBoxDialog {
+  top: 100px;
+  width: 400px;
+  background-color: /*$workarea.background-color*/ #EAE9E6;
+  -moz-border-radius: 10px;
+  border-radius: 20px;
+  display: none;
+}
+#lightBoxDialog .lightBoxDialogTitle {
+  font-size: 18px;
+  margin: 0;
+  padding: 8px 16px;
+}
+#lightBoxDialog .title {
+  position: relative;
+  background-color: /*$header.background-color*/ #9EAB2D;
+  background: linear-gradient(
+    to bottom,
+    /*$header.gradient-top.background-color*/ #AEBA51,
+    /*$header.gradient-top.background-color*/#AEBA51 50%,
+    /*$header.gradient-bottom.background-color*/#A0AE32 50%,
+    /*$header.gradient-bottom.background-color*/#A0AE32
+  );
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  min-height: 40px;
+  color: /*$header.color*/ #FFFFFF;
+  font-weight: bold;
+  font-size: 18px;
+  border-bottom: 1px solid /*$window.background-color*/ #FFFFFF;
+}
+#lightBoxDialog .footer {
+  position: relative;
+  background-color: /*$header.background-color*/ #9EAB2D;
+  background: linear-gradient(
+    to bottom,
+    /*$header.gradient-top.background-color*/ #AEBA51,
+    /*$header.gradient-top.background-color*/#AEBA51 50%,
+    /*$header.gradient-bottom.background-color*/#A0AE32 50%,
+    /*$header.gradient-bottom.background-color*/#A0AE32
+  );
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  min-height: 20px;
+  border-top: 1px solid /*$window.background-color*/ #FFFFFF;
+}
+#lightBoxDialog .artworkOverlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+#lightBoxDialog .lightBoxButtons {
+  text-align: right;
+  padding: 5px 15px;
+  height: 32px;
+}
+
+#lightBoxDialog .progressDialog {
+  height: 149px;
+}
+#lightBoxDialog .progressDialogMessage {
+  font-size: 12px;
+  font-weight: bold;
+  padding: 10px 15px;
+  height: 40px;
+}
+#lightBoxDialog .progressBarBorder {
+  border: 1px solid /*$border.inset.color*/ #BBB9B0;
+  border-bottom-color: /*$border.raised.color*/ #FFFFFF;
+  border-right-color: /*$border.raised.color*/ #FFFFFF;
+  padding: 4px;
+  margin: 0 15px;
+}
+#lightBoxDialog .progressBar {
+  position: relative;
+  background-color: /*$header.background-color*/ #9EAB2D;
+  background: linear-gradient(
+    to bottom,
+    /*$header.gradient-top.background-color*/ #AEBA51,
+    /*$header.gradient-top.background-color*/#AEBA51 50%,
+    /*$header.gradient-bottom.background-color*/#A0AE32 50%,
+    /*$header.gradient-bottom.background-color*/#A0AE32
+  );
+  height: 20px;
+  width: 20%;
+}
+#progressBarArtwork pattern rect,
+#lightBoxDialog .progressBar pattern rect {
+  fill: /*$header.artwork.background-color*/ #FFFFFF;
+  opacity: /*$header.artwork.opacity*/ 0.2;
+}
+
+
+/* installer - step by step texts */
+div.installer {
+  padding: 10px;
+  font-size: 12px;
+}
+div.installer h1 {
+  font-size: 18px;
+  margin: 0;
+  padding: 0;
+  padding-bottom: 0.8em;
+}
+div.installer a.nextLink {
+  display: block;
+  text-align: center;
+  font-weight: bold;
+  margin: 1em 0 0 0;
+  font-size: 18px;
+  text-decoration: none;
+}
+div.installer a.rightLink {
+  display: block;
+  text-align: right;
+  margin: 1em 0;
+  text-decoration: none;
+}
+div.installer a.nextLink:hover {
+  text-decoration: underline;
+}
+div.installer hr {
+  border: none;
+  border-top: 1px dotted silver;
+  margin: 1em 0;
+}
+
+div.installer table th {
+  font-size: 14px;
+  font-weight: bold;
+  text-align: left;
+  vertical-align: middle;
+  padding: 2px 10px 2px 2px;
+}
+
+div.installer table td {
+  font-size: 12px;
+  padding: 2px;
+}
+div.installer table td.bullet {
+  padding: 0 4px 0 0;
+}
+
+/* calendar */
+table.monthCalendar {
+  width: 100%;
+  font-size: 12px;
+}
+table.monthCalendar thead th {
+  text-align: center;
+  padding: 2px;
+  border: 1px solid /*$border.raised.color*/ #FFFFFF;
+  border-bottom-color: /*$border.inset.color*/ #BBB9B0;
+  border-right-color: /*$border.inset.color*/ #BBB9B0;
+}
+table.monthCalendar tbody th {
+  text-align: right;
+  padding: 2px;
+  border: 1px solid /*$border.raised.color*/ #FFFFFF;
+  border-bottom-color: /*$border.inset.color*/ #BBB9B0;
+  border-right-color: /*$border.inset.color*/ #BBB9B0;
+}
+table.monthCalendar tbody td {
+  background-color: /*$list-item-odd.background-color*/ #FFFFFF;
+  text-align: right;
+  padding: 2px;
+}
+table.monthCalendar tbody td a {
+  text-decoration: none;
+  color: /*$list.item.color*/ #000000;
+}
+table.monthCalendar tbody td.filled {
+  background-color: /*$list-item-even.background-color*/ #F1F0EE;
+}
+table.monthCalendar tbody td.selected {
+  background-color: /*$highlight.background-color*/ #9EAB2D;
+  color: /*$highlight.color*/ #FFFFFF;
+}
+table.monthCalendar tbody td.selected a {
+  color: /*$highlight.color*/ #FFFFFF;
+}
+
+/* style selections - works only on page not in input/select/textarea */
+::-moz-selection {
+  background-color: /*$highlight.background-color*/ #9EAB2D;
+  color: /*$highlight.color*/ #FFFFFF;
+}
+::selection {
+  background-color: /*$highlight.background-color*/ #9EAB2D;
+  color: /*$highlight.color*/ #FFFFFF;
+}
+
+/* messaging */
+div.messageQuote {
+  margin: 2px;
+  padding-left: 10px;
+  border-left: 2px solid /*$sheet.margin.color*/ #BBB9B0;
+  color: /*$sheet.margin.color*/ #BBB9B0;
+}
+
+/******************************************************************************
+   Form Controls - Refactoring
+******************************************************************************/
+#workarea form.dialogSizeXSmall table.dialog td.caption {
+  min-width: 40px;
+  width: 40px;
+}
+#workarea form.dialogSizeSmall table.dialog td.caption {
+  min-width: 50px;
+  width: 50px;
+}
+#workarea form.dialogSizeLarge table.dialog td.caption {
+  min-width: 200px;
+  width: 200px;
+}
+form.dialog .buttons {
+  text-align: right;
+  clear: both;
+}
+form.dialog .buttonsBottom {
+  border-top: 1px solid /*$border.inset.color*/ #BBB9B0;
+  margin-top: 2px;
+}
+form.dialog div.buttonsBottom .buttonsArtWork {
+  border-top: 1px solid /*$border.raised.color*/ #FFFFFF;
+  padding: 2px;
+}
+form.dialog .buttonsTop {
+  border-bottom: 1px solid /*$border.raised.color*/ #FFFFFF;
+  margin-bottom: 2px;
+}
+form.dialog .buttonsTop .buttonsArtWork {
+  border-bottom: 1px solid /*$border.inset.color*/ #BBB9B0;
+  padding: 2px;
+}
+form.dialog .buttons .button {
+  border: 1px solid /*$border.raised.color*/ #FFFFFF;
+  border-bottom-color: /*$border.inset.color*/ #BBB9B0;
+  border-right-color: /*$border.inset.color*/ #BBB9B0;
+  background-color: /*$workarea.background-color*/ #EAE9E6;
+  color:  /*$workarea.color*/ #000000;
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 17px;
+  height: 21px;
+  vertical-align: bottom;
+  padding: 0 4px;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+form.dialog .buttons a.button {
+  text-decoration: none;
+  line-height: 19px;
+}
+form.dialog .buttons .left {
+  float: left;
+}
+form.dialog .buttons .right {
+  float: right;
+}
+form.dialog .scaleable {
+  width: 100%;
+}
+form.dialog .caption a {
+  color: /*$workarea.color*/ #000000;
+  text-decoration: none;
+}
+form.dialog .caption.mandatory span.text:after {
+  content: ' *';
+}
+form.dialog .hint {
+  font-size: 11px;
+  padding: 1px;
+}
+form.dialog .hintText {
+  font-size: 14px;
+  padding: 2px;
+  border: 1px dashed /*$border.inset.color*/ #BBB9B0;
+  background-color: /*$input.background-color*/ #FFFFFF;
+  color: /*$input.disabled.color*/ #555753;
+}
+form.dialog a.hintSwitch {
+  cursor: pointer;
+}
+form.dialog img.hintMarker  {
+  margin: 3px;
+  float: right;
+}
+
+div.dialogCheckboxes div.option,
+div.dialogRadio div.option {
+  display: inline-block;
+}
+/* popIn - lightbox with iframe */
+.popIn {
+  display: none;
+}
+
+/* context aware fields */
+table.dialogField {
+  width: 100%;
+  border-collapse: collapse;
+}
+table.dialogField td {
+  margin: 0;
+  padding: 0;
+  line-height: 1em;
+}
+table.dialogField .field {
+  width: 100%;
+}
+table.dialogField .action span.information {
+  padding: 0;
+  margin: 0 1em;
+}
+table.dialogField .action input {
+  margin-right: 0.2em;
+}
+table.dialogField .action input.filter {
+  width: 8em;
+
+}
+table.dialogField .action button.icon {
+  border: none;
+  padding: 0;
+  margin: 0 1em;
+  width: 24px;
+  cursor: pointer;
+}
+table.dialogField .action button.icon img {
+  border: none;
+  margin: auto;
+  margin-top: 1px;
+  padding: 0;
+  width: 16px;
+  height: 16px;
+}
+table.dialogField .information {
+  font-size: 12px;
+  line-height: 20px;
+  padding: 4px 0;
+  color: /*$dialog.color*/ #000000;
+  overflow: hidden;
+  padding-top: 0;
+}
+table.dialogField .information .icon {
+  float: left;
+  height: 48px;
+  line-height: 48px;
+  margin: 0.2em;
+  margin-right: 1em;
+  text-align: center;
+  width: 48px;
+}
+table.dialogField .information img {
+  display: inline;
+  max-height: 48px;
+}
+table.dialogField .information .title {
+  font-weight: bold;
+  padding: 0.2em;
+}
+table.dialogField .information .description {
+  font-weight: normal;
+  padding: 0.2em;
+}
+
+/* dialog control buttons (context buttons) */
+div.dialogControlButtons {
+  float: right;
+}
+div.dialogControlButtons img {
+  margin: 0.2em;
+  cursor: pointer;
+}
+div.dialogControlButtons button img {
+  margin: 0.2em 0 0 0;
+  cursor: pointer;
+}
+.dialogField .suggest ul {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  top: 0;
+  background: #fff;
+  list-style: none;
+  border: 1px solid #BBB9B0;
+  border-top: none;
+}
+.dialogField .suggest a {
+  display: block;
+  padding: 5px;
+}
+.dialogField .suggest a:hover {
+  background: #9EAB2D;
+}
+
+/** old js field context elements */
+
+div.dialogCounterLabel {
+  font-size: 12px;
+  line-height: 20px;
+  padding: 0 3px;
+}

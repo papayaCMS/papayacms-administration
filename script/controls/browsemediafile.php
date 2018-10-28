@@ -23,8 +23,7 @@ require_once(dirname(__FILE__).'/inc.controls.php');
   <head>
     <title>Mediafile Browser</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    <link rel="stylesheet"
-          type="text/css" href="../../skins/<?php echo $PAPAYA_SKIN; ?>/css.popups.php">
+    <link rel="stylesheet" type="text/css" href="../../styles/css.popup">
     <script type="text/javascript" src="../imgbrowser.js"></script>
     <script type="text/javascript">
 var linkList = "../../content.file.browser?mdb[mode]=list";
