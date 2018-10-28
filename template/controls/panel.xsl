@@ -152,15 +152,6 @@
   <xsl:choose>
     <xsl:when test="($text != '') and ($href != '')">
       <a href="{$href}" tabindex="10000">
-        <xsl:if test="$PAPAYA_USE_OVERLIB">
-          <xsl:variable name="hint-js">
-            <xsl:call-template name="escape-quotes-js">
-              <xsl:with-param name="string" select="$text" />
-            </xsl:call-template>
-          </xsl:variable>
-          <xsl:attribute name="onmouseout">nd();</xsl:attribute>
-          <xsl:attribute name="onmouseover">overlib("<xsl:value-of select="$hint-js"/>"); this.title = "";</xsl:attribute>
-        </xsl:if>
         <xsl:attribute name="title"><xsl:value-of select="$text"/></xsl:attribute>
         <xsl:choose>
           <xsl:when test="$mode='error'">

@@ -116,15 +116,6 @@
           </xsl:if>
           <xsl:if test="@hint and @hint != ''">
             <xsl:attribute name="title"><xsl:value-of select="@hint"/></xsl:attribute>
-            <xsl:if test="$PAPAYA_USE_OVERLIB">
-              <xsl:variable name="hint-js">
-                <xsl:call-template name="escape-quotes-js">
-                  <xsl:with-param name="string" select="@hint" />
-                </xsl:call-template>
-              </xsl:variable>
-              <xsl:attribute name="onmouseout">nd();</xsl:attribute>
-              <xsl:attribute name="onmouseover">overlib("<xsl:value-of select="$hint-js"/>"); this.title = "";</xsl:attribute>
-            </xsl:if>
           </xsl:if>
           <xsl:call-template name="listitem-input">
             <xsl:with-param name="input" select="input[@type='radio' or @type = 'checkbox']"/>
@@ -423,15 +414,6 @@
         </xsl:if>
         <xsl:if test="@hint and @hint != ''">
           <xsl:attribute name="title"><xsl:value-of select="@hint"/></xsl:attribute>
-          <xsl:if test="$PAPAYA_USE_OVERLIB">
-            <xsl:variable name="hint-js">
-              <xsl:call-template name="escape-quotes-js">
-                <xsl:with-param name="string" select="@hint" />
-              </xsl:call-template>
-            </xsl:variable>
-            <xsl:attribute name="onmouseout">nd();</xsl:attribute>
-            <xsl:attribute name="onmouseover">overlib("<xsl:value-of select="$hint-js"/>"); this.title = "";</xsl:attribute>
-          </xsl:if>
         </xsl:if>
         <xsl:choose>
           <xsl:when test="@href">

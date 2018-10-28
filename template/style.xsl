@@ -57,7 +57,6 @@
 <xsl:param name="PAPAYA_USE_JS_WRAPPER" select="true()" />
 <xsl:param name="PAPAYA_USE_JS_GZIP" select="true()" />
 
-<xsl:param name="PAPAYA_USE_OVERLIB" select="false()" />
 <xsl:param name="PAPAYA_USE_SWFOBJECT" select="true()" />
 
 <xsl:param name="PAPAYA_USE_RICHTEXT" select="true()" />
@@ -423,7 +422,6 @@
       <xsl:when test="$PAPAYA_USE_JS_WRAPPER and not($PAPAYA_DBG_DEVMODE)">
         <xsl:variable name="jsQueryString">
           <xsl:if test="$PAPAYA_USE_JS_GZIP">gzip=true</xsl:if>
-          <xsl:if test="$PAPAYA_USE_OVERLIB">&amp;overlib=true</xsl:if>
           <xsl:if test="$PAPAYA_USE_SWFOBJECT">&amp;swfobject=true</xsl:if>
         </xsl:variable>
         <xsl:choose>
@@ -451,9 +449,6 @@
             }
           //</xsl:comment>
         </script>
-        <xsl:if test="$PAPAYA_USE_OVERLIB">
-          <script type="text/javascript" src="./script/overlib/overlib_mini.js?rev={$PAPAYA_VERSION}"></script>
-        </xsl:if>
         <xsl:if test="$PAPAYA_USE_SWFOBJECT">
           <script type="text/javascript" src="./script/swfobject/swfobject.js?rev={$PAPAYA_VERSION}"></script>
         </xsl:if>
