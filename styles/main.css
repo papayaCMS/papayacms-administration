@@ -743,7 +743,8 @@ table.columnGrid td.columnRight {
   color: /*$list.item.color*/ #000000;
   text-decoration: none;
 }
-#workarea table.listview tr.selected, table.listview tr.selected td {
+#workarea table.listview tr.selected,
+#workarea table.listview tr.selected td {
   background-color: /*$highlight.background-color*/ #9EAB2D;
   color: /*$highlight.color*/ #FFFFFF;
 }
