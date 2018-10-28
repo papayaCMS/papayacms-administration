@@ -732,6 +732,9 @@ table.columnGrid td.columnRight {
 #workarea table.listview tr:hover td,
 #workarea table.listview tr:hover td a {
   background-color: /*$highlight.background-color*/ #9EAB2D;
+}
+#workarea table.listview tr:hover td,
+#workarea table.listview tr:hover td a {
   color: /*$highlight.color*/ #FFFFFF;
 }
 #workarea table.listview tr td {
