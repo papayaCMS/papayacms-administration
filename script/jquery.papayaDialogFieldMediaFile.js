@@ -23,7 +23,7 @@
 
     settings : {
       icon : 'pics/icons/16x16/items/folder.png',
-      dialogUrl : 'script/controls/browsemediafile.php',
+      dialogUrl : 'popup/media-files',
       dialogWidth : '90%',
       dialogHeight : '90%',
       rpcUrl : 'xml-api?rpc[cmd]=media_data&rpc[media_id]='

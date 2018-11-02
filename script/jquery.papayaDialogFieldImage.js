@@ -23,7 +23,7 @@
 
     settings : {
       icon : 'pics/icons/16x16/items/image.png',
-      dialogUrl : 'script/controls/browseimg.php',
+      dialogUrl : 'popup/media-images',
       dialogWidth : '90%',
       dialogHeight : '90%',
       rpcUrl : 'xml-api?rpc[cmd]=image_data&rpc[thumbnail]=1&rpc[image_conf]='

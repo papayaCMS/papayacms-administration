@@ -15,7 +15,7 @@
 function initializeImageData(imgDataStr) {
   if (imgDataStr != null && imgDataStr != '') {
     var paramname = 'rpc';
-    var url = '../../xml-api?'
+    var url = '../xml-api?'
       + paramname + '[cmd]=image_data&'
       + paramname + '[image_conf]=' + escape(imgDataStr);
     loadXMLDoc(url, true);
@@ -54,7 +54,7 @@ function rpcSetImageData(responseData, responseParams) {
 function showPreview(imgGuid) {
   var oIFrame = document.getElementById('iframePreview');
   if (oIFrame != null && imgGuid != '') {
-    oIFrame.src = '../../content.file.browser?mdb[mode]=preview&mdb[mid]=' + escape(imgGuid);
+    oIFrame.src = '../content.file.browser?mdb[mode]=preview&mdb[mid]=' + escape(imgGuid);
   }
 }
 
@@ -93,10 +93,10 @@ function switchProtectProportions() {
   bProtextProportions = !(bProtextProportions);
   if (bProtextProportions) {
     document.getElementById('imageProtectProportions').src =
-       '../../pics/controls/size_linked_on.gif';
+       '../pics/controls/size_linked_on.gif';
   } else {
     document.getElementById('imageProtectProportions').src =
-       '../../pics/controls/size_linked_off.gif';
+       '../pics/controls/size_linked_off.gif';
   }
 }
 
@@ -152,7 +152,7 @@ function selectResize(mode) {
 }
 
 function showResizeModeStatus() {
-  var basePath = '../../pics/controls/';
+  var basePath = '../pics/controls/';
   document.getElementById('imageSizeMinCrop').src = basePath+'size_mincrop.gif';
   document.getElementById('imageSizeMin').src = basePath+'size_min.gif';
   document.getElementById('imageSizeAbs').src = basePath+'size_abs.gif';

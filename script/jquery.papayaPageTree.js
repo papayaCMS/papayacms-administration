@@ -156,15 +156,15 @@
   var papayaPageTree = {
 
     options : {
-      url : '../../xml-api'
+      url : '../xml-api'
     },
 
     node : null,
 
     statusImages :{
-      'closed' : '../../pics/icons/16x16/status/node-closed.png',
-      'open' : '../../pics/icons/16x16/status/node-open.png',
-      'empty' : '../../pics/icons/16x16/status/node-empty.png'
+      'closed' : '../pics/icons/16x16/status/node-closed.png',
+      'open' : '../pics/icons/16x16/status/node-open.png',
+      'empty' : '../pics/icons/16x16/status/node-empty.png'
     },
 
     items : {},
@@ -174,10 +174,10 @@
       '<tr style="display: none;">' +
         '<td>' +
           '<a class="nodeIcon" href="#">' +
-            '<img class="glyph" alt="+" src="../../pics/icons/16x16/status/node-empty.png">' +
+            '<img class="glyph" alt="+" src="../pics/icons/16x16/status/node-empty.png">' +
           '</a>' +
           '<a class="itemIcon" href="#">' +
-            '<img class="glyph" src="../../pics/icons/16x16/items/page.png" alt=""/>' +
+            '<img class="glyph" src="../pics/icons/16x16/items/page.png" alt=""/>' +
           '</a>' +
           '<a class="itemTitle" href="#"/>' +
         '</td>' +

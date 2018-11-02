@@ -573,29 +573,13 @@
 
   <xsl:template name="artwork-overlay">
     <div class="artwork artworkOverlay">
-      <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <pattern id="dots" width="4" height="4" patternUnits="userSpaceOnUse">
-            <rect x="2" y="2" width="1" height="1" fill="#F00"/>
-          </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#dots)"/>
-      </svg>
+      <xsl:copy-of select="document('svg/dots.svg')/*"/>
     </div>
   </xsl:template>
 
   <xsl:template name="artwork-progress-bar">
     <div id="progressBarArtwork" style="width: 1px; height: 1px; position: absolute; left: -100px;">
-      <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <pattern id="stripes" x="0" width="20" height="20" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-            <rect x="10" y="-5" width="10" height="30"/>
-            <animate attributeType="XML" attributeName="x" from="0" to="20"
-        dur="2s" repeatCount="indefinite"/>
-          </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#stripes)"/>
-      </svg>
+      <xsl:copy-of select="document('svg/progress-bar.svg')/*"/>
     </div>
   </xsl:template>
 
