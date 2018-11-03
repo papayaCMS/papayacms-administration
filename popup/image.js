@@ -188,5 +188,5 @@ function selectImage() {
   sOptions += ", left=" + iLeft ;
   sOptions += ", top=" + iTop ;
 
-  var oWindow = window.open('./browseimg.php', 'PapayaBrowsePopupWindow', sOptions);
+  var oWindow = window.open('./media-images', 'PapayaBrowsePopupWindow', sOptions);
 }

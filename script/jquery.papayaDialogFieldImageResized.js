@@ -23,7 +23,7 @@
 
     settings : {
       icon : 'pics/icons/16x16/items/image.png',
-      dialogUrl : 'popup/media-images',
+      dialogUrl : 'popup/image',
       dialogWidth : '604px',
       dialogHeight : '394px',
       rpcUrl : 'xml-api?rpc[cmd]=image_data&rpc[thumbnail]=1&rpc[image_conf]='

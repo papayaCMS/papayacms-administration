@@ -142,7 +142,7 @@
              </fieldset>
             </div>
             <div class="popupButtonsArea">
-              <input type="button" onclick="selectImage();"  value="{//popup:phrase[@identifier='Select image']}"
+              <input type="button" onclick="selectImage();" value="{//popup:phrase[@identifier='Select image']}"
                 class="dialogButton buttonLeft"/>
               <input type="button" value="{//popup:phrase[@identifier='OK']}" class="dialogButton"
                 papayaLang="DlgBtnOk" data-action="resolve"/>
