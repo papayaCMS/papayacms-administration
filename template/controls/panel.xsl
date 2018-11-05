@@ -181,10 +181,10 @@
           <img src="pics/icons/16x16/status/dialog-warning.png" class="glyph16" alt="(*)" />
         </xsl:when>
         <xsl:when test="$mode='minimize'">
-          <a href="{$href}" tabindex="10000"><img src="{$PAPAYA_PATH_SKIN}pics/minimize.png" class="glyph16" alt="-" /></a>
+          <a href="{$href}" tabindex="10000"><img src="{$PAPAYA_PATH_IMAGES}/minimize.png" class="glyph16" alt="-" /></a>
         </xsl:when>
         <xsl:when test="$mode='maximize'">
-          <a href="{$href}" tabindex="10000"><img src="{$PAPAYA_PATH_SKIN}pics/maximize.png" class="glyph16" alt="+" /></a>
+          <a href="{$href}" tabindex="10000"><img src="{$PAPAYA_PATH_IMAGES}/maximize.png" class="glyph16" alt="+" /></a>
         </xsl:when>
         <xsl:otherwise>
           <img src="pics/icons/16x16/status/dialog-information.png" class="glyph16" alt="{$text}" />

@@ -13,7 +13,11 @@
   ~  FOR A PARTICULAR PURPOSE.
   -->
 
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:stylesheet
+  version="1.0"
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:exslt="http://exslt.org/common"
+  extension-element-prefixes="exslt">
 
 <xsl:import href="controls/generics.xsl"/>
 <xsl:import href="controls/messages.xsl"/>
@@ -30,6 +34,10 @@
 
 <xsl:import href="controls/javascript.xsl"/>
 
+
+<!-- development mode -->
+<xsl:param name="PAPAYA_DBG_DEVMODE" select="false()" />
+
 <!-- page parameters / global variables -->
 <xsl:param name="PAGE_TITLE" />
 <xsl:param name="PAGE_TITLE_ALIGN" select="true()"/>
@@ -42,7 +50,7 @@
 <xsl:param name="PAPAYA_MESSAGES_INBOX_LINK">messages?msg:folder_id=0</xsl:param>
 
 <xsl:param name="PAPAYA_UI_THEME">green</xsl:param>
-<xsl:param name="PAPAYA_PATH_SKIN">skins/default/</xsl:param>
+<xsl:param name="PAPAYA_PATH_IMAGES">styles/pics</xsl:param>
 <xsl:param name="COLUMNWIDTH_LEFT">200px</xsl:param>
 <xsl:param name="COLUMNWIDTH_CENTER">100%</xsl:param>
 <xsl:param name="COLUMNWIDTH_RIGHT">300px</xsl:param>
@@ -54,7 +62,8 @@
 <xsl:param name="PAGE_MODE">page</xsl:param>
 <xsl:param name="PAPAYA_USER_AUTHORIZED" select="false()"/>
 
-<xsl:param name="PAPAYA_USE_JS_WRAPPER" select="true()" />
+<!-- <xsl:param name="PAPAYA_USE_JS_WRAPPER" select="true()" /> -->
+<xsl:param name="PAPAYA_USE_JS_WRAPPER" select="not($PAPAYA_DBG_DEVMODE)" />
 <xsl:param name="PAPAYA_USE_JS_GZIP" select="true()" />
 
 <xsl:param name="PAPAYA_USE_SWFOBJECT" select="true()" />
@@ -66,9 +75,6 @@
 <xsl:param name="PAPAYA_RICHTEXT_CONTENT_CSS"/>
 <xsl:param name="PAPAYA_RICHTEXT_LINK_TARGET">_self</xsl:param>
 <xsl:param name="PAPAYA_RICHTEXT_BROWSER_SPELLCHECK" select="false()"/>
-
-
-<xsl:param name="PAPAYA_DBG_DEVMODE" select="false()" />
 
 <xsl:output method="html" encoding="UTF-8" standalone="yes" indent="yes" />
 
@@ -419,38 +425,18 @@
   <xsl:if test="$PAPAYA_USER_AUTHORIZED">
 
     <xsl:choose>
-      <xsl:when test="$PAPAYA_USE_JS_WRAPPER and not($PAPAYA_DBG_DEVMODE)">
+      <xsl:when test="$PAPAYA_USE_JS_WRAPPER">
         <xsl:variable name="jsQueryString">
-          <xsl:if test="$PAPAYA_USE_JS_GZIP">gzip=true</xsl:if>
-          <xsl:if test="$PAPAYA_USE_SWFOBJECT">&amp;swfobject=true</xsl:if>
+          <xsl:text>files=jsonclass.js,xmlrpc.js</xsl:text>
+          <xsl:if test="$PAPAYA_USE_SWFOBJECT">,swfobject/swfobject.js</xsl:if>
         </xsl:variable>
-        <xsl:choose>
-          <xsl:when test="$jsQueryString != ''">
-            <script type="text/javascript" src="./script/papayascripts.php?{$jsQueryString}&amp;rev={$PAPAYA_VERSION}"></script>
-          </xsl:when>
-          <xsl:otherwise>
-            <script type="text/javascript" src="./script/papayascripts.php?rev={$PAPAYA_VERSION}"></script>
-          </xsl:otherwise>
-        </xsl:choose>
+        <script type="text/javascript" src="scripts?{$jsQueryString}&amp;rev={$PAPAYA_VERSION}"> </script>
       </xsl:when>
       <xsl:otherwise>
-        <script type="text/javascript" src="./script/jsonclass.js?rev={$PAPAYA_VERSION}"></script>
-        <script type="text/javascript" src="./script/xmlrpc.js?rev={$PAPAYA_VERSION}"></script>
-        <script type="text/javascript" src="./script/controls.js?rev={$PAPAYA_VERSION}"></script>
-        <xsl:variable name="changedMessage">
-          <xsl:call-template name="translate-phrase">
-            <xsl:with-param name="phrase">Content changed</xsl:with-param>
-          </xsl:call-template>
-        </xsl:variable>
-        <script type="text/javascript">
-          <xsl:comment>
-            if ($.papayaDialogManager) {
-              $.papayaDialogManager().settings.message = '<xsl:value-of select="$changedMessage"/>';
-            }
-          //</xsl:comment>
-        </script>
+        <script type="text/javascript" src="./script/jsonclass.js?rev={$PAPAYA_VERSION}"> </script>
+        <script type="text/javascript" src="./script/xmlrpc.js?rev={$PAPAYA_VERSION}"> </script>
         <xsl:if test="$PAPAYA_USE_SWFOBJECT">
-          <script type="text/javascript" src="./script/swfobject/swfobject.js?rev={$PAPAYA_VERSION}"></script>
+          <script type="text/javascript" src="./script/swfobject/swfobject.js?rev={$PAPAYA_VERSION}"> </script>
         </xsl:if>
       </xsl:otherwise>
     </xsl:choose>
@@ -475,25 +461,59 @@
 
 <xsl:template name="jquery-embed">
   <xsl:if test="$EMBED_JQUERY">
-    <script type="text/javascript" src="./script/jquery/js/jquery-ui-1.8.21.custom.min.js"></script>
-    <script type="text/javascript" src="./script/jquery/js/timepicker.js"></script>
-    <script type="text/javascript" src="./script/jquery.papayaUtilities.js"></script>
-    <script type="text/javascript" src="./script/jquery.papayaPopIn.js"></script>
-    <script type="text/javascript" src="./script/jquery.papayaPopUp.js"></script>
-    <script type="text/javascript" src="./script/jquery.papayaDialogManager.js"></script>
-    <script type="text/javascript" src="./script/jquery.papayaDialogHints.js"></script>
-    <script type="text/javascript" src="./script/jquery.papayaDialogField.js"></script>
-    <script type="text/javascript" src="./script/jquery.papayaDialogFieldColor.js"></script>
-    <script type="text/javascript" src="./script/jquery.papayaDialogFieldCounted.js"></script>
-    <script type="text/javascript" src="./script/jquery.papayaDialogFieldDateRange.js"></script>
-    <script type="text/javascript" src="./script/jquery.papayaDialogFieldGeoPosition.js"></script>
-    <script type="text/javascript" src="./script/jquery.papayaDialogFieldImage.js"></script>
-    <script type="text/javascript" src="./script/jquery.papayaDialogFieldImageResized.js"></script>
-    <script type="text/javascript" src="./script/jquery.papayaDialogFieldMediaFile.js"></script>
-    <script type="text/javascript" src="./script/jquery.papayaDialogFieldPage.js"></script>
-    <script type="text/javascript" src="./script/jquery.papayaDialogFieldSelect.js"></script>
-    <script type="text/javascript" src="./script/jquery.papayaDialogCheckboxes.js"></script>
-    <script type="text/javascript" src="./script/jquery.papayaDialogFieldSuggest.js"></script>
+    <xsl:variable name="scripts">
+      <script>jquery/js/jquery-ui-1.8.21.custom.min.js</script>
+      <script>jquery/js/timepicker.js</script>
+      <script>jquery.papayaUtilities.js</script>
+      <script>jquery.papayaPopIn.js</script>
+      <script>jquery.papayaPopUp.js</script>
+      <script>jquery.papayaDialogManager.js</script>
+      <script>jquery.papayaDialogHints.js</script>
+      <script>jquery.papayaDialogField.js</script>
+      <script>jquery.papayaDialogFieldColor.js</script>
+      <script>jquery.papayaDialogFieldCounted.js</script>
+      <script>jquery.papayaDialogFieldDateRange.js</script>
+      <script>jquery.papayaDialogFieldGeoPosition.js</script>
+      <script>jquery.papayaDialogFieldImage.js</script>
+      <script>jquery.papayaDialogFieldImageResized.js</script>
+      <script>jquery.papayaDialogFieldMediaFile.js</script>
+      <script>jquery.papayaDialogFieldPage.js</script>
+      <script>jquery.papayaDialogFieldSelect.js</script>
+      <script>jquery.papayaDialogCheckboxes.js</script>
+      <script>jquery.papayaDialogFieldSuggest.js</script>
+      <script>controls.js</script>
+    </xsl:variable>
+    <xsl:choose>
+      <xsl:when test="$PAPAYA_USE_JS_WRAPPER">
+        <xsl:variable name="jsQueryString">
+          <xsl:text>files=</xsl:text>
+          <xsl:for-each select="exslt:node-set($scripts)/script">
+            <xsl:if test="position() > 1">
+              <xsl:text>,</xsl:text>
+            </xsl:if>
+            <xsl:value-of select="."/>
+          </xsl:for-each>
+        </xsl:variable>
+        <script type="text/javascript" src="scripts?{$jsQueryString}&amp;rev={$PAPAYA_VERSION}"> </script>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:for-each select="exslt:node-set($scripts)/script">
+          <script type="text/javascript" src="script/{.}?rev={$PAPAYA_VERSION}"> </script>
+        </xsl:for-each>
+      </xsl:otherwise>
+    </xsl:choose>
+    <xsl:variable name="changedMessage">
+      <xsl:call-template name="translate-phrase">
+        <xsl:with-param name="phrase">Content changed</xsl:with-param>
+      </xsl:call-template>
+    </xsl:variable>
+    <script type="text/javascript">
+      <xsl:comment>
+        if ($.papayaDialogManager) {
+          $.papayaDialogManager().settings.message = '<xsl:value-of select="$changedMessage"/>';
+        }
+      //</xsl:comment>
+    </script>
   </xsl:if>
 </xsl:template>
 

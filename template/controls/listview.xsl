@@ -419,9 +419,9 @@
           <xsl:when test="@href">
             <a href="{@href}" style="display: block;">
               <xsl:choose>
-                <xsl:when test="@sort = 'asc'"> <img src="{$PAPAYA_PATH_SKIN}pics/asc.png" class="columnBullet" alt="ASC" /></xsl:when>
-                <xsl:when test="@sort = 'desc'"> <img src="{$PAPAYA_PATH_SKIN}pics/desc.png" class="columnBullet" alt="DESC" /></xsl:when>
-                <xsl:when test="@sort = 'none'"> <img src="{$PAPAYA_PATH_SKIN}pics/nosort.png" class="columnBullet" alt="SORT" /></xsl:when>
+                <xsl:when test="@sort = 'asc'"> <img src="{$PAPAYA_PATH_IMAGES}/asc.png" class="columnBullet" alt="ASC" /></xsl:when>
+                <xsl:when test="@sort = 'desc'"> <img src="{$PAPAYA_PATH_IMAGES}/desc.png" class="columnBullet" alt="DESC" /></xsl:when>
+                <xsl:when test="@sort = 'none'"> <img src="{$PAPAYA_PATH_IMAGES}/nosort.png" class="columnBullet" alt="SORT" /></xsl:when>
               </xsl:choose>
               <xsl:value-of select="."/>
             </a>

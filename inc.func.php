@@ -14,48 +14,6 @@
  */
 
 /**
-* Translate phrase
-*
-* @param string $phrase
-* @param mixed $module optional, default value NULL
-* @access public
-* @return string
-*/
-function _gt($phrase, $module = NULL) {
-  /** @var Papaya\Application\CMS $application */
-  $application = \Papaya\Application::getInstance();
-  if ($application->hasObject('Phrases') && '' !== trim($phrase)) {
-    return $application->administrationPhrases->getText($phrase, $module);
-  }
-  return $phrase;
-}
-
-/**
-* Load text out of file
-*
-* @param string $fileName
-* @access public
-* @return string
-*/
-function _gtfile($fileName) {
-  if (isset($GLOBALS['PAPAYA_USER'])) {
-    $fileName = __DIR__.'/data/'.
-      $GLOBALS['PAPAYA_USER']->options['PAPAYA_UI_LANGUAGE'].'/'.$fileName;
-  } else {
-    $language = \Papaya\Application::getInstance()->options->get('PAPAYA_UI_LANGUAGE', 'en-US');
-    $fileName = __DIR__.'/data/'.$language.'/'.$fileName;
-  }
-  if ($fileName) {
-    if ($fh = @fopen($fileName, 'r')) {
-      $data = fread($fh, filesize($fileName));
-      fclose($fh);
-      return $data;
-    }
-  }
-  return '';
-}
-
-/**
  * Include file or redirect to
  *
  * @param string $includeFile
@@ -132,47 +90,6 @@ function controlScriptFileCaching(
   }
   header('Etag: "'.$etag.'"');
   header('X-Generator: papaya 5');
-  if ($allowGzip) {
-    ob_start('outputCompressionHandler');
-  }
-}
-
-function outputCompressionHandler($buffer, $mode) {
-  static $output = TRUE;
-  if ($output && canUseOutputCompressionHandler()) {
-    $output = FALSE;
-    /** @noinspection PhpComposerExtensionStubsInspection */
-    return ob_gzhandler($buffer, $mode);
-  }
-  if ($output) {
-    return $buffer;
-  }
-  return NULL;
-}
-
-function canUseOutputCompressionHandler() {
-  if (
-    function_exists('ob_gzhandler') &&
-    TRUE !== (bool)@ini_get('zlib.output_compression') &&
-    !headers_sent()
-  ) {
-    $status = ob_get_status(TRUE);
-    array_pop($status);
-    return 0 === count(
-      array_filter(
-        $status,
-        function($status) { return !isset($status['buffer_used']) || 0 !== $status['buffer_used']; }
-      )
-    );
-  }
-  return FALSE;
-}
-
-function includeThemeDefinition() {
-  $application = setUpApplication();
-  $color = $application->options->get('PAPAYA_UI_THEME', 'green');
-  $themeFile = __DIR__.'/skins/default/theme_'.$color.'.php';
-  include_once($themeFile);
 }
 
 /**
