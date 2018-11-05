@@ -528,7 +528,8 @@
     </xsl:variable>
     <xsl:choose>
       <xsl:when test="$PAPAYA_USE_TINYMCE_GZIP">
-        <script type="text/javascript" src="./script/{$tinymce}/tiny_mce.js.php?gzip=true&amp;rev={$PAPAYA_VERSION}"></script>
+        <script type="text/javascript" src="./script/{$tinymce}/tiny_mce_gzip.js?rev={$PAPAYA_VERSION}"></script>
+        <script type="text/javascript" src="./script/{$tinymce}.js?rev={$PAPAYA_VERSION}"></script>
         <script type="text/javascript"><xsl:comment>
           <xsl:if test="$PAPAYA_DBG_DEVMODE">
             tinyMCELoading.disk_cache = false;
@@ -546,7 +547,8 @@
         <script type="text/javascript" src="./script/{$tinymce}.js?rev={$PAPAYA_VERSION}"></script>
       </xsl:when>
       <xsl:otherwise>
-        <script type="text/javascript" src="./script/{$tinymce}/tiny_mce.js.php?rev={$PAPAYA_VERSION}"></script>
+        <script type="text/javascript" src="./script/{$tinymce}/tiny_mce.js?rev={$PAPAYA_VERSION}"></script>
+        <script type="text/javascript" src="./script/{$tinymce}.js?rev={$PAPAYA_VERSION}"></script>
       </xsl:otherwise>
     </xsl:choose>
     <script type="text/javascript"><xsl:comment>
