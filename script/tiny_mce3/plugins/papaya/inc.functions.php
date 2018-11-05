@@ -20,6 +20,10 @@
 * @subpackage Administration-TinyMCE
 */
 
+function includeFile($file) {
+  return include $file;
+}
+
 /**
 * initialize object for a dynamic popup page
 *
@@ -27,23 +31,13 @@
 */
 function initializeAdministrationPage() {
   error_reporting(2047);
-  $path = dirname(dirname(dirname(dirname(dirname($_SERVER['SCRIPT_FILENAME'])))));
-  if (file_exists($path.'/../../papaya.php')) {
-    include_once($path.'/../../papaya.php');
-  } else {
-    include_once($path.'/../conf.inc.php');
-  }
+  $path = dirname(dirname(dirname(dirname(__DIR__))));
   define('PAPAYA_DOCUMENT_ROOT', dirname($path).'/');
-  include_once($path.'/inc.func.php');
-  $application = include_once($path.'/inc.application.php');
+  includeFile($path.'/inc.conf.php');
+  $application = includeFile($path.'/inc.application.php');
   $options = $application->options;
-  if (!$options->loadAndDefine()) {
-    if (defined('PAPAYA_DBG_DATABASE_ERROR') && PAPAYA_DBG_DATABASE_ERROR) {
-      redirectToInstaller();
-    }
-  }
+  $options->loadAndDefine();
   $application->messages->setUp($application->options);
-  include_once(PAPAYA_INCLUDE_PATH.'system/base_auth.php');
   if (defined('PAPAYA_SESSION_NAME')) {
     $application->session->setName('sid'.PAPAYA_SESSION_NAME.'admin');
   } else {
