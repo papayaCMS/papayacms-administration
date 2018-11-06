@@ -57,7 +57,7 @@
         'mcePapayaLink',
         function() {
           this.editor.windowManager.open({
-            file :  url + '/link.php',
+            file :  url + '/link',
             width : '500',
             height : '350',
             name : 'papayaLinkWindow',
@@ -120,7 +120,7 @@
         'mcePapayaImage',
         function() {
           this.editor.windowManager.open({
-            file : url + '/dynimage.php',
+            file : url + '/dynamic-image',
             width : '600',
             height : '370',
             name : 'papayaDynamicImageWindow',
@@ -141,7 +141,7 @@
         'mcePapayaAddon',
         function() {
           this.editor.windowManager.open({
-            file : url + '/addon.php',
+            file : url + '/plugin',
             width : '600',
             height : '370',
             name : 'papayaAddOnWindow',

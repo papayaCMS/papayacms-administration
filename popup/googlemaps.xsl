@@ -26,7 +26,8 @@
       <popup:phrase>Cancel</popup:phrase>
     </popup:phrases>
     <popup:options>
-      <popup:option name="PAPAYA_GMAPS_API_KEY"> </popup:option>
+      <popup:option name="PAPAYA_GMAPS_API_KEY"/>
+      <popup:option name="PAPAYA_GMAPS_DEFAULT_POSITION"/>
     </popup:options>
   </popup:popup>
 
