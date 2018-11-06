@@ -70,13 +70,8 @@ if (file_exists($path) && is_dir($path)) {
   exit;
 }
 
-/**
-* Configuration file
-*/
-require_once __DIR__.'/inc.conf.php';
-
 /** @var \Papaya\Application\CMS $application */
-$application = include __DIR__.'/inc.application.php';
+$application = include __DIR__.'/bootstrap.php';
 $options = $application->options;
 
 /**
