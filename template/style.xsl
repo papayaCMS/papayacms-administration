@@ -260,10 +260,10 @@
     <xsl:call-template name="title-artwork"/>
     <xsl:call-template name="application-page-buttons"/>
     <xsl:variable name="glyphsrc">
-      <xsl:choose>
-        <xsl:when test="starts-with($PAGE_ICON, './')"><xsl:value-of select="$PAGE_ICON"/></xsl:when>
-        <xsl:otherwise>pics/icons/22x22/<xsl:value-of select="$PAGE_ICON"/></xsl:otherwise>
-      </xsl:choose>
+      <xsl:call-template name="icon-url">
+        <xsl:with-param name="icon-src" select="$PAGE_ICON"/>
+        <xsl:with-param name="icon-size">22</xsl:with-param>
+      </xsl:call-template>
     </xsl:variable>
     <div class="papayaLogo">
       <xsl:copy-of select="document('svg/papaya-logo.svg')/*"/>
@@ -336,7 +336,7 @@
     </xsl:variable>
     <div id="titleButtons">
       <a href="help" id="papayaTitleButtonHelp" title ="{$captionHelp}"><img src="pics/icons/22x22/categories/help.png" alt="{$captionHelp}" title ="{$captionHelp}" class="glyph22"/></a>
-      <a href="logout" id="papayaTitleButtonLogout" title ="{$captionLogOut}"><img src="pics/icons/22x22/actions/log-out.png" alt="{$captionLogOut}" title ="{$captionLogOut}" class="glyph22"/></a>
+      <a href="logout" id="papayaTitleButtonLogout" title ="{$captionLogOut}"><img src="icon.actions.log-out?size=22" alt="{$captionLogOut}" title ="{$captionLogOut}" class="glyph22"/></a>
     </div>
   </xsl:if>
 </xsl:template>

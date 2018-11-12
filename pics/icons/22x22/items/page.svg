@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="22" height="22" version="1.1" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+  <rect x=".5" y=".5" width="18" height="21" fill="#eeeeec" stroke="#888a85" stroke-linecap="round" stroke-linejoin="round"/>
+  <g fill="none">
+    <rect x="1.5" y="1.5" width="16" height="19" stroke="#fff" stroke-linecap="square"/>
+    <g stroke="#888a85">
+      <path d="m3 3.5062h8" stroke-width="1px"/>
+      <path d="m12 3.5434h4" stroke-width="1px"/>
+      <path d="m3 5.5022h3" stroke-width="1px"/>
+      <path d="m3 15.494h8" stroke-width="1px"/>
+      <g stroke-width="1px">
+        <path d="m12 15.511h3"/>
+        <path d="m3 17.5h6"/>
+        <path d="m10 17.525h4"/>
+        <path d="m7 5.5167h4"/>
+        <path d="m12 5.5167h4"/>
+      </g>
+      <path d="m8 7.5161h8" stroke-width="1px"/>
+      <g stroke-width="1px">
+        <path d="m3 7.4901h4"/>
+        <path d="m3 9.5227h3"/>
+        <path d="m7 9.4699h3"/>
+        <path d="m11 9.5015h5"/>
+        <path d="m3 11.496h3"/>
+        <path d="m7 11.511h4"/>
+        <path d="m12 11.511h4"/>
+      </g>
+      <path d="m8 13.51h8" stroke-width="1px"/>
+      <path d="m3 13.484h4" stroke-width="1px"/>
+    </g>
+  </g>
+</svg>
