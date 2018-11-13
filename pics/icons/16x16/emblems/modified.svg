@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16" height="16" version="1.1" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <linearGradient id="linearGradient929" x1="7.4301" x2="9.2689" y1="6.7683" y2="8.7066" gradientTransform="matrix(.68085 0 0 .68088 5.2534 5.683)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#edd400" offset="0"/>
+      <stop stop-color="#edd400" stop-opacity="0" offset="1"/>
+    </linearGradient>
+  </defs>
+  <g>
+    <path d="m7.6095 12.156 5.4936-5.452 2.066 2.0661-5.5171 5.6025c-1.0861-0.35258-1.7302-1.1516-2.0426-2.2167z" fill="#c4a000" stroke="#c17d11" stroke-width="1px"/>
+    <path d="m6.0202 15.993 1.0179-3.9731 2.7127 2.9388z" fill="#e9b96e"/>
+    <path d="m6.4044 14.467-0.38423 1.5262 1.4311-0.40135c-0.5579-0.19558-0.84862-0.47973-1.0469-1.1249z" fill="#555753"/>
+    <path d="m7.6095 12.156 5.4936-5.452 2.066 2.0661-5.5171 5.6025c-1.0861-0.35258-1.7302-1.1516-2.0426-2.2167z" fill="url(#linearGradient929)" stroke="#c17d11" stroke-width="1px"/>
+    <ellipse transform="matrix(.70994 .70426 -.7043 .7099 0 0)" cx="15.483" cy="-4.7551" rx="1.4763" ry=".63468" fill="#e9b96e" stroke="#c17d11" stroke-linejoin="round"/>
+  </g>
+</svg>
