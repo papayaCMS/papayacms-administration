@@ -226,17 +226,10 @@
 	        </xsl:if>
 	        <div class="icon">
 	          <xsl:variable name="glyphsrc">
-	            <xsl:choose>
-	              <xsl:when test="starts-with(@image, './') and contains(@image, '?')">
-	                <xsl:value-of select="@image"/>
-	                <xsl:text>&amp;size=48</xsl:text>
-	              </xsl:when>
-                <xsl:when test="starts-with(@image, 'http://')"><xsl:value-of select="@image"/></xsl:when>
-                <xsl:when test="starts-with(@image, './')"><xsl:value-of select="@image"/></xsl:when>
-	              <xsl:when test="starts-with(@image, '../')"><xsl:value-of select="@image"/></xsl:when>
-	              <xsl:when test="not(@image) or (@image = '') or (@image = false())">pics/tpoint.gif</xsl:when>
-	              <xsl:otherwise>pics/icons/48x48/<xsl:value-of select="@image"/></xsl:otherwise>
-	            </xsl:choose>
+              <xsl:call-template name="icon-url">
+                <xsl:with-param name="icon-src" select="@image"/>
+                <xsl:with-param name="icon-size">48</xsl:with-param>
+              </xsl:call-template>
 	          </xsl:variable>
 	          <xsl:choose>
 	            <xsl:when test="@href">
