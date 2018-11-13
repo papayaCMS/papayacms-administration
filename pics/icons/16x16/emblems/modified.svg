@@ -1,1 +1,13 @@
-<svg width="16" height="16" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="a" x1="7.43" x2="9.269" y1="6.768" y2="8.707" gradientTransform="matrix(.68085 0 0 .68088 5.253 5.683)" gradientUnits="userSpaceOnUse"><stop stop-color="#edd400" offset="0"/><stop stop-color="#edd400" stop-opacity="0" offset="1"/></linearGradient></defs><path d="M7.61 12.156l5.493-5.452L15.17 8.77l-5.517 5.603c-1.086-.353-1.73-1.152-2.043-2.217z" fill="#c4a000" stroke="#c17d11"/><path d="M6.02 15.993l1.018-3.973 2.713 2.939z" fill="#e9b96e"/><path d="M6.404 14.467l-.384 1.526 1.431-.401c-.558-.196-.848-.48-1.047-1.125z" fill="#555753"/><path d="M7.61 12.156l5.493-5.452L15.17 8.77l-5.517 5.603c-1.086-.353-1.73-1.152-2.043-2.217z" fill="url(#a)" stroke="#c17d11"/><ellipse transform="rotate(44.77) skewX(-.003)" cx="15.483" cy="-4.755" rx="1.476" ry=".635" fill="#e9b96e" stroke="#c17d11" stroke-linejoin="round"/></svg>
+<svg width="16" height="16" xmlns="http://www.w3.org/2000/svg">
+ <defs>
+  <linearGradient id="a" x1="7.43" x2="9.269" y1="6.768" y2="8.707" gradientTransform="matrix(.68085 0 0 .68088 5.253 5.683)" gradientUnits="userSpaceOnUse">
+   <stop stop-color="#edd400" offset="0"/>
+   <stop stop-color="#edd400" stop-opacity="0" offset="1"/>
+  </linearGradient>
+ </defs>
+ <path d="M7.61 12.156l5.493-5.452L15.17 8.77l-5.517 5.603c-1.086-.353-1.73-1.152-2.043-2.217z" fill="#c4a000" stroke="#c17d11"/>
+ <path d="M6.02 15.993l1.018-3.973 2.713 2.939z" fill="#e9b96e"/>
+ <path d="M6.404 14.467l-.384 1.526 1.431-.401c-.558-.196-.848-.48-1.047-1.125z" fill="#555753"/>
+ <path d="M7.61 12.156l5.493-5.452L15.17 8.77l-5.517 5.603c-1.086-.353-1.73-1.152-2.043-2.217z" fill="url(#a)" stroke="#c17d11"/>
+ <ellipse transform="rotate(44.77) skewX(-.003)" cx="15.483" cy="-4.755" rx="1.476" ry=".635" fill="#e9b96e" stroke="#c17d11" stroke-linejoin="round"/>
+</svg>
