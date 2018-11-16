@@ -335,7 +335,7 @@
       </xsl:call-template>
     </xsl:variable>
     <div id="titleButtons">
-      <a href="help" id="papayaTitleButtonHelp" title ="{$captionHelp}"><img src="pics/icons/22x22/categories/help.png" alt="{$captionHelp}" title ="{$captionHelp}" class="glyph22"/></a>
+      <a href="help" id="papayaTitleButtonHelp" title ="{$captionHelp}"><img src="icon.categories.help?size=22" alt="{$captionHelp}" title ="{$captionHelp}" class="glyph22"/></a>
       <a href="logout" id="papayaTitleButtonLogout" title ="{$captionLogOut}"><img src="icon.actions.log-out?size=22" alt="{$captionLogOut}" title ="{$captionLogOut}" class="glyph22"/></a>
     </div>
   </xsl:if>
