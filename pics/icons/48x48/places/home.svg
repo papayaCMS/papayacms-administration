@@ -54,7 +54,6 @@
    <stop offset="0" stop-color="#fff"/>
    <stop offset=".854" stop-color="#ff6200"/>
    <stop offset="1" stop-color="#f25d00"/>
-   <midPointStop offset=".5" stop-color="#ff6200"/>
   </linearGradient>
   <radialGradient xlink:href="#d" id="v" cx="7.533" cy="24.203" fx="7.533" fy="24.203" r="8.245" gradientTransform="matrix(4.10009 0 0 4.20132 -25.415 -78.54)" gradientUnits="userSpaceOnUse"/>
   <radialGradient xlink:href="#e" id="t" cx="19.986" cy="36.778" fx="19.986" fy="36.778" r="1.082" gradientTransform="matrix(1.12526 0 0 .98274 -3.429 .566)" gradientUnits="userSpaceOnUse"/>
