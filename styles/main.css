@@ -1594,6 +1594,26 @@ div.installer table td {
 div.installer table td.bullet {
   padding: 0 4px 0 0;
 }
+div.installer tr span.installerStepNumber,
+div.installer tr a.installerStepNumber {
+  display: inline-block;
+  border: 2px solid /*$link.color*/ #9EAB2D;
+  color: /*$link.color*/ #9EAB2D;
+  border-radius: 50%;
+  width: 1.2em;
+  height: 1.2em;
+  text-align: center;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 20px;
+  line-height: 1.2em;
+}
+div.installer tr.headerDisabled a.installerStepNumber,
+div.installer tr.headerDisabled span.installerStepNumber {
+  border: 2px solid /*$sheet.color*/ #9EAB2D;
+  color: /*$sheet.color*/ #9EAB2D;
+  opacity: 0.75;
+}
 
 /* calendar */
 table.monthCalendar {
