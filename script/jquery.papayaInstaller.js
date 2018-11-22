@@ -320,17 +320,13 @@
 
     showStatus : function(column, tableName, status) {
       $('#sign_'+column+'_'+tableName).attr(
-        'src',
-        'pics/icons/16x16/' +
-          ((status) ? this.options.imageOk : this.options.imageProblem)
+        'src', ((status) ? this.options.imageOk : this.options.imageProblem)
       );
     },
 
     setBox : function(column, tableName, checked) {
       $('#box_'+column+'_'+tableName).attr(
-        'src',
-        'pics/icons/16x16/' +
-          ((checked) ? this.options.imageChecked : this.options.imageUnchecked)
+        'src', ((checked) ? this.options.imageChecked : this.options.imageUnchecked)
       );
     },
 
