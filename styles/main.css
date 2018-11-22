@@ -1614,11 +1614,11 @@ div.installer tr a.installerStepNumber {
   font-size: 20px;
   line-height: 1.2em;
 }
-div.installer tr.headerDisabled a.installerStepNumber,
-div.installer tr.headerDisabled span.installerStepNumber {
+div.installer tr td.disabled a.installerStepNumber,
+div.installer tr td.disabled span.installerStepNumber {
   border: 2px solid /*$sheet.color*/ #9EAB2D;
   color: /*$sheet.color*/ #9EAB2D;
-  opacity: 0.75;
+  opacity: 0.5;
 }
 
 /* calendar */
