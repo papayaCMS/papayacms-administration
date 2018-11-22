@@ -42,22 +42,22 @@
       this.pages.to = $('<div class="dialogControlPage"/>').appendTo(container).hide();
 
       this.tabs.fromTo = this.createTabButton(
-        'actions/date-filter-between',
+        'icon.actions.date-filter-between',
         labels['page-fromto'] || 'From/To',
         'fromTo'
       ).appendTo(tabs);
       this.tabs.in = this.createTabButton(
-        'actions/date-filter-period',
+        'icon.actions.date-filter-period',
         labels['page-in'] || 'In (Year: YYYY, Year-Month: YYYY-MM)',
         'in'
       ).appendTo(tabs);
       this.tabs.from = this.createTabButton(
-        'actions/date-filter-after',
+        'icon.actions.date-filter-after',
         labels['page-from'] || 'From',
         'from'
       ).appendTo(tabs);
       this.tabs.to = this.createTabButton(
-        'actions/date-filter-before',
+        'icon.actions.date-filter-before',
         labels['page-to'] || 'To',
         'to'
       ).appendTo(tabs);
@@ -172,7 +172,7 @@
       var image = $('<img/>').appendTo(button);
       image.attr(
         {
-          src : './pics/icons/16x16/' + glyph + '.png',
+          src : glyph + '?size=16',
           alt : text,
           title : text
         }

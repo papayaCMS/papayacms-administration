@@ -22,7 +22,7 @@
   var field = {
 
     settings : {
-      icon : 'pics/icons/16x16/items/folder.png',
+      icon : 'icon.items.folder?size=16',
       dialogUrl : 'popup/media-files',
       dialogWidth : '90%',
       dialogHeight : '90%',

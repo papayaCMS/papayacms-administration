@@ -155,16 +155,16 @@
         <xsl:attribute name="title"><xsl:value-of select="$text"/></xsl:attribute>
         <xsl:choose>
           <xsl:when test="$mode='error'">
-            <img src="pics/icons/16x16/status/dialog-error.png" class="glyph16" alt="{$text}" />
+            <img src="icon.status.dialog-error?size=16" class="glyph16" alt="{$text}" />
           </xsl:when>
           <xsl:when test="$mode='help'">
-            <img src="pics/icons/16x16/status/dialog-help.png" class="glyph16" alt="{$text}" />
+            <img src="icon.status.dialog-help?size=16" class="glyph16" alt="{$text}" />
           </xsl:when>
           <xsl:when test="$mode='needed'">
-            <img src="pics/icons/16x16/status/dialog-warning.png" class="glyph16" alt="{$text}" />
+            <img src="icon.status.dialog-warning?size=16" class="glyph16" alt="{$text}" />
           </xsl:when>
           <xsl:otherwise>
-            <img src="pics/icons/16x16/status/dialog-information.png" class="glyph16" alt="{$text}" />
+            <img src="icon.status.dialog-information?size=16" class="glyph16" alt="{$text}" />
           </xsl:otherwise>
         </xsl:choose>
       </a>
@@ -172,22 +172,22 @@
     <xsl:otherwise>
       <xsl:choose>
         <xsl:when test="$mode='error'">
-          <img src="pics/icons/16x16/status/dialog-error.png" class="glyph16" alt="(!)" />
+          <img src="icon.status.dialog-error?size=16" class="glyph16" alt="(!)" />
         </xsl:when>
         <xsl:when test="$mode='help'">
-          <img src="pics/icons/16x16/status/dialog-help.png" class="glyph16" alt="(i)" />
+          <img src="icon.status.dialog-help?size=16" class="glyph16" alt="(i)" />
         </xsl:when>
         <xsl:when test="$mode='needed'">
-          <img src="pics/icons/16x16/status/dialog-warning.png" class="glyph16" alt="(*)" />
+          <img src="icon.status.dialog-warning?size=16" class="glyph16" alt="(*)" />
         </xsl:when>
         <xsl:when test="$mode='minimize'">
-          <a href="{$href}" tabindex="10000"><img src="{$PAPAYA_PATH_IMAGES}/minimize.png" class="glyph16" alt="-" /></a>
+          <a href="{$href}" tabindex="10000"><img src="icon.actions.list-remove?size=16" class="glyph16" alt="-" /></a>
         </xsl:when>
         <xsl:when test="$mode='maximize'">
-          <a href="{$href}" tabindex="10000"><img src="{$PAPAYA_PATH_IMAGES}/maximize.png" class="glyph16" alt="+" /></a>
+          <a href="{$href}" tabindex="10000"><img src="icon.actions.list-add?size=16" class="glyph16" alt="+" /></a>
         </xsl:when>
         <xsl:otherwise>
-          <img src="pics/icons/16x16/status/dialog-information.png" class="glyph16" alt="{$text}" />
+          <img src="icon.status.dialog-information?size=16" class="glyph16" alt="{$text}" />
         </xsl:otherwise>
       </xsl:choose>
     </xsl:otherwise>

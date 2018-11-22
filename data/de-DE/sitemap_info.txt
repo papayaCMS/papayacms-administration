@@ -2,11 +2,11 @@
  In der Sitemap können Sie durch die Seitenstruktur des Projektes browsen.
 </p>
 <p>
- <img src="pics/icons/16x16/actions/edit.png" border="0" width="16" height="16" alt="" align="absmiddle"/>
+ <img src="icon.actions.edit?size=16" border="0" width="16" height="16" alt="" align="absmiddle"/>
  Mit einem Klick auf das Stiftsymbol gelangen Sie zum Editbereich der entsprechenden Seite.
 </p>
 <p>
- <img src="pics/icons/16x16/items/publication.png" border="0" width="16" height="16" alt="" align="absmiddle"/>
+ <img src="icon.items.publication?size=16" border="0" width="16" height="16" alt="" align="absmiddle"/>
  Die Weltkugel ermöglicht Ihnen, direkt aus der Sitemap Seiten zu veröffentlichen.
 </p>
 <p>

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" height="10" width="10">
+  <g transform="translate(0 -1112.52)">
+    <path class="background" d="M5 1114.52c-1.65 0-3 1.349-3 3 0 1.65 1.35 3 3 3s3-1.35 3-3c0-1.651-1.35-3-3-3z" fill="#729fcf"/>
+    <circle cx="5" cy="1117.52" r="2.499" opacity=".25" fill="none" stroke="#000" stroke-width="1.002" stroke-linecap="square" stroke-linejoin="bevel"/>
+    <path d="M5 1116.52c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z" color="#000" opacity=".1"/>
+  </g>
+</svg>

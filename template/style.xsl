@@ -389,9 +389,14 @@
       <xsl:if test="title-menu/links[not(@align)]/link[@selected]">
         <xsl:variable name="selectedLink" select="title-menu/links[not(@align)]/link[@selected]"/>
         <li class="selected">
-          <xsl:if test="$selectedLink/@image">
-            <img src="pics/language/{$selectedLink/@image}" alt="" title="{$selectedLink/@title}"/>
-          </xsl:if>
+          <xsl:choose>
+            <xsl:when test="contains($selectedLink/@image, '.gif')">
+              <img src="pics/language/{substring-before($selectedLink/@image, '.gif')}.svg" alt="" title="{$selectedLink/@title}" style="height:1.2em; margin-right: 4px;"/>
+            </xsl:when>
+            <xsl:when test="contains($selectedLink/@image, '.svg')">
+              <img src="pics/language/{$selectedLink/@image}" alt="" title="{$selectedLink/@title}" style="height:1.2em; margin-right: 4px;"/>
+            </xsl:when>
+          </xsl:choose>
           <xsl:value-of select="$selectedLink/@title"/>
         </li>
       </xsl:if>
@@ -400,8 +405,11 @@
           <li>
             <a href="{@href}" title="{@title}">
               <xsl:choose>
-                <xsl:when test="@image">
-                  <img src="pics/language/{@image}" alt="{@title}" title="{@title}"/>
+                <xsl:when test="contains(@image, '.gif')">
+                  <img src="pics/language/{substring-before(@image, '.gif')}.svg" alt="" title="{@title}" style="height:1.2em;"/>
+                </xsl:when>
+                <xsl:when test="contains(@image, '.svg')">
+                  <img src="pics/language/{@image}" alt="" title="{@title}" style="height:1.2em;"/>
                 </xsl:when>
                 <xsl:otherwise><xsl:value-of select="@title"/></xsl:otherwise>
               </xsl:choose>
