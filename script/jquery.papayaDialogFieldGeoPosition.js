@@ -22,7 +22,7 @@
   var field = {
 
     settings : {
-      icon : 'pics/icons/16x16/items/publication.png',
+      icon : 'icon.items.publication?size=16',
       url : 'popup/googlemaps',
       width : '310',
       height : '410'

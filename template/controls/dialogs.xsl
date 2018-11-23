@@ -411,19 +411,19 @@
       <xsl:choose>
         <xsl:when test=" $field/@hint != '' and $field/@error = 'yes'">
           <a href="#hint{generate-id($field)}" class="hintSwitch">
-            <img src="pics/icons/16x16/status/dialog-error.png" class="hintMarker errorMarker" alt=""/>
+            <img src="icon.status.dialog-error?size=16" class="hintMarker errorMarker" alt=""/>
             <xsl:copy-of select="$caption"/>
           </a>
         </xsl:when>
         <xsl:when test="$field/@hint != ''">
           <a href="#hint{generate-id($field)}" class="hintSwitch">
-            <img src="pics/icons/16x16/status/dialog-information.png" alt="" class="hintMarker"/>
+            <img src="icon.status.dialog-information?size=16" alt="" class="hintMarker"/>
             <xsl:copy-of select="$caption"/>
           </a>
         </xsl:when>
         <xsl:otherwise>
           <xsl:if test="$field/@error = 'yes'">
-            <img src="pics/icons/16x16/status/dialog-error.png" class="hintMarker errorMarker" alt=""/>
+            <img src="icon.status.dialog-error?size=16" class="hintMarker errorMarker" alt=""/>
           </xsl:if>
           <xsl:copy-of select="$caption"/>
         </xsl:otherwise>

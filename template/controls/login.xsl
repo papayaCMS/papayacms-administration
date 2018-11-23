@@ -22,7 +22,7 @@
     <xsl:call-template name="panel">
       <xsl:with-param name="title" select="$login/@title"/>
       <xsl:with-param name="data">
-        <img src="pics/icons/48x48/status/system-locked.png" class="dialogIconLarge" alt=""/>
+        <img src="icon.status.system-locked?size=48" class="dialogIconLarge" alt=""/>
         <div class="fields">
           <xsl:if test="$login/message">
             <div class="message"><xsl:apply-templates select="$login/message/*|$login/message/text()"/></div>

@@ -125,34 +125,34 @@
               <xsl:choose>
                 <xsl:when test="node/@status = 'closed'">
                   <a href="{node/@href}" class="nodeIcon">
-                    <img src="pics/icons/16x16/status/node-closed.png" class="glyph" alt="+"/>
+                    <img src="icon.status.node-closed?size=16" class="glyph" alt="+"/>
                   </a>
                 </xsl:when>
                 <xsl:when test="node/@status = 'open'">
                   <a href="{node/@href}" class="nodeIcon">
-                    <img src="pics/icons/16x16/status/node-open.png" class="glyph" alt="-"/>
+                    <img src="icon.status.node-open?size=16" class="glyph" alt="-"/>
                   </a>
                 </xsl:when>
                 <xsl:when test="node/@status = 'empty'">
                   <span class="nodeIcon">
-                    <img src="pics/icons/16x16/status/node-empty.png" class="glyph" alt=" "/>
+                    <img src="icon.status.node-empty?size=16" class="glyph" alt=" "/>
                   </span>
                 </xsl:when>
               </xsl:choose>
             </xsl:when>
             <xsl:when test="@nhref and @node = 'close'">
               <a href="{@nhref}" class="nodeIcon">
-                <img src="pics/icons/16x16/status/node-closed.png" class="glyph" alt="+"/>
+                <img src="icon.status.node-closed?size=16" class="glyph" alt="+"/>
               </a>
             </xsl:when>
             <xsl:when test="@nhref and @node = 'open'">
               <a href="{@nhref}" class="nodeIcon">
-                <img src="pics/icons/16x16/status/node-open.png" class="glyph" alt="-"/>
+                <img src="icon.status.node-open?size=16" class="glyph" alt="-"/>
               </a>
             </xsl:when>
             <xsl:when test="@node = 'empty'">
               <span class="nodeIcon">
-                <img src="pics/icons/16x16/status/node-empty.png" class="glyph" alt=" "/>
+                <img src="icon.status.node-empty?size=16" class="glyph" alt=" "/>
               </span>
             </xsl:when>
           </xsl:choose>
@@ -412,9 +412,21 @@
           <xsl:when test="@href">
             <a href="{@href}" style="display: block;">
               <xsl:choose>
-                <xsl:when test="@sort = 'asc'"> <img src="{$PAPAYA_PATH_IMAGES}/asc.png" class="columnBullet" alt="ASC" /></xsl:when>
-                <xsl:when test="@sort = 'desc'"> <img src="{$PAPAYA_PATH_IMAGES}/desc.png" class="columnBullet" alt="DESC" /></xsl:when>
-                <xsl:when test="@sort = 'none'"> <img src="{$PAPAYA_PATH_IMAGES}/nosort.png" class="columnBullet" alt="SORT" /></xsl:when>
+                <xsl:when test="@sort = 'asc'">
+                  <div class="columnBullet" alt="ASC">
+                    <xsl:copy-of select="document('../svg/asc.svg')/*"/>
+                  </div>
+                </xsl:when>
+                <xsl:when test="@sort = 'desc'">
+                  <div class="columnBullet" alt="DESC">
+                    <xsl:copy-of select="document('../svg/desc.svg')/*"/>
+                  </div>
+                </xsl:when>
+                <xsl:when test="@sort = 'none'">
+                  <div class="columnBullet" alt="DESC">
+                    <xsl:copy-of select="document('../svg/nosort.svg')/*"/>
+                  </div>
+                </xsl:when>
               </xsl:choose>
               <xsl:value-of select="."/>
             </a>

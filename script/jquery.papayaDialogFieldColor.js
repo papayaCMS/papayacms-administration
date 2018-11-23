@@ -22,7 +22,7 @@
   var field = {
 
     settings : {
-      icon : 'pics/icons/16x16/actions/color-select.png',
+      icon : 'icon.actions.color-select?size=16',
       url : 'popup/color',
       width : '310',
       height : '300'

@@ -21,13 +21,21 @@
     <table class="monthCalendar">
       <thead>
         <th>
-          <a href="{$calendar/monthnav/month[@position = 'prior']/@href}" title="{$calendar/monthnav/month[@position = 'prior']/@hint}"><img src="{$PAPAYA_PATH_IMAGES}/prior.png" alt="" style="width: 6px; height: 10px; border: none;" /></a>
+          <div class="monthArrow">
+            <a href="{$calendar/monthnav/month[@position = 'prior']/@href}" title="{$calendar/monthnav/month[@position = 'prior']/@hint}">
+              <xsl:copy-of select="document('../svg/prior.svg')/*"/>
+            </a>
+          </div>
         </th>
         <th colspan="6">
           <xsl:value-of select="$calendar/monthnav/month[@position = 'actual']/@title"/><xsl:text> </xsl:text><xsl:value-of select="$calendar/monthnav/month[@position = 'actual']/@year" />
         </th>
         <th>
-          <a href="{$calendar/monthnav/month[@position = 'next']/@href}" title="{$calendar/monthnav/month[@position = 'next']/@hint}"><img src="{$PAPAYA_PATH_IMAGES}/next.png" alt="" style="width: 6px; height: 10px; border: none;" /></a>
+          <div class="monthArrow">
+            <a href="{$calendar/monthnav/month[@position = 'next']/@href}" title="{$calendar/monthnav/month[@position = 'next']/@hint}">
+              <xsl:copy-of select="document('../svg/next.svg')/*"/>
+            </a>
+          </div>
         </th>
         <tr class="weekDays">
           <th><xsl:text disable-output-escaping="yes">&amp;nbsp;</xsl:text></th>

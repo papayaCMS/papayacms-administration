@@ -33,12 +33,12 @@
             <xsl:variable name="severity" select="$messages[1]/@severity|$messages[1]/@type"/>
             <xsl:variable name="image">
               <xsl:choose>
-                <xsl:when test="$severity = 'warning'">status/dialog-warning.png</xsl:when>
-                <xsl:when test="$severity = 'error'">status/dialog-error.png</xsl:when>
-                <xsl:otherwise>status/dialog-information.png</xsl:otherwise>
+                <xsl:when test="$severity = 'warning'">icon.status.dialog-warning</xsl:when>
+                <xsl:when test="$severity = 'error'">icon.status.dialog-error</xsl:when>
+                <xsl:otherwise>icon.status.dialog-information</xsl:otherwise>
               </xsl:choose>
             </xsl:variable>
-            <img class="glyph48" src="pics/icons/48x48/{$image}" alt="" />
+            <img class="glyph48" src="{$image}?size=48" alt="" />
           </div>
           <div class="dialogText">
              <xsl:value-of select="$messages[1]/text()" disable-output-escaping="yes" />
@@ -69,12 +69,12 @@
                   <xsl:variable name="severity" select="$messages[1]/@severity|$messages[1]/@type"/>
                   <xsl:variable name="image">
                     <xsl:choose>
-                      <xsl:when test="$severity = 'warning'">status/dialog-warning.png</xsl:when>
-                      <xsl:when test="$severity = 'error'">status/dialog-error.png</xsl:when>
-                      <xsl:otherwise>status/dialog-information.png</xsl:otherwise>
+                      <xsl:when test="$severity = 'warning'">icon.status.dialog-warning</xsl:when>
+                      <xsl:when test="$severity = 'error'">icon.status.dialog-error</xsl:when>
+                      <xsl:otherwise>icon.status.dialog-information</xsl:otherwise>
                     </xsl:choose>
                   </xsl:variable>
-                  <span class="itemIcon"><img class="glyph48" src="pics/icons/16x16/{$image}"/></span>
+                  <span class="itemIcon"><img class="glyph16" src="{$image}?size=16"/></span>
                   <span class="itemTitle"><xsl:value-of select="text()" disable-output-escaping="yes" /></span>
                 </td>
               </tr>
@@ -107,13 +107,13 @@
         <div class="dialogImage">
           <xsl:variable name="image">
             <xsl:choose>
-              <xsl:when test="$dialog/@type = 'warning'">status/dialog-warning.png</xsl:when>
-              <xsl:when test="$dialog/@type = 'error'">status/dialog-error.png</xsl:when>
-              <xsl:when test="$dialog/@type = 'question'">status/dialog-confirmation.png</xsl:when>
-              <xsl:otherwise>status/dialog-information.png</xsl:otherwise>
+              <xsl:when test="$dialog/@type = 'warning'">icon.status.dialog-warning</xsl:when>
+              <xsl:when test="$dialog/@type = 'error'">icon.status.dialog-error</xsl:when>
+              <xsl:when test="$dialog/@type = 'question'">icon.status.dialog-confirmation</xsl:when>
+              <xsl:otherwise>icon.status.dialog-information</xsl:otherwise>
             </xsl:choose>
           </xsl:variable>
-          <img class="glyph48" src="pics/icons/48x48/{$image}" alt=""/>
+          <img class="glyph48" src="$image?size=48" alt=""/>
         </div>
         <div class="dialogText">
            <xsl:value-of select="$dialog/message/text()" />
