@@ -717,10 +717,16 @@ table.columnGrid td.columnRight {
 #workarea table.listview tr.columns th.last {
   border-right: none;
 }
-#workarea table.listview tr.columns th img.columnBullet {
+#workarea table.listview tr.columns th .columnBullet {
+  box-sizing: border-box;
+  display: block;
   float: right;
   margin-right: 4px;
-  margin-top: 4px;
+  padding-top: 2px;
+  height: 10px;
+}
+#workarea table.listview tr.columns th svg .background {
+  fill: /*$highlight.background-color*/ #9EAB2D;
 }
 
 #workarea table.listview tr,
@@ -1368,7 +1374,7 @@ div.dialogMessage .message {
 }
 
 input.dialogSearch {
-  background-image: url(pics/search.png);
+  background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3CradialGradient id='b' cx='15.414' cy='13.078' r='6.656' gradientTransform='matrix(.98539 0 0 .88097 -10.17 -7.274)' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23fff' offset='0'/%3E%3Cstop stop-color='%23fff' stop-opacity='.248' offset='1'/%3E%3C/radialGradient%3E%3CradialGradient id='a' cx='18.241' cy='21.818' r='8.309' gradientTransform='matrix(.43562 0 0 .43563 -1.163 -1.55)' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23729fcf' stop-opacity='.208' offset='0'/%3E%3Cstop stop-color='%23729fcf' stop-opacity='.676' offset='1'/%3E%3C/radialGradient%3E%3C/defs%3E%3Cg opacity='.5'%3E%3Cpath d='M10.63 8.906a5.242 5.242 0 0 1-1.752 1.864c.029.038.04.084.075.12l2.99 3.21c.5.522 1.311.522 1.81 0 .5-.522.5-1.367 0-1.887L10.767 9c-.04-.041-.093-.059-.136-.093z' fill='%23babdb6' stroke='%23888a85'/%3E%3Ccircle cx='6.5' cy='6.5' r='5' color='%23000' fill='url(%23a)' fill-rule='evenodd' stroke='%23888a85' stroke-linecap='round' stroke-miterlimit='10'/%3E%3Cpath d='M6.254 3.028c-1.98 0-3.282 1.45-3.282 3.488 0 .588.16 1.13.399 1.624.484.193.998.295 1.517.303 2.345 0 4.125-1.858 4.27-4.235-.657-.8-1.703-1.257-2.905-1.179z' color='%23000' fill='url(%23b)' fill-rule='evenodd' opacity='.834' overflow='visible'/%3E%3Ccircle cx='6.5' cy='6.5' r='4' color='%23000' fill='none' stroke='%23fff' stroke-linecap='round' stroke-miterlimit='10'/%3E%3C/g%3E%3C/svg%3E");
   background-position: left;
   background-repeat: no-repeat;
 }
@@ -1594,6 +1600,26 @@ div.installer table td {
 div.installer table td.bullet {
   padding: 0 4px 0 0;
 }
+div.installer tr span.installerStepNumber,
+div.installer tr a.installerStepNumber {
+  display: inline-block;
+  border: 2px solid /*$link.color*/ #9EAB2D;
+  color: /*$link.color*/ #9EAB2D;
+  border-radius: 50%;
+  width: 1.2em;
+  height: 1.2em;
+  text-align: center;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 20px;
+  line-height: 1.2em;
+}
+div.installer tr td.disabled a.installerStepNumber,
+div.installer tr td.disabled span.installerStepNumber {
+  border: 2px solid /*$sheet.color*/ #9EAB2D;
+  color: /*$sheet.color*/ #9EAB2D;
+  opacity: 0.5;
+}
 
 /* calendar */
 table.monthCalendar {
@@ -1632,6 +1658,14 @@ table.monthCalendar tbody td.selected {
 }
 table.monthCalendar tbody td.selected a {
   color: /*$highlight.color*/ #FFFFFF;
+}
+table.monthCalendar .monthArrow {
+  width: 6px;
+  height: 10px;
+  border: none;
+}
+table.monthCalendar .monthArrow svg .background {
+  fill: /*$highlight.background-color*/ #9EAB2D;
 }
 
 /* style selections - works only on page not in input/select/textarea */

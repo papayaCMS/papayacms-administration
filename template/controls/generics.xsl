@@ -172,7 +172,18 @@
   <xsl:param name="icon-size">16</xsl:param>
   <xsl:choose>
     <xsl:when test="$icon-src = '-'">./pics/tpoint.gif</xsl:when>
-    <xsl:when test="starts-with($icon-src, './')"><xsl:value-of select="$icon-src"/></xsl:when>
+    <xsl:when test="starts-with($icon-src, 'icon.')"><xsl:value-of select="$icon-src"/>?size=<xsl:value-of select="$icon-size"/></xsl:when>
+    <xsl:when test="(starts-with($icon-src, './') or starts-with($icon-src, '../')) and  contains($icon-src, '?')">
+      <xsl:value-of select="$icon-src"/>
+      <xsl:text>&amp;amp;sssssize=</xsl:text>
+      <xsl:value-of select="$icon-size"/>
+    </xsl:when>
+    <xsl:when test="starts-with($icon-src, './') or starts-with($icon-src, '../')">
+      <xsl:value-of select="$icon-src"/>
+      <xsl:text>?size=</xsl:text>
+      <xsl:value-of select="$icon-size"/>
+    </xsl:when>
+    <xsl:when test="starts-with($icon-src, 'http://') or starts-with($icon-src, 'https://')"><xsl:value-of select="$icon-src"/></xsl:when>
     <xsl:when test="starts-with($icon-src, 'module:')">extensions.image?module=<xsl:value-of select="substring($icon-src, 8, 32)"/>&amp;src=<xsl:value-of select="substring($icon-src, 41)"/>&amp;size=<xsl:value-of select="$icon-size"/>&amp;behavior=.png</xsl:when>
     <xsl:otherwise>pics/icons/<xsl:value-of select="$icon-size"/>x<xsl:value-of select="$icon-size"/>/<xsl:value-of select="$icon-src"/></xsl:otherwise>
   </xsl:choose>

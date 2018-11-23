@@ -22,7 +22,7 @@
   var field = {
 
     settings : {
-      icon : 'pics/icons/16x16/items/page.png',
+      icon : 'icon.items.page?size=16',
       url : 'popup/page',
       width : '500px',
       height : '489px'

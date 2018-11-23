@@ -72,7 +72,7 @@
                           <button class="mceButtonNormal" type="button"
                             onclick="PapayaLinkDialog.browsePages('input#pageid');"
                             onmouseover="this.className='mceButtonOver'" onmouseout="this.className='mceButtonNormal'">
-                            <img style="width: 16px; height: 16px;" src="/papaya/pics/icons/16x16/items/page.png" alt="" />
+                            <img style="width: 16px; height: 16px;" src="img/page.svg" alt="" />
                           </button>
                         </td>
                       </tr>

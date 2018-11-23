@@ -1,0 +1,18 @@
+<svg width="16" height="16" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="b" cx="15.414" cy="13.078" r="6.656" gradientTransform="matrix(.98539 0 0 .88097 -10.17 -7.274)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff" offset="0"/>
+      <stop stop-color="#fff" stop-opacity=".248" offset="1"/>
+    </radialGradient>
+    <radialGradient id="a" cx="18.241" cy="21.818" r="8.309" gradientTransform="matrix(.43562 0 0 .43563 -1.163 -1.55)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#729fcf" stop-opacity=".208" offset="0"/>
+      <stop stop-color="#729fcf" stop-opacity=".676" offset="1"/>
+    </radialGradient>
+  </defs>
+  <g opacity=".5">
+    <path d="M10.63 8.906a5.242 5.242 0 0 1-1.752 1.864c.029.038.04.084.075.12l2.99 3.21c.5.522 1.311.522 1.81 0 .5-.522.5-1.367 0-1.887L10.767 9c-.04-.041-.093-.059-.136-.093z" fill="#babdb6" stroke="#888a85"/>
+    <circle cx="6.5" cy="6.5" r="5" color="#000" fill="url(#a)" fill-rule="evenodd" stroke="#888a85" stroke-linecap="round" stroke-miterlimit="10"/>
+    <path d="M6.254 3.028c-1.98 0-3.282 1.45-3.282 3.488 0 .588.16 1.13.399 1.624.484.193.998.295 1.517.303 2.345 0 4.125-1.858 4.27-4.235-.657-.8-1.703-1.257-2.905-1.179z" color="#000" fill="url(#b)" fill-rule="evenodd" opacity=".834" overflow="visible"/>
+    <circle cx="6.5" cy="6.5" r="4" color="#000" fill="none" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10"/>
+  </g>
+</svg>

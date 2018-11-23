@@ -260,10 +260,10 @@
     <xsl:call-template name="title-artwork"/>
     <xsl:call-template name="application-page-buttons"/>
     <xsl:variable name="glyphsrc">
-      <xsl:choose>
-        <xsl:when test="starts-with($PAGE_ICON, './')"><xsl:value-of select="$PAGE_ICON"/></xsl:when>
-        <xsl:otherwise>pics/icons/22x22/<xsl:value-of select="$PAGE_ICON"/></xsl:otherwise>
-      </xsl:choose>
+      <xsl:call-template name="icon-url">
+        <xsl:with-param name="icon-src" select="$PAGE_ICON"/>
+        <xsl:with-param name="icon-size">22</xsl:with-param>
+      </xsl:call-template>
     </xsl:variable>
     <div class="papayaLogo">
       <xsl:copy-of select="document('svg/papaya-logo.svg')/*"/>
@@ -335,8 +335,8 @@
       </xsl:call-template>
     </xsl:variable>
     <div id="titleButtons">
-      <a href="help" id="papayaTitleButtonHelp" title ="{$captionHelp}"><img src="pics/icons/22x22/categories/help.png" alt="{$captionHelp}" title ="{$captionHelp}" class="glyph22"/></a>
-      <a href="logout" id="papayaTitleButtonLogout" title ="{$captionLogOut}"><img src="pics/icons/22x22/actions/log-out.png" alt="{$captionLogOut}" title ="{$captionLogOut}" class="glyph22"/></a>
+      <a href="help" id="papayaTitleButtonHelp" title ="{$captionHelp}"><img src="icon.categories.help?size=22" alt="{$captionHelp}" title ="{$captionHelp}" class="glyph22"/></a>
+      <a href="logout" id="papayaTitleButtonLogout" title ="{$captionLogOut}"><img src="icon.actions.log-out?size=22" alt="{$captionLogOut}" title ="{$captionLogOut}" class="glyph22"/></a>
     </div>
   </xsl:if>
 </xsl:template>
@@ -389,9 +389,14 @@
       <xsl:if test="title-menu/links[not(@align)]/link[@selected]">
         <xsl:variable name="selectedLink" select="title-menu/links[not(@align)]/link[@selected]"/>
         <li class="selected">
-          <xsl:if test="$selectedLink/@image">
-            <img src="pics/language/{$selectedLink/@image}" alt="" title="{$selectedLink/@title}"/>
-          </xsl:if>
+          <xsl:choose>
+            <xsl:when test="contains($selectedLink/@image, '.gif')">
+              <img src="pics/language/{substring-before($selectedLink/@image, '.gif')}.svg" alt="" title="{$selectedLink/@title}" style="height:1.2em; margin-right: 4px;"/>
+            </xsl:when>
+            <xsl:when test="contains($selectedLink/@image, '.svg')">
+              <img src="pics/language/{$selectedLink/@image}" alt="" title="{$selectedLink/@title}" style="height:1.2em; margin-right: 4px;"/>
+            </xsl:when>
+          </xsl:choose>
           <xsl:value-of select="$selectedLink/@title"/>
         </li>
       </xsl:if>
@@ -400,8 +405,11 @@
           <li>
             <a href="{@href}" title="{@title}">
               <xsl:choose>
-                <xsl:when test="@image">
-                  <img src="pics/language/{@image}" alt="{@title}" title="{@title}"/>
+                <xsl:when test="contains(@image, '.gif')">
+                  <img src="pics/language/{substring-before(@image, '.gif')}.svg" alt="" title="{@title}" style="height:1.2em;"/>
+                </xsl:when>
+                <xsl:when test="contains(@image, '.svg')">
+                  <img src="pics/language/{@image}" alt="" title="{@title}" style="height:1.2em;"/>
                 </xsl:when>
                 <xsl:otherwise><xsl:value-of select="@title"/></xsl:otherwise>
               </xsl:choose>

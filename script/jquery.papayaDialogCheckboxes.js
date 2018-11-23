@@ -16,13 +16,13 @@
       var group = $('<div class="dialogControlButtons"/>').appendTo(div);
 
       this.createButton(
-        'pics/icons/16x16/status/node-checked.png', 'All', $.proxy(this.checkAll, this)
+        'icon.status.node-checked?size=16', 'All', $.proxy(this.checkAll, this)
       ).appendTo(group);
       this.createButton(
-        'pics/icons/16x16/status/node-empty.png', 'None', $.proxy(this.checkNone, this)
+        'icon.status.node-empty?size=16', 'None', $.proxy(this.checkNone, this)
       ).appendTo(group);
       this.createButton(
-        'pics/icons/16x16/status/node-checked-disabled.png', 'Invert', $.proxy(this.checkInvert, this)
+        'icon.status.node-checked-disabled?size=16', 'Invert', $.proxy(this.checkInvert, this)
       ).appendTo(group);
     },
 

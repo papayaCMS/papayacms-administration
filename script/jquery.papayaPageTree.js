@@ -162,9 +162,9 @@
     node : null,
 
     statusImages :{
-      'closed' : '../pics/icons/16x16/status/node-closed.png',
-      'open' : '../pics/icons/16x16/status/node-open.png',
-      'empty' : '../pics/icons/16x16/status/node-empty.png'
+      'closed' : '../icon.status.node-closed?size=16',
+      'open' : '../icon.status.node-open?size=16',
+      'empty' : '../icon.status.node-empty?size=16'
     },
 
     items : {},
@@ -174,10 +174,10 @@
       '<tr style="display: none;">' +
         '<td>' +
           '<a class="nodeIcon" href="#">' +
-            '<img class="glyph" alt="+" src="../pics/icons/16x16/status/node-empty.png">' +
+            '<img class="glyph" alt="+" src="../icon.status.node-empty?size=16">' +
           '</a>' +
           '<a class="itemIcon" href="#">' +
-            '<img class="glyph" src="../pics/icons/16x16/items/page.png" alt=""/>' +
+            '<img class="glyph" src="../icon.items.page?size=16" alt=""/>' +
           '</a>' +
           '<a class="itemTitle" href="#"/>' +
         '</td>' +
