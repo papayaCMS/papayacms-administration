@@ -560,11 +560,10 @@ div.hierarchyMenu ul li.item .icon img {
   vertical-align: middle;
 }
 
-/* working area */
 #workarea {
   display: inline-block;
   min-width: 100%;
-  border-top: 1px solid white;
+  border-top: 1px solid /*$border.raised.color*/ #EAE9E6;
   background-color: /*$workarea.background-color*/ #EAE9E6;
   clear: both;
   padding: 10px 0;
@@ -601,6 +600,9 @@ table.columnGrid td.columnRight {
 /******************************************************************************
    GUI Controls
 ******************************************************************************/
+#workarea {
+  color: /*$dialog.color*/ #000000;
+}
 
 /* panel */
 #workarea div.panel {
@@ -701,6 +703,7 @@ table.columnGrid td.columnRight {
   border-collapse: separate;
 }
 #workarea table.listview tr.columns th {
+  color: /*$workarea.color*/ #000000;
   border: 1px solid /*$border.raised.color*/ #FFFFFF;
   border-bottom-color: /*$border.inset.color*/ #BBB9B0;
   border-right-color: /*$border.inset.color*/ #BBB9B0;
@@ -731,10 +734,10 @@ table.columnGrid td.columnRight {
 
 #workarea table.listview tr,
 #workarea table.listview tr.odd {
-  background-color: /*$list-item-odd.background-color*/ #FFFFFF;
+  background-color: /*$list.item-odd.background-color*/ #FFFFFF;
 }
 #workarea table.listview tr.even {
-  background-color: /*$list-item-even.background-color*/ #F1F0EE;
+  background-color: /*$list.item-even.background-color*/ #F1F0EE;
 }
 #workarea table.listview tr:hover,
 #workarea table.listview tr:hover td,
@@ -811,7 +814,7 @@ table.columnGrid td.columnRight {
 
 /* listview  with large icons (tiles) */
 #workarea div.listviewBackground {
-  background-color: /*$list-item-odd.background-color*/ #FFFFFF;
+  background-color: /*$list.item-odd.background-color*/ #FFFFFF;
   padding: 10px;
 }
 #workarea div.listitemTile {
@@ -843,8 +846,8 @@ table.columnGrid td.columnRight {
 #workarea div.listitemTile div.tile {
   height: 70px;
   padding: 5px;
-  border: 1px solid /*$list-item-even.background-color*/ #F1F0EE;
-  background-color: /*$list-item-odd.background-color*/ #FFFFFF;
+  border: 1px solid /*$list.item-even.background-color*/ #F1F0EE;
+  background-color: /*$list.item-odd.background-color*/ #FFFFFF;
 }
 #workarea div.listitemTile div.icon {
   float: left;
@@ -916,7 +919,7 @@ table.columnGrid td.columnRight {
   width: 128px;
   font-size: 10px;
   text-align: center;
-  color: /*$list-item-odd.background-color*/ #FFFFFF;
+  color: /*$list.item-odd.background-color*/ #FFFFFF;
   text-decoration: none;
   line-height: 124px;
   height: 124px;
@@ -931,8 +934,8 @@ table.columnGrid td.columnRight {
   padding: 4px;
   vertical-align: middle;
   text-decoration: none;
-  border: 1px solid /*$list-item-even.background-color*/ #F1F0EE;
-  background-color: /*$list-item-odd.background-color*/ #FFFFFF;
+  border: 1px solid /*$list.item-even.background-color*/ #F1F0EE;
+  background-color: /*$list.item-odd.background-color*/ #FFFFFF;
 }
 #workarea div.listitemThumbnail .itemInput {
   position: absolute;
@@ -984,7 +987,7 @@ table.columnGrid td.columnRight {
 }
 
 /* sheet */
-#workarea .sheetBackGround {
+#workarea .sheetBackground {
   border: 1px solid /*$sheet.shadow.color*/ #9E9B8F;
   border-bottom-color: /*$border.raised.color*/ #FFFFFF;
   border-right-color: /*$border.raised.color*/ #FFFFFF;
@@ -999,8 +1002,9 @@ table.columnGrid td.columnRight {
   margin-right: auto;
 }
 #workarea .sheet {
-  background: /*$sheet.background-color*/ #FFFFFF url(pics/back_blossom.jpg) no-repeat right top;
   border: 1px solid /*$sheet.border.color*/ #6E6E6E;
+  background-color: /*$sheet.background-color*/ #FFFFFF;
+  color: /*$sheet.color*/ #000000;
   font-size: 12px;
 }
 #workarea .sheet .teletype {
@@ -1056,12 +1060,13 @@ table.columnGrid td.columnRight {
   padding: 2px 5px;
 }
 #workarea table.dialog tr.odd {
-  background-color: /*$dialog.line.odd.background-color*/ #EAE9E6;
+  background-color: /*$dialog.line-odd.background-color*/ #EAE9E6;
 }
 #workarea table.dialog tr.even {
-  background-color: /*$dialog.line.even.background-color*/ #F1F0EE;
+  background-color: /*$dialog.line-even.background-color*/ #F1F0EE;
 }
 #workarea table.dialog td.caption {
+  color: /*$dialog.color*/ #000000;
   font-size: 12px;
   width: 150px;
   line-height: 20px;
@@ -1089,6 +1094,7 @@ table.columnGrid td.columnRight {
   padding-top: 2px;
 }
 #workarea table.dialog td.element  {
+  color: /*$workarea.color*/ #000000;
   min-width: 50px;
   font-size: 12px;
   line-height: 20px;
@@ -1108,10 +1114,10 @@ table.columnGrid td.columnRight {
   margin: 0;
 }
 #workarea table.dialog table.listview tr.odd {
-  background-color: /*$list-item-odd.background-color*/ #FFFFFF;
+  background-color: /*$list.item-odd.background-color*/ #FFFFFF;
 }
 #workarea table.dialog table.listview tr.even {
-  background-color: /*$list-item-even.background-color*/ #F1F0EE;
+  background-color: /*$list.item-even.background-color*/ #F1F0EE;
 }
 
 /* grid view */
@@ -1126,23 +1132,23 @@ table.columnGrid td.columnRight {
   text-decoration: none;
 }
 #workarea table.grid tr.odd {
-  background-color: /*$list-item-odd.background-color*/ #FFFFFF;
+  background-color: /*$list.item-odd.background-color*/ #FFFFFF;
 }
 #workarea table.grid tr.top td {
   border-top: 1px solid /*$workarea.background-color*/ #EAE9E6;
 }
 #workarea table.grid tr.even {
-  background-color: /*$list-item-even.background-color*/ #F1F0EE;
+  background-color: /*$list.item-even.background-color*/ #F1F0EE;
 }
 #workarea table.grid tr th {
   border-top: 1px solid /*$workarea.background-color*/ #EAE9E6;
   border-right: 1px solid /*$workarea.background-color*/ #EAE9E6;
 }
 #workarea table.grid tr th.odd {
-  background-color: /*$list-item-odd.background-color*/ #FFFFFF;
+  background-color: /*$list.item-odd.background-color*/ #FFFFFF;
 }
 #workarea table.grid tr th.even {
-  background-color: /*$list-item-even.background-color*/ #F1F0EE;
+  background-color: /*$list.item-even.background-color*/ #F1F0EE;
 }
 
 /* iframes */
@@ -1229,18 +1235,15 @@ iframe {
   display: inline;
 }
 
-/******************************************************************************
-   Form Controls
-******************************************************************************/
 .dialogButtonsBottom {
-  border-top: 1px solid /*$border.inset.color*/ #BBB9B0;
   text-align: right;
   margin-top: 2px;
   clear: both;
+  border-top: 1px solid /*$border.inset.color*/ #BBB9B0;
 }
 .dialogButtonsBottom .dialogButtonsArtWork {
-  border-top: 1px solid /*$border.raised.color*/ #FFFFFF;
   padding: 2px;
+  border-top: 1px solid /*$border.raised.color*/ #FFFFFF;
 }
 .dialogButtonsTop {
   border-bottom: 1px solid /*$border.raised.color*/ #FFFFFF;
@@ -1256,6 +1259,7 @@ button:focus {
 }
 button {
   background: transparent;
+  color: /*$dialog.color*/ #FFFFFF;
   border: 1px solid /*$border.raised.color*/ #FFFFFF;
   border-bottom-color: /*$border.inset.color*/ #BBB9B0;
   border-right-color: /*$border.inset.color*/ #BBB9B0;
@@ -1319,7 +1323,7 @@ textarea.dialogSimpleRichtext:focus, textarea.dialogRichtext:focus {
 input.dialogDisabled, input.dialogDisabled:focus,
 select.dialogDisabled, select.dialogDisabled:focus {
   border: 1px solid /*$border.inset.color*/ #BBB9B0;
-  background-color: /*$dialog.line.even.background-color*/ #F1F0EE;
+  background-color: /*$dialog.line-even.background-color*/ #F1F0EE;
   color: /*$dialog.color*/ #000000;
 }
 span.dialogCheckbox input {
@@ -1348,14 +1352,14 @@ select.dialogList optgroup {
 }
 select.dialogSelect option,
 select.dialogList option {
-  background-color: /*$list-item-odd.background-color*/ #FFFFFF;
+  background-color: /*$list.item-odd.background-color*/ #FFFFFF;
   color: /*$list.item.color*/ #000000;
   line-height: 16px;
   text-align: left;
 }
 select.dialogSelect option.even,
 select.dialogList option.even {
-  background-color: /*$list-item-even.background-color*/ #F1F0EE;
+  background-color: /*$list.item-even.background-color*/ #F1F0EE;
   color: /*$list.item.color*/ #000000;
 }
 
@@ -1641,7 +1645,7 @@ table.monthCalendar tbody th {
   border-right-color: /*$border.inset.color*/ #BBB9B0;
 }
 table.monthCalendar tbody td {
-  background-color: /*$list-item-odd.background-color*/ #FFFFFF;
+  background-color: /*$list.item-odd.background-color*/ #FFFFFF;
   text-align: right;
   padding: 2px;
 }
@@ -1650,7 +1654,7 @@ table.monthCalendar tbody td a {
   color: /*$list.item.color*/ #000000;
 }
 table.monthCalendar tbody td.filled {
-  background-color: /*$list-item-even.background-color*/ #F1F0EE;
+  background-color: /*$list.item-even.background-color*/ #F1F0EE;
 }
 table.monthCalendar tbody td.selected {
   background-color: /*$highlight.background-color*/ #9EAB2D;
