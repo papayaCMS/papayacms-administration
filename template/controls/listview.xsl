@@ -300,7 +300,12 @@
 	              <xsl:when test="starts-with(@image, './')"><xsl:value-of select="@image"/></xsl:when>
 	              <xsl:when test="starts-with(@image, '../')"><xsl:value-of select="@image"/></xsl:when>
 	              <xsl:when test="not(@image) or (@image = '') or (@image = false())">pics/tpoint.gif</xsl:when>
-	              <xsl:otherwise>pics/icons/48x48/<xsl:value-of select="@image"/></xsl:otherwise>
+	              <xsl:otherwise>
+                  <xsl:call-template name="icon-url">
+                    <xsl:with-param name="icon-src" select="@image"/>
+                    <xsl:with-param name="icon-size">48</xsl:with-param>
+                  </xsl:call-template>
+                </xsl:otherwise>
 	            </xsl:choose>
 	          </xsl:variable>
 	          <xsl:choose>

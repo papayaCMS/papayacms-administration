@@ -488,9 +488,15 @@
   <xsl:template name="dialog-field-message">
     <xsl:param name="field"/>
     <xsl:param name="message" select="$field/message"/>
+    <xsl:variable name="icon">
+      <xsl:call-template name="icon-url">
+        <xsl:with-param name="icon-src" select="$field/message/@image"/>
+        <xsl:with-param name="icon-size">48</xsl:with-param>
+      </xsl:call-template>
+    </xsl:variable>
     <div class="dialogMessage">
       <xsl:if test="$field/message/@image">
-        <img class="dialogMessageImage" src="pics/icons/48x48/{$field/message/@image}" alt=""/>
+        <img class="dialogMessageImage" src="{$icon}" alt=""/>
       </xsl:if>
       <div class="message">
         <xsl:value-of select="$message/node()"/>

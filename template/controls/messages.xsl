@@ -113,7 +113,7 @@
               <xsl:otherwise>icon.status.dialog-information</xsl:otherwise>
             </xsl:choose>
           </xsl:variable>
-          <img class="glyph48" src="$image?size=48" alt=""/>
+          <img class="glyph48" src="{$image}?size=48" alt=""/>
         </div>
         <div class="dialogText">
            <xsl:value-of select="$dialog/message/text()" />
