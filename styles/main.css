@@ -1259,7 +1259,7 @@ button:focus {
 }
 button {
   background: transparent;
-  color: /*$dialog.color*/ #FFFFFF;
+  color: /*$dialog.color*/ #000;
   border: 1px solid /*$border.raised.color*/ #FFFFFF;
   border-bottom-color: /*$border.inset.color*/ #BBB9B0;
   border-right-color: /*$border.inset.color*/ #BBB9B0;
