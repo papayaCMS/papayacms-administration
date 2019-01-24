@@ -2,6 +2,7 @@
   "name": "papaya/cms-administration",
   "type": "papaya-administration-ui",
   "require": {
-    "papaya/composer-plugins": "^1.0@dev"
+    "papaya/composer-plugins": "^1.0"
+    "papaya/cms-core": "^6.7"
   }
 }
