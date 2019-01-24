@@ -22,7 +22,7 @@
         'icon.status.node-empty?size=16', 'None', $.proxy(this.checkNone, this)
       ).appendTo(group);
       this.createButton(
-        'icon.status.node-checked-disabled?size=16', 'Invert', $.proxy(this.checkInvert, this)
+        'icon.status.node-checked.disabled?size=16', 'Invert', $.proxy(this.checkInvert, this)
       ).appendTo(group);
     },
 
