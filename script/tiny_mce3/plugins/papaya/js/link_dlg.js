@@ -317,7 +317,7 @@ PapayaLinkForm = JsonClass(
     browsePages : function(element) {
       jQuery.papayaPopUp(
         {
-          url : '../../../controls/link.php',
+          url : '../../../../popup/page',
           width : '400',
           height : '500',
           name : 'papayaPageBrowser'

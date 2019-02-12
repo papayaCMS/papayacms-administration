@@ -276,7 +276,7 @@ PapayaMediaForm = JsonClass(
 
     browseImages : function() {
       this.openPopup({
-        file : '../../../controls/browseimg.php',
+        file : '../../../../popup/media-images',
         width : Math.round(screen.width * 0.7),
         height : Math.round(screen.height * 0.7),
         name : 'papayaMediaBrowser',
@@ -517,7 +517,7 @@ PapayaMediaForm = JsonClass(
 
     browsePages : function(f) {
       this.openPopup({
-        file : '../../../controls/link.php',
+        file : '../../../../popup/page',
         width : '400',
         height : '500',
         name : 'papayaPageBrowser',

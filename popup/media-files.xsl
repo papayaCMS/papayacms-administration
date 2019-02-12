@@ -33,11 +33,11 @@
         <title><xsl:value-of select="//popup:phrase[@identifier='File browser']"/></title>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <link rel="stylesheet" type="text/css" href="../styles/css.popup" />
-        <script type="text/javascript" src="../script/imgbrowser.js"><xsl:text> </xsl:text></script>
+        <script type="text/javascript" src="../script/imgbrowser.js"> </script>
         <script type="text/javascript">
-          var linkList = "../content.file.browser?mdb[mode]=list";
-          var linkPreview = "../content.file.browser?mdb[mode]=preview";
-          var linkThumbs = "../content.file.browser?mdb[mode]=thumbs&mdb[dialog]=no&amp;mdb[imagesonly]=0";
+          var linkList = "../content.files.browser?mdb[mode]=list";
+          var linkPreview = "../content.files.browser?mdb[mode]=preview";
+          var linkThumbs = "../content.files.browser?mdb[mode]=thumbs&amp;mdb[dialog]=no&amp;amp;mdb[imagesonly]=0";
 
           var mediaFileData = {};
           var papayaContext = null;
@@ -54,9 +54,11 @@
           function Ok() {
             if (papayaContext) {
               papayaContext.defer.resolve(mediaFileData);
-            } else if ((typeof linkedObject != 'undefined') && linkedObject != null) {
-              if (linkedObject.setMediaFileData) {
-                linkedObject.setMediaFileData(mediaFileData.id, mediaFileData);
+            } else if ((typeof linkedObject != 'undefined')) {
+              if (linkedObject != null) {
+                if (linkedObject.setMediaFileData) {
+                  linkedObject.setMediaFileData(mediaFileData.id, mediaFileData);
+                }
               }
             } else if (window.opener.setMediaFileData) {
               window.opener.setMediaFileData(mediaFileData.id, mediaFileData);

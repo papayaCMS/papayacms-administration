@@ -70,7 +70,7 @@ PapayaFileForm = JsonClass(
 
     browseFiles : function() {
       this.openPopup({
-        file : '../../../controls/browsemediafile.php',
+        file : '../../../../popup/media-files',
         width : Math.round(screen.width * 0.7),
         height : Math.round(screen.height * 0.7),
         name : 'papayaFileBrowser',
