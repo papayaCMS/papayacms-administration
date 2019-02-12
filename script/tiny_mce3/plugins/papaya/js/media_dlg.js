@@ -505,7 +505,7 @@ PapayaMediaForm = JsonClass(
 
     showPreview : function() {
       var iframe = document.getElementById('file_preview');
-      var url = '../../../../content.file.browser?mdb[mode]=preview&mdb[imagesonly]=1&mdb[file]=' + encodeURI(this.mediaData.id);
+      var url = '../../../../content.files.browser?mdb[mode]=preview&mdb[imagesonly]=1&mdb[file]=' + encodeURI(this.mediaData.id);
       if (iframe) {
         if (iframe.setAttribute) {
           iframe.setAttribute('src', url);

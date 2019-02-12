@@ -262,7 +262,7 @@ function previewImage() {
 
   var popupWindow = window.open(
     '','','width='+400+',height='+300+',left='+100+',top='+100+',screenX='+100+',screenY='+100);
-  popupWindow.location = "./content.file.browser?mdb[mode]=imgpreview&mdb[img]=" + escape(editform.value);
+  popupWindow.location = "./content.files.browser?mdb[mode]=imgpreview&mdb[img]=" + escape(editform.value);
 
 }
 

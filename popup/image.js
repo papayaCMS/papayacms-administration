@@ -54,7 +54,7 @@ function rpcSetImageData(responseData, responseParams) {
 function showPreview(imgGuid) {
   var oIFrame = document.getElementById('iframePreview');
   if (oIFrame != null && imgGuid != '') {
-    oIFrame.src = '../content.file.browser?mdb[mode]=preview&mdb[mid]=' + escape(imgGuid);
+    oIFrame.src = '../content.files.browser?mdb[mode]=preview&mdb[mid]=' + escape(imgGuid);
   }
 }
 
