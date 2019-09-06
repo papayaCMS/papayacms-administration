@@ -173,12 +173,12 @@
   <xsl:choose>
     <xsl:when test="$icon-src = '-' or $icon-src = ''">./pics/tpoint.gif</xsl:when>
     <xsl:when test="starts-with($icon-src, 'icon.')"><xsl:value-of select="$icon-src"/>?size=<xsl:value-of select="$icon-size"/></xsl:when>
-    <xsl:when test="(starts-with($icon-src, './') or starts-with($icon-src, '../')) and  contains($icon-src, '?')">
+    <xsl:when test="(starts-with($icon-src, '/') or starts-with($icon-src, './') or starts-with($icon-src, '../')) and  contains($icon-src, '?')">
       <xsl:value-of select="$icon-src"/>
       <xsl:text>&amp;amp;size=</xsl:text>
       <xsl:value-of select="$icon-size"/>
     </xsl:when>
-    <xsl:when test="starts-with($icon-src, './') or starts-with($icon-src, '../')">
+    <xsl:when test="starts-with($icon-src, '/') or starts-with($icon-src, './') or starts-with($icon-src, '../')">
       <xsl:value-of select="$icon-src"/>
       <xsl:text>?size=</xsl:text>
       <xsl:value-of select="$icon-size"/>
