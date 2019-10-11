@@ -12,11 +12,6 @@
  *  FOR A PARTICULAR PURPOSE.
  */
 
-/**
-* @version $Id: media_dlg.js 38113 2013-02-12 15:43:25Z smekal $
-* @author <a href="mailto:info@papaya-cms.com">Thomas Weinert</a>
-*/
-
 PapayaMediaForm = JsonClass(
   PapayaForm,
   {
@@ -289,8 +284,10 @@ PapayaMediaForm = JsonClass(
     browseMediaFiles : function(filter) {
       var context = new Object();
       context.setMediaFileData = PapayaUtils.scope(this, this.setMediaLinkData);
+
+      alert(filter);
       this.openPopup({
-        file : '../../../controls/browse'+filter+'.php',
+        file : '../../../../popup/media-'+ (filter === 'mediafile' ? 'files' : 'images'),
         width : Math.round(screen.width * 0.7),
         height : Math.round(screen.height * 0.7),
         name : 'papayaMediaBrowser',
