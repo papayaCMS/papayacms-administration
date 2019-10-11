@@ -284,8 +284,6 @@ PapayaMediaForm = JsonClass(
     browseMediaFiles : function(filter) {
       var context = new Object();
       context.setMediaFileData = PapayaUtils.scope(this, this.setMediaLinkData);
-
-      alert(filter);
       this.openPopup({
         file : '../../../../popup/media-'+ (filter === 'mediafile' ? 'files' : 'images'),
         width : Math.round(screen.width * 0.7),
