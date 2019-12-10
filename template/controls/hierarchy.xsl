@@ -60,9 +60,6 @@
           <xsl:when test="$item/@mode = 'image'">
             <xsl:value-of select="$item/@caption"/>
           </xsl:when>
-          <xsl:otherwise>
-            <xsl:text></xsl:text>
-          </xsl:otherwise>
         </xsl:choose>
       </xsl:variable>
       <xsl:choose>
@@ -91,7 +88,14 @@
             <xsl:if test="$item/@hint and $item/@hint != ''">
               <xsl:attribute name="title"><xsl:value-of select="$item/@hint"/></xsl:attribute>
             </xsl:if>
-            <xsl:value-of select="$item/@caption" />
+            <xsl:choose>
+              <xsl:when test="$item/@caption != ''">
+                <xsl:value-of select="$item/@caption" />
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:text>&#160;</xsl:text>
+              </xsl:otherwise>
+            </xsl:choose>
           </a>
         </xsl:when>
         <xsl:otherwise>
@@ -99,7 +103,14 @@
             <xsl:if test="$item/@hint and $item/@hint != ''">
               <xsl:attribute name="title"><xsl:value-of select="$item/@hint"/></xsl:attribute>
             </xsl:if>
-            <xsl:value-of select="$item/@caption" />
+            <xsl:choose>
+              <xsl:when test="$item/@caption != ''">
+                <xsl:value-of select="$item/@caption" />
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:text>&#160;</xsl:text>
+              </xsl:otherwise>
+            </xsl:choose>
           </span>
         </xsl:otherwise>
       </xsl:choose>
