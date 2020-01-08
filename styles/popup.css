@@ -81,10 +81,12 @@ body#popup .popupButtonAreaArtwork .popupButtonsArea {
   border-top: 1px solid /*$border.raised.color*/ #FFFFFF;
 }
 
+#divImage {
+  display: flex;
+}
 div.divPreview {
   width: 300px;
   height: 300px;
-  float: left;
 }
 iframe.iframePreview {
   width: 300px;

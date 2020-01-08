@@ -68,7 +68,7 @@
 
 
         <form action="#">
-          <div id="divImage">
+          <div id="divImage" style="display: flex;">
              <div id="divPreview" style="width: 280px;  float: left; padding: 5px;">
               <iframe src="about:blank" id="iframePreview" name="iframePreview" class="iframePreview" frameborder="0" scrolling="no"> </iframe>
              </div>
