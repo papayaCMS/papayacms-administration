@@ -589,6 +589,10 @@
   <xsl:value-of select="$PAPAYA_VERSION"/>
   <xsl:text>&amp;theme=</xsl:text>
   <xsl:value-of select="$PAPAYA_UI_THEME"/>
+  <xsl:if test="$PAPAYA_RICHTEXT_CONTENT_CSS">
+    <xsl:text>,</xsl:text>
+    <xsl:value-of select="$PAPAYA_RICHTEXT_CONTENT_CSS"/>
+  </xsl:if>
 </xsl:template>
 
   <xsl:template name="title-artwork">
