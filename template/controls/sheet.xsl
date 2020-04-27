@@ -23,12 +23,12 @@
         <xsl:attribute name="style">width: <xsl:value-of select="$sheet/@width"/></xsl:attribute>
       </xsl:if>
       <div class="sheet">
-        <xsl:param name="style">
+        <xsl:attribute name="style">
           <xsl:if test="$sheet/@padding > 0">
             <xsl:text>padding: </xsl:text>
             <xsl:value-of select="$sheet/@padding"/>
           </xsl:if>
-        </xsl:param>
+        </xsl:attribute>
         <xsl:call-template name="sheet-header">
           <xsl:with-param name="header" select="$sheet/header"/>
         </xsl:call-template>
