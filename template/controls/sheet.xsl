@@ -24,7 +24,7 @@
       </xsl:if>
       <div class="sheet">
         <xsl:attribute name="style">
-          <xsl:if test="$sheet/@padding > 0">
+          <xsl:if test="$sheet/@padding">
             <xsl:text>padding: </xsl:text>
             <xsl:value-of select="$sheet/@padding"/>
           </xsl:if>
