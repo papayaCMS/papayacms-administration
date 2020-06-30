@@ -997,6 +997,9 @@ table.columnGrid td.columnRight {
   padding: 10px 6px 6px 10px;
   margin-bottom: 10px;
 }
+#workarea .dialogSheet .sheetBackground {
+  margin-bottom: 0;
+}
 #workarea .sheetShadow {
   border-right: 4px solid  /*$sheet.shadow.color*/ #9E9B8F;
   border-bottom: 4px solid  /*$sheet.shadow.color*/ #9E9B8F;

@@ -49,6 +49,12 @@
   <xsl:param name="header"/>
   <xsl:if test="$header">
     <div class="header">
+      <xsl:if test="normalize-space($header/title) != ''">
+        <div class="headertitle"><xsl:value-of select="$header/title"/></div>
+      </xsl:if>
+      <xsl:for-each select="$header/subtitle">
+        <div class="headersubtitle"><xsl:value-of select="."/></div>
+      </xsl:for-each>
       <xsl:for-each select="$header/lines/line">
         <div class="{@class}"><xsl:apply-templates/></div>
       </xsl:for-each>

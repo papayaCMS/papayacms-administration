@@ -19,8 +19,9 @@
   xmlns:papaya-fn="http://www.papaya-cms.com/ns/functions"
   exclude-result-prefixes="papaya-fn">
 
-  <xsl:import href="./dialogs-old.xsl"/>
   <xsl:import href="../_functions/json-encode.xsl"/>
+  <xsl:import href="./dialogs-old.xsl"/>
+  <xsl:import href="./sheet.xsl"/>
 
   <xsl:variable name="DIALOG_CAPTION_STYLE_NONE" select="0"/>
   <xsl:variable name="DIALOG_CAPTION_STYLE_SIDE" select="1"/>
@@ -377,6 +378,11 @@
               <xsl:with-param name="field" select="$field"/>
             </xsl:call-template>
           </xsl:when>
+          <xsl:when test="$field/sheet">
+            <xsl:call-template name="dialog-field-sheet">
+              <xsl:with-param name="field" select="$field"/>
+            </xsl:call-template>
+          </xsl:when>
           <xsl:when test="$field/image">
             <xsl:call-template name="dialog-field-image">
               <xsl:with-param name="field" select="$field"/>
@@ -531,9 +537,7 @@
   </xsl:template>
 
   <!--
-    Dialog Field: buttons
-
-    Buttons list
+    Dialog Field: ListView
   -->
   <xsl:template name="dialog-field-listview">
     <xsl:param name="field"/>
@@ -541,6 +545,19 @@
     <div class="dialogListview">
       <xsl:call-template name="listview">
         <xsl:with-param name="listview" select="$listview"/>
+      </xsl:call-template>
+    </div>
+  </xsl:template>
+
+  <!--
+    Dialog Field: ListView
+  -->
+  <xsl:template name="dialog-field-sheet">
+    <xsl:param name="field"/>
+    <xsl:param name="sheet" select="$field/sheet"/>
+    <div class="dialogSheet">
+      <xsl:call-template name="sheet">
+        <xsl:with-param name="sheet" select="$sheet"/>
       </xsl:call-template>
     </div>
   </xsl:template>
