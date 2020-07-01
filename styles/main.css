@@ -1759,6 +1759,9 @@ form.dialog .buttons .right {
 form.dialog .scaleable {
   width: 100%;
 }
+form.dialog .caption .text {
+  white-space: nowrap;
+}
 form.dialog .caption a {
   color: /*$workarea.color*/ #000000;
   text-decoration: none;
