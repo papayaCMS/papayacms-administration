@@ -1108,6 +1108,9 @@ table.columnGrid td.columnRight {
   color: /*$workarea.color*/ #000000;
   text-decoration: none;
 }
+#workarea table.dialog td.element table.listview tr.selected a {
+  color: /*$highlight.color*/ #FFFFFF;
+}
 #workarea table.dialogGrid {
   width: 100%;
   padding: 5px;
