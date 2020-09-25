@@ -668,6 +668,7 @@
     <xsl:param name="id" select="generate-id($input)"/>
     <input name="{$input/@name}" type="file" class="scaleable dialogFileUpload" id="{$id}">
       <xsl:copy-of select="$input/@*[starts-with(name(), 'data-')]"/>
+      <xsl:copy-of select="$input/@accept"/>
     </input>
   </xsl:template>
 
