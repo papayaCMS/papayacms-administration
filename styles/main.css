@@ -777,16 +777,18 @@ table.columnGrid td.columnRight {
   position: relative;
 }
 #workarea table.listview .itemInput {
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
+  position: relative;
+  display: block;
+  float: left;
+  width: 18px;
+  height: 18px;
+  margin-right: 2px;
+  margin-top: -1px;
 }
 #workarea table.listview .itemInput input {
-  position: absolute;
-  left: 0;
-  top: 0;
+  font-size: 14px;
+  width: 13px;
+  height: 13px;
 }
 #workarea table.listview .itemInput label {
   position: absolute;
@@ -1039,7 +1041,16 @@ table.columnGrid td.columnRight {
 #workarea .sheet li {
   list-style-position: outside;
 }
-
+#workarea .sheet table.logContext {
+  width: 100%;
+  box-sizing: border-box;
+  border-collapse: collapse;
+}
+#workarea .sheet table.logContext th,
+#workarea .sheet table.logContext td {
+  border: 1px solid rgba(0,0,0,0.3);
+  padding: 2px;
+}
 /* dialogs */
 #workarea form {
   margin: 0;
