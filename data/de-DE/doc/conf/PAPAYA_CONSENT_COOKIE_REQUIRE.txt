@@ -1,0 +1,2 @@
+Ist diese Option aktiv, werden andere Cookies (z.B. Session-Id) nur gesetzt wenn das
+Zustimmungcookie entspechend gesetzt ist.

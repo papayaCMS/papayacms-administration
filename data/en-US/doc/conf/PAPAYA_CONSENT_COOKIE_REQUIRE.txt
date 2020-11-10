@@ -1,0 +1,2 @@
+Require the consent cookie for other cookies to be set. The consent cookie itself is set by a
+cookie banner. Other cookies like the session id will depend on this cookie if this option is enabled.

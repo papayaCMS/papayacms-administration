@@ -1,0 +1,1 @@
+A comma separated string of level identifiers (dismiss, allow, ...). 
