@@ -1,31 +1,84 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "hash": "98c305bd5b1beb0a05576f81580f8b34",
-    "content-hash": "f4056f39dfbd742603d76c176f90b2fe",
+    "content-hash": "ab8866a05b04fa51f14e58a258855fa7",
     "packages": [
         {
-            "name": "papaya/composer-plugins",
-            "version": "1.0.2",
+            "name": "papaya/cms-core",
+            "version": "6.13.4",
             "source": {
                 "type": "git",
-                "url": "https://github.com/papayaCMS/papayacms-composer-plugins.git",
-                "reference": "bc01c504dbdac62a67a912a19f1fec64470081fd"
+                "url": "https://github.com/papayaCMS/papayacms-core.git",
+                "reference": "667bb91e9495098aeea339ae64c1e21034d93fc9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/papayaCMS/papayacms-composer-plugins/zipball/bc01c504dbdac62a67a912a19f1fec64470081fd",
-                "reference": "bc01c504dbdac62a67a912a19f1fec64470081fd",
+                "url": "https://api.github.com/repos/papayaCMS/papayacms-core/zipball/667bb91e9495098aeea339ae64c1e21034d93fc9",
+                "reference": "667bb91e9495098aeea339ae64c1e21034d93fc9",
                 "shasum": ""
             },
             "require": {
-                "composer-plugin-api": "^1.0"
+                "ext-dom": "*",
+                "ext-gd": "*",
+                "ext-json": "*",
+                "ext-libxml": "*",
+                "ext-xsl": "*",
+                "php": ">=5.6.0",
+                "psr/log": "1.*"
             },
             "require-dev": {
-                "composer/composer": "1.0.*@dev"
+                "papaya/cms-administration": "dev-master",
+                "papaya/module-default": "dev-master",
+                "papaya/module-default-cronjobs": "dev-master",
+                "papaya/module-domains": "dev-master",
+                "papaya/module-standard": "dev-master",
+                "papaya/test-framework": "dev-master",
+                "papaya/theme-dynamic": "dev-master",
+                "roave/security-advisories": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Papaya\\Modules\\Core\\": "src/modules/_base/"
+                },
+                "files": [
+                    "src/core.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0"
+            ],
+            "description": "papaya CMS core framework",
+            "homepage": "http://www.papaya-cms.com/",
+            "support": {
+                "issues": "https://github.com/papayaCMS/papayacms-core/issues",
+                "source": "https://github.com/papayaCMS/papayacms-core/tree/6.13.4"
+            },
+            "time": "2020-11-27T13:32:41+00:00"
+        },
+        {
+            "name": "papaya/composer-plugins",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/papayaCMS/papayacms-composer-plugins.git",
+                "reference": "7da1ad6e99434c5e5608d01b2a26491bceb6e142"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/papayaCMS/papayacms-composer-plugins/zipball/7da1ad6e99434c5e5608d01b2a26491bceb6e142",
+                "reference": "7da1ad6e99434c5e5608d01b2a26491bceb6e142",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^2.0"
+            },
+            "require-dev": {
+                "composer/composer": "^2.0"
             },
             "type": "composer-plugin",
             "extra": {
@@ -37,18 +90,74 @@
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0"
+            ],
             "description": "papaya CMS Composer Plugins",
-            "time": "2016-04-11 14:33:58"
+            "support": {
+                "issues": "https://github.com/papayaCMS/papayacms-composer-plugins/issues",
+                "source": "https://github.com/papayaCMS/papayacms-composer-plugins/tree/2.0.0"
+            },
+            "time": "2020-11-19T11:31:41+00:00"
+        },
+        {
+            "name": "psr/log",
+            "version": "1.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/log.git",
+                "reference": "0f73288fd15629204f9d42b7055f72dacbe811fc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/0f73288fd15629204f9d42b7055f72dacbe811fc",
+                "reference": "0f73288fd15629204f9d42b7055f72dacbe811fc",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\Log\\": "Psr/Log/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "http://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interface for logging libraries",
+            "homepage": "https://github.com/php-fig/log",
+            "keywords": [
+                "log",
+                "psr",
+                "psr-3"
+            ],
+            "support": {
+                "source": "https://github.com/php-fig/log/tree/1.1.3"
+            },
+            "time": "2020-03-23T09:12:05+00:00"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "papaya/composer-plugins": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "2.0.0"
 }
