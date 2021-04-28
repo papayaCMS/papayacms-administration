@@ -8,6 +8,9 @@ PapayaFileForm = JsonClass(
       fileinfo : {
         check : '!regexp=[<>"]'
       },
+      fileclass : {
+        check : '!regexp=[<>"]'
+      },
       filetarget : {
         check : ['req', 'alphahyphen']
       }
@@ -44,6 +47,7 @@ PapayaFileForm = JsonClass(
         this.showFileData();
         this.setFieldValue('filetext', this.papayaTag.getAttr('text', ''));
         this.setFieldValue('fileinfo', this.papayaTag.getAttr('hint', ''));
+        this.setFieldValue('fileclass', this.papayaTag.getAttr('class', ''));
         this.setFieldValue('filetarget', this.papayaTag.getAttr('target', '_self'));
       } else {
         var attrText = this.editor.selection.getContent({format : 'text'});
@@ -57,6 +61,7 @@ PapayaFileForm = JsonClass(
         this.papayaTag.name = 'file';
         this.papayaTag.setAttr('src', this.fileData.id);
         this.papayaTag.setAttr('text', this.getFieldValue('filetext'));
+        this.papayaTag.setAttr('class', this.getFieldValue('fileclass'));
         this.papayaTag.setAttr('hint', this.getFieldValue('fileinfo'));
         var plugin = tinyMCEPopup.getWindowArg('plugin');
         plugin.papayaParser.rememberData(this.papayaTag);
