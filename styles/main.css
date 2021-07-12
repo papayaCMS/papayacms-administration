@@ -1766,10 +1766,19 @@ form.dialog .buttons a.button {
 }
 form.dialog .buttons .left {
   float: left;
+  margin-right: 2px;
 }
 form.dialog .buttons .right {
   float: right;
+  margin-left: 2px;
 }
+form.dialog .buttons .button.buttonWithImage {
+  background-repeat: no-repeat;
+  background-position: 4px center;
+  padding: 0 4px 0 24px;
+  line-height: 19px;
+}
+
 form.dialog .scaleable {
   width: 100%;
 }

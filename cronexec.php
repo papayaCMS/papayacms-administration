@@ -70,7 +70,7 @@ if (file_exists($path) && is_dir($path)) {
   exit;
 }
 
-/** @var \Papaya\Application\CMS $application */
+/** @var \Papaya\Application\CMSApplication $application */
 $application = include __DIR__.'/bootstrap.php';
 $options = $application->options;
 
@@ -164,7 +164,7 @@ try {
       $PAPAYA_USER = new \base_auth();
       $PAPAYA_USER->initialize();
       if ($PAPAYA_USER->execLogin() &&
-          $PAPAYA_USER->hasPerm(\Papaya\Administration\Permissions::SYSTEM_CRONJOBS)) {
+          $PAPAYA_USER->hasPerm(\Papaya\CMS\Administration\Permissions::SYSTEM_CRONJOBS)) {
         if ($verbose) {
           echo 'Job id: '.(int)$_GET['job']."\n";
         }

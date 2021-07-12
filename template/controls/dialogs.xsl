@@ -189,7 +189,6 @@
     <xsl:variable name="hasImage" select="$button/@image and $button/@image != ''"/>
     <xsl:choose>
       <xsl:when test="$button/@type = 'image'">
-        IMAGE_BUTTON
       </xsl:when>
       <xsl:when test="$button/@type = 'link'">
         <a href="{@href}">
@@ -211,7 +210,7 @@
             <xsl:if test="$hasImage"><xsl:text> buttonWithImage</xsl:text></xsl:if>
           </xsl:attribute>
           <xsl:if test="$hasImage">
-            <xsl:attribute name="style">background-image: <xsl:value-of select="$image"/></xsl:attribute>
+            <xsl:attribute name="style">background-image: url(<xsl:value-of select="$button/@image"/>)</xsl:attribute>
           </xsl:if>
           <xsl:value-of select="$button/text()"/>
         </a>
@@ -248,7 +247,7 @@
             <xsl:if test="$hasImage"><xsl:text> buttonWithImage</xsl:text></xsl:if>
           </xsl:attribute>
           <xsl:if test="$hasImage">
-            <xsl:attribute name="style">background-image: <xsl:value-of select="$image"/></xsl:attribute>
+            <xsl:attribute name="style">background-image: url(<xsl:value-of select="$button/@image"/>)</xsl:attribute>
           </xsl:if>
         </input>
       </xsl:otherwise>

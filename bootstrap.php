@@ -63,9 +63,8 @@ if (file_exists($path.'../vendor/autoload.php')) {
 $includePapayaFile(__DIR__.'/inc.glyphs.php', TRUE);
 $includePapayaFile($path.'revision.inc.php', TRUE);
 
-/** @var Papaya\Application\CMS $application */
-$application = \Papaya\Application::getInstance();
-$application->registerProfiles(new Papaya\Application\Profiles\CMS());
+/** @var Papaya\CMS\CMSApplication $application */
+$application = \Papaya\CMS\CMSApplication::getInstance();
 $application->request->isAdministration = TRUE;
 
 return $application;
