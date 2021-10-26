@@ -3,6 +3,6 @@
   "type": "papaya-administration-ui",
   "require": {
     "papaya/composer-plugins": "^2.0",
-    "papaya/cms-core": "*"
+    "papaya/cms-core": "^7.0.0"
   }
 }
