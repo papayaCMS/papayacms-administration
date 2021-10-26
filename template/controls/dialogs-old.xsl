@@ -79,7 +79,6 @@
 
 <xsl:template name="old-dialog-scripts">
   <xsl:param name="scripts"/>
-  FOO
   <xsl:if test="$scripts and count($scripts) &gt; 0">
     <xsl:for-each select="$scripts">
       <script type="{@type}">
