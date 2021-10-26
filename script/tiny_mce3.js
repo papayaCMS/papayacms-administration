@@ -17,7 +17,7 @@ var tinyMCEOptionsSimple = {
     linkTarget : '_self'
   },
 
-  extended_valid_elements : "img[data-papaya|class|style|src|width|height|alt|title|align|hspace|vspace],a[data-papaya|class|href|target|name],div[data-papaya|class|style|id],audio[autobuffer|autoplay|controls|src],iframe[src|width|height|align|hspace|vspace|scrolling|name|frameborder|style]",
+  extended_valid_elements : "img[data-papaya|class|style|src|width|height|alt|title|align|hspace|vspace],a[data-papaya|class|href|target|name],div[data-papaya|class|style|id],audio[autobuffer|autoplay|controls|src],iframe[src|width|height|align|hspace|vspace|scrolling|name|frameborder|style|title]",
 
   plugins : "papaya,autolink,lists,spellchecker,pagebreak,style,layer,table,save,advhr,advlink,advlist,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template",
 
@@ -64,7 +64,7 @@ var tinyMCEOptionsFull = {
     linkTarget : '_self'
   },
 
-  extended_valid_elements : "img[data-papaya|class|style|src|width|height|alt|title|align|hspace|vspace],a[data-papaya|class|href|target|name],div[data-papaya|class|style|id],audio[autobuffer|autoplay|controls|src],iframe[src|width|height|align|hspace|vspace|scrolling|name|frameborder|style]",
+  extended_valid_elements : "img[data-papaya|class|style|src|width|height|alt|title|align|hspace|vspace],a[data-papaya|class|href|target|name],div[data-papaya|class|style|id],audio[autobuffer|autoplay|controls|src],iframe[src|width|height|align|hspace|vspace|scrolling|name|frameborder|style|title]",
 
   plugins : "papaya,autolink,lists,spellchecker,pagebreak,style,layer,table,save,advhr,advlink,advlist,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template",
 
