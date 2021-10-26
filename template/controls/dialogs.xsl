@@ -32,6 +32,8 @@
   <xsl:variable name="DIALOG_SIZE_M" select="'m'"/>
   <xsl:variable name="DIALOG_SIZE_L" select="'l'"/>
 
+  <xsl:param name="PAGE_WEB_PATH">./</xsl:param>
+
   <xsl:template match="dialog-box">
     <xsl:call-template name="dialog-box">
       <xsl:with-param name="dialog" select="." />
@@ -416,19 +418,19 @@
       <xsl:choose>
         <xsl:when test=" $field/@hint != '' and $field/@error = 'yes'">
           <a href="#hint{generate-id($field)}" class="hintSwitch">
-            <img src="icon.status.dialog-error?size=16" class="hintMarker errorMarker" alt=""/>
+            <img src="{$PAGE_WEB_PATH}icon.status.dialog-error?size=16" class="hintMarker errorMarker" alt=""/>
             <xsl:copy-of select="$caption"/>
           </a>
         </xsl:when>
         <xsl:when test="$field/@hint != ''">
           <a href="#hint{generate-id($field)}" class="hintSwitch">
-            <img src="icon.status.dialog-information?size=16" alt="" class="hintMarker"/>
+            <img src="{$PAGE_WEB_PATH}icon.status.dialog-information?size=16" alt="" class="hintMarker"/>
             <xsl:copy-of select="$caption"/>
           </a>
         </xsl:when>
         <xsl:otherwise>
           <xsl:if test="$field/@error = 'yes'">
-            <img src="icon.status.dialog-error?size=16" class="hintMarker errorMarker" alt=""/>
+            <img src="{$PAGE_WEB_PATH}icon.status.dialog-error?size=16" class="hintMarker errorMarker" alt=""/>
           </xsl:if>
           <xsl:copy-of select="$caption"/>
         </xsl:otherwise>
@@ -501,7 +503,7 @@
     </xsl:variable>
     <div class="dialogMessage">
       <xsl:if test="$field/message/@image">
-        <img class="dialogMessageImage" src="{$icon}" alt=""/>
+        <img class="dialogMessageImage" src="{$PAGE_WEB_PATH}{$icon}" alt=""/>
       </xsl:if>
       <div class="message">
         <xsl:value-of select="$message/node()"/>
@@ -576,7 +578,7 @@
     <xsl:param name="input" select="$field/input"/>
     <xsl:if test="$input/@type = 'captcha' and $field/image">
       <div class="captchaDisplay">
-        <img src="{$field/image/@src}" alt=""/>
+        <img src="{$PAGE_WEB_PATH}{$field/image/@src}" alt=""/>
       </div>
     </xsl:if>
     <input name="{$input/@name}">
@@ -815,7 +817,7 @@
     <xsl:param name="field"/>
     <xsl:param name="image" select="$field/image"/>
 
-    <img src="{$image/@src}" alt="" />
+    <img src="{$PAGE_WEB_PATH}{$image/@src}" alt="" />
   </xsl:template>
 
 </xsl:stylesheet>

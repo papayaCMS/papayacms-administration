@@ -57,6 +57,7 @@
 
   <xsl:param name="PAPAYA_UI_LANGUAGE">en-US</xsl:param>
   <xsl:param name="PAGE_SELF">index.php</xsl:param>
+  <xsl:param name="PAGE_WEB_PATH">./</xsl:param>
 
   <!-- PAGE_MODE: page, frameset, frame, installer-->
   <xsl:param name="PAGE_MODE">page</xsl:param>
@@ -91,9 +92,10 @@
           <xsl:text>: </xsl:text>
           <xsl:value-of select="$PAGE_TITLE"/> - papaya CMS
         </title>
-        <link rel="stylesheet" type="text/css" href="styles/css?rev={$PAPAYA_VERSION}&amp;theme={$PAPAYA_UI_THEME}"/>
-        <link rel="stylesheet" type="text/css" href="./script/jquery/css/papaya/jquery-ui-1.8.21.custom.css"/>
-        <link rel="SHORTCUT ICON" href="styles/themes/{$PAPAYA_UI_THEME}.ico"/>
+        <link rel="stylesheet" type="text/css"
+              href="{$PAGE_WEB_PATH}styles/css?rev={$PAPAYA_VERSION}&amp;theme={$PAPAYA_UI_THEME}"/>
+        <link rel="stylesheet" type="text/css" href="{$PAGE_WEB_PATH}script/jquery/css/papaya/jquery-ui-1.8.21.custom.css"/>
+        <link rel="SHORTCUT ICON" href="{$PAGE_WEB_PATH}styles/themes/{$PAPAYA_UI_THEME}.ico"/>
         <xsl:call-template name="application-page-scripts"/>
       </head>
       <xsl:choose>
@@ -279,7 +281,7 @@
         <xsl:copy-of select="document('svg/papaya-logo.svg')/*"/>
       </div>
       <xsl:if test="$PAGE_ICON and ($PAGE_ICON != '')">
-        <img src="{$glyphsrc}" class="pageLogo" alt=""/>
+        <img src="{$PAGE_WEB_PATH}{$glyphsrc}" class="pageLogo" alt=""/>
       </xsl:if>
       <h1 id="titleText">
         <xsl:value-of select="$PAGE_TITLE"/>
@@ -352,10 +354,10 @@
       </xsl:variable>
       <div id="titleButtons">
         <a href="help" id="papayaTitleButtonHelp" title="{$captionHelp}">
-          <img src="icon.categories.help?size=22" alt="{$captionHelp}" title="{$captionHelp}" class="glyph22"/>
+          <img src="{$PAGE_WEB_PATH}icon.categories.help?size=22" alt="{$captionHelp}" title="{$captionHelp}" class="glyph22"/>
         </a>
         <a href="logout" id="papayaTitleButtonLogout" title="{$captionLogOut}">
-          <img src="icon.actions.log-out?size=22" alt="{$captionLogOut}" title="{$captionLogOut}" class="glyph22"/>
+          <img src="{$PAGE_WEB_PATH}icon.actions.log-out?size=22" alt="{$captionLogOut}" title="{$captionLogOut}" class="glyph22"/>
         </a>
       </div>
     </xsl:if>
@@ -437,7 +439,7 @@
     </xsl:variable>
     <xsl:choose>
       <xsl:when test="$imageSource != ''">
-        <img src="{$image}" alt="" title="{$title}" style="height:1.2em; margin-right: 4px;"/>
+        <img src="{$PAGE_WEB_PATH}{$image}" alt="" title="{$title}" style="height:1.2em; margin-right: 4px;"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:value-of select="$title"/>
@@ -484,10 +486,10 @@
   </xsl:template>
 
   <xsl:template name="application-page-scripts">
-    <script type="text/javascript" src="./script/jquery/js/jquery-1.7.2.min.js">
+    <script type="text/javascript" src="{$PAGE_WEB_PATH}script/jquery/js/jquery-1.7.2.min.js">
       <xsl:text> </xsl:text>
     </script>
-    <script type="text/javascript" src="./styles/js?rev={$PAPAYA_VERSION}">
+    <script type="text/javascript" src="{$PAGE_WEB_PATH}styles/js?rev={$PAPAYA_VERSION}">
       <xsl:text> </xsl:text>
     </script>
     <xsl:if test="$PAPAYA_USER_AUTHORIZED">
@@ -498,13 +500,13 @@
             <xsl:text>files=jsonclass.js,xmlrpc.js</xsl:text>
             <xsl:if test="$PAPAYA_USE_SWFOBJECT">,swfobject/swfobject.js</xsl:if>
           </xsl:variable>
-          <script type="text/javascript" src="scripts?{$jsQueryString}&amp;rev={$PAPAYA_VERSION}"></script>
+          <script type="text/javascript" src="{$PAGE_WEB_PATH}scripts?{$jsQueryString}&amp;rev={$PAPAYA_VERSION}"></script>
         </xsl:when>
         <xsl:otherwise>
-          <script type="text/javascript" src="./script/jsonclass.js?rev={$PAPAYA_VERSION}"></script>
-          <script type="text/javascript" src="./script/xmlrpc.js?rev={$PAPAYA_VERSION}"></script>
+          <script type="text/javascript" src="{$PAGE_WEB_PATH}script/jsonclass.js?rev={$PAPAYA_VERSION}"></script>
+          <script type="text/javascript" src="{$PAGE_WEB_PATH}script/xmlrpc.js?rev={$PAPAYA_VERSION}"></script>
           <xsl:if test="$PAPAYA_USE_SWFOBJECT">
-            <script type="text/javascript" src="./script/swfobject/swfobject.js?rev={$PAPAYA_VERSION}"></script>
+            <script type="text/javascript" src="{$PAGE_WEB_PATH}script/swfobject/swfobject.js?rev={$PAPAYA_VERSION}"></script>
           </xsl:if>
         </xsl:otherwise>
       </xsl:choose>
@@ -513,6 +515,7 @@
       <script type="{@type}">
         <xsl:if test="@src">
           <xsl:attribute name="src">
+            <xsl:value-of select="$PAGE_WEB_PATH"/>
             <xsl:value-of select="@src"/>
           </xsl:attribute>
         </xsl:if>
@@ -567,11 +570,12 @@
               <xsl:value-of select="."/>
             </xsl:for-each>
           </xsl:variable>
-          <script type="text/javascript" src="scripts?{$jsQueryString}&amp;rev={$PAPAYA_VERSION}"></script>
+          <script type="text/javascript" src="{$PAGE_WEB_PATH}scripts?{$jsQueryString}&amp;rev={$PAPAYA_VERSION}"></script>
         </xsl:when>
         <xsl:otherwise>
           <xsl:for-each select="exslt:node-set($scripts)/script">
-            <script type="text/javascript" src="script/{.}?rev={$PAPAYA_VERSION}"></script>
+            <script type="text/javascript"
+                    src="{$PAGE_WEB_PATH}script/{.}?rev={$PAPAYA_VERSION}"></script>
           </xsl:for-each>
         </xsl:otherwise>
       </xsl:choose>
@@ -604,8 +608,8 @@
       </xsl:variable>
       <xsl:choose>
         <xsl:when test="$PAPAYA_USE_TINYMCE_GZIP">
-          <script type="text/javascript" src="./script/{$tinymce}/tiny_mce_gzip.js?rev={$PAPAYA_VERSION}"></script>
-          <script type="text/javascript" src="./script/{$tinymce}.js?rev={$PAPAYA_VERSION}"></script>
+          <script type="text/javascript" src="{$PAGE_WEB_PATH}/script/{$tinymce}/tiny_mce_gzip.js?rev={$PAPAYA_VERSION}"></script>
+          <script type="text/javascript" src="{$PAGE_WEB_PATH}/script/{$tinymce}.js?rev={$PAPAYA_VERSION}"></script>
           <script type="text/javascript">
             <xsl:comment>
               <xsl:if test="$PAPAYA_DBG_DEVMODE">
@@ -622,12 +626,12 @@
           </script>
         </xsl:when>
         <xsl:when test="$PAPAYA_DBG_DEVMODE">
-          <script type="text/javascript" src="./script/{$tinymce}/tiny_mce_src.js?rev={$PAPAYA_VERSION}"></script>
-          <script type="text/javascript" src="./script/{$tinymce}.js?rev={$PAPAYA_VERSION}"></script>
+          <script type="text/javascript" src="{$PAGE_WEB_PATH}/script/{$tinymce}/tiny_mce_src.js?rev={$PAPAYA_VERSION}"></script>
+          <script type="text/javascript" src="{$PAGE_WEB_PATH}/script/{$tinymce}.js?rev={$PAPAYA_VERSION}"></script>
         </xsl:when>
         <xsl:otherwise>
-          <script type="text/javascript" src="./script/{$tinymce}/tiny_mce.js?rev={$PAPAYA_VERSION}"></script>
-          <script type="text/javascript" src="./script/{$tinymce}.js?rev={$PAPAYA_VERSION}"></script>
+          <script type="text/javascript" src="{$PAGE_WEB_PATH}/script/{$tinymce}/tiny_mce.js?rev={$PAPAYA_VERSION}"></script>
+          <script type="text/javascript" src="{$PAGE_WEB_PATH}/script/{$tinymce}.js?rev={$PAPAYA_VERSION}"></script>
         </xsl:otherwise>
       </xsl:choose>
       <script type="text/javascript">
@@ -659,6 +663,7 @@
   </xsl:template>
 
   <xsl:template name="richtext-embed-content-css">
+    <xsl:value-of select="$PAGE_WEB_PATH"/>
     <xsl:text>styles/css.richtext?rev=</xsl:text>
     <xsl:value-of select="$PAPAYA_VERSION"/>
     <xsl:text>&amp;theme=</xsl:text>

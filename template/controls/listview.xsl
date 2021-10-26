@@ -125,34 +125,35 @@
               <xsl:choose>
                 <xsl:when test="node/@status = 'closed'">
                   <a href="{node/@href}" class="nodeIcon">
-                    <img src="icon.status.node-closed?size=16" class="glyph" alt="+"/>
+                    <img src="{$PAGE_WEB_PATH}icon.status.node-closed?size=16" class="glyph"
+                         alt="+"/>
                   </a>
                 </xsl:when>
                 <xsl:when test="node/@status = 'open'">
                   <a href="{node/@href}" class="nodeIcon">
-                    <img src="icon.status.node-open?size=16" class="glyph" alt="-"/>
+                    <img src="{$PAGE_WEB_PATH}icon.status.node-open?size=16" class="glyph" alt="-"/>
                   </a>
                 </xsl:when>
                 <xsl:when test="node/@status = 'empty'">
                   <span class="nodeIcon">
-                    <img src="icon.status.node-empty?size=16" class="glyph" alt=" "/>
+                    <img src="{$PAGE_WEB_PATH}icon.status.node-empty?size=16" class="glyph" alt=" "/>
                   </span>
                 </xsl:when>
               </xsl:choose>
             </xsl:when>
             <xsl:when test="@nhref and @node = 'close'">
               <a href="{@nhref}" class="nodeIcon">
-                <img src="icon.status.node-closed?size=16" class="glyph" alt="+"/>
+                <img src="{$PAGE_WEB_PATH}icon.status.node-closed?size=16" class="glyph" alt="+"/>
               </a>
             </xsl:when>
             <xsl:when test="@nhref and @node = 'open'">
               <a href="{@nhref}" class="nodeIcon">
-                <img src="icon.status.node-open?size=16" class="glyph" alt="-"/>
+                <img src="{$PAGE_WEB_PATH}icon.status.node-open?size=16" class="glyph" alt="-"/>
               </a>
             </xsl:when>
             <xsl:when test="@node = 'empty'">
               <span class="nodeIcon">
-                <img src="icon.status.node-empty?size=16" class="glyph" alt=" "/>
+                <img src="{$PAGE_WEB_PATH}icon.status.node-empty?size=16" class="glyph" alt=" "/>
               </span>
             </xsl:when>
           </xsl:choose>
@@ -165,10 +166,10 @@
             </xsl:variable>
             <xsl:choose>
               <xsl:when test="@href">
-                <a href="{@href}" class="itemIcon" tabindex="0"><img src="{$glyphsrc}" class="glyph" alt="" title="" /></a>
+                <a href="{@href}" class="itemIcon" tabindex="0"><img src="{$PAGE_WEB_PATH}{$glyphsrc}" class="glyph" alt="" title="" /></a>
               </xsl:when>
               <xsl:otherwise>
-                <span class="itemIcon"><img src="{$glyphsrc}" class="glyph" alt="" title="" /></span>
+                <span class="itemIcon"><img src="{$PAGE_WEB_PATH}{$glyphsrc}" class="glyph" alt="" title="" /></span>
               </xsl:otherwise>
             </xsl:choose>
           </xsl:if>
@@ -233,10 +234,10 @@
 	          </xsl:variable>
 	          <xsl:choose>
 	            <xsl:when test="@href">
-	              <a href="{@href}"><img src="{$glyphsrc}" class="glyph" alt="" title="{@hint}"/></a>
+	              <a href="{@href}"><img src="{$PAGE_WEB_PATH}{$glyphsrc}" class="glyph" alt="" title="{@hint}"/></a>
 	            </xsl:when>
 	            <xsl:otherwise>
-	              <img src="{$glyphsrc}" class="glyph" alt="" title="{@hint}" align="middle"/>
+	              <img src="{$PAGE_WEB_PATH}{$glyphsrc}" class="glyph" alt="" title="{@hint}" align="middle"/>
 	            </xsl:otherwise>
 	          </xsl:choose>
 	        </div>
@@ -310,10 +311,10 @@
 	          </xsl:variable>
 	          <xsl:choose>
 	            <xsl:when test="@href">
-	              <a href="{@href}"><img src="{$glyphsrc}" class="glyph" alt="" title="{@hint}"/></a>
+	              <a href="{@href}"><img src="{$PAGE_WEB_PATH}{$glyphsrc}" class="glyph" alt="" title="{@hint}"/></a>
 	            </xsl:when>
 	            <xsl:otherwise>
-	              <img src="{$glyphsrc}" class="glyph" alt="" title="{@hint}" align="middle"/>
+	              <img src="{$PAGE_WEB_PATH}{$glyphsrc}" class="glyph" alt="" title="{@hint}" align="middle"/>
 	            </xsl:otherwise>
 	          </xsl:choose>
           </div>

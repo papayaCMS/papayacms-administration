@@ -141,10 +141,10 @@
       <xsl:if test="$glyph != ''">
         <xsl:choose>
           <xsl:when test="$button/@href">
-            <a href="{$button/@href}" class="icon" target="{$target}" title="{$hint}" tabindex="0"><img src="{$glyph}"  alt=""/></a>
+            <a href="{$button/@href}" class="icon" target="{$target}" title="{$hint}" tabindex="0"><img src="{$PAGE_WEB_PATH}{$glyph}"  alt=""/></a>
           </xsl:when>
           <xsl:otherwise>
-            <span class="icon"><img src="{$glyph}"  alt=""/></span>
+            <span class="icon"><img src="{$PAGE_WEB_PATH}{$glyph}"  alt=""/></span>
           </xsl:otherwise>
         </xsl:choose>
       </xsl:if>

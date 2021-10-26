@@ -15,6 +15,8 @@
 
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
+<xsl:param name="PAGE_WEB_PATH">./</xsl:param>
+
 <xsl:template name="panel">
   <xsl:param name="title"></xsl:param>
   <xsl:param name="id"></xsl:param>
@@ -102,7 +104,7 @@
       <xsl:choose>
         <xsl:when test="iframe">
           <iframe
-            src="{iframe/@src}"
+            src="{$PAGE_WEB_PATH}{iframe/@src}"
             id="{iframe/@id}"
             height="{iframe/@height}"
             style="width: 100%;"
@@ -142,7 +144,7 @@
       <xsl:with-param name="icon-src" select="$icon"/>
     </xsl:call-template>
   </xsl:variable>
-  <img src="{$src}" class="glyph16" alt=""/>
+  <img src="{$PAGE_WEB_PATH}{$src}" class="glyph16" alt=""/>
 </xsl:template>
 
 <xsl:template name="panel-info-button">
@@ -155,16 +157,16 @@
         <xsl:attribute name="title"><xsl:value-of select="$text"/></xsl:attribute>
         <xsl:choose>
           <xsl:when test="$mode='error'">
-            <img src="icon.status.dialog-error?size=16" class="glyph16" alt="{$text}" />
+            <img src="{$PAGE_WEB_PATH}icon.status.dialog-error?size=16" class="glyph16" alt="{$text}" />
           </xsl:when>
           <xsl:when test="$mode='help'">
-            <img src="icon.status.dialog-help?size=16" class="glyph16" alt="{$text}" />
+            <img src="{$PAGE_WEB_PATH}icon.status.dialog-help?size=16" class="glyph16" alt="{$text}" />
           </xsl:when>
           <xsl:when test="$mode='needed'">
-            <img src="icon.status.dialog-warning?size=16" class="glyph16" alt="{$text}" />
+            <img src="{$PAGE_WEB_PATH}icon.status.dialog-warning?size=16" class="glyph16" alt="{$text}" />
           </xsl:when>
           <xsl:otherwise>
-            <img src="icon.status.dialog-information?size=16" class="glyph16" alt="{$text}" />
+            <img src="{$PAGE_WEB_PATH}icon.status.dialog-information?size=16" class="glyph16" alt="{$text}" />
           </xsl:otherwise>
         </xsl:choose>
       </a>
@@ -172,22 +174,22 @@
     <xsl:otherwise>
       <xsl:choose>
         <xsl:when test="$mode='error'">
-          <img src="icon.status.dialog-error?size=16" class="glyph16" alt="(!)" />
+          <img src="{$PAGE_WEB_PATH}icon.status.dialog-error?size=16" class="glyph16" alt="(!)" />
         </xsl:when>
         <xsl:when test="$mode='help'">
-          <img src="icon.status.dialog-help?size=16" class="glyph16" alt="(i)" />
+          <img src="{$PAGE_WEB_PATH}icon.status.dialog-help?size=16" class="glyph16" alt="(i)" />
         </xsl:when>
         <xsl:when test="$mode='needed'">
-          <img src="icon.status.dialog-warning?size=16" class="glyph16" alt="(*)" />
+          <img src="{$PAGE_WEB_PATH}icon.status.dialog-warning?size=16" class="glyph16" alt="(*)" />
         </xsl:when>
         <xsl:when test="$mode='minimize'">
-          <a href="{$href}" tabindex="10000"><img src="icon.actions.list-remove?size=16" class="glyph16" alt="-" /></a>
+          <a href="{$href}" tabindex="10000"><img src="{$PAGE_WEB_PATH}icon.actions.list-remove?size=16" class="glyph16" alt="-" /></a>
         </xsl:when>
         <xsl:when test="$mode='maximize'">
-          <a href="{$href}" tabindex="10000"><img src="icon.actions.list-add?size=16" class="glyph16" alt="+" /></a>
+          <a href="{$href}" tabindex="10000"><img src="{$PAGE_WEB_PATH}icon.actions.list-add?size=16" class="glyph16" alt="+" /></a>
         </xsl:when>
         <xsl:otherwise>
-          <img src="icon.status.dialog-information?size=16" class="glyph16" alt="{$text}" />
+          <img src="{$PAGE_WEB_PATH}icon.status.dialog-information?size=16" class="glyph16" alt="{$text}" />
         </xsl:otherwise>
       </xsl:choose>
     </xsl:otherwise>

@@ -51,7 +51,7 @@
         </xsl:call-template>
       </xsl:variable>
       <li>
-        <a href="{@href}" class="icon"><img class="glyph48" src="{$src}" alt=""/></a>
+        <a href="{@href}" class="icon"><img class="glyph48" src="{$PAGE_WEB_PATH}{$src}" alt=""/></a>
         <a href="{@href}" class="subtitle"><xsl:value-of select="@subtitle"/></a>
       </li>
     </xsl:for-each>

@@ -15,6 +15,8 @@
 
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
+<xsl:param name="PAGE_WEB_PATH">./</xsl:param>
+
 <xsl:template name="login-dialog">
   <xsl:param name="login" select="//login"/>
   <form id="loginDialog" action="{$login/@action}" method="post">
@@ -22,7 +24,7 @@
     <xsl:call-template name="panel">
       <xsl:with-param name="title" select="$login/@title"/>
       <xsl:with-param name="data">
-        <img src="icon.status.system-locked?size=48" class="dialogIconLarge" alt=""/>
+        <img src="{$PAGE_WEB_PATH}icon.status.system-locked?size=48" class="dialogIconLarge" alt=""/>
         <div class="fields">
           <xsl:if test="$login/message">
             <div class="message"><xsl:apply-templates select="$login/message/*|$login/message/text()"/></div>

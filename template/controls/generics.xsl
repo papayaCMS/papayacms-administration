@@ -148,7 +148,7 @@
     </xsl:call-template>
   </xsl:variable>
   <xsl:variable name="image">
-    <img src="{$src}" class="glyph{$icon-size}" title="{$glyph/@hint}" alt="{$glyph/@hint}">
+    <img src="{$PAGE_WEB_PATH}{$src}" class="glyph{$icon-size}" title="{$glyph/@hint}" alt="{$glyph/@hint}">
       <xsl:if test="$glyph/@id">
         <xsl:attribute name="id"><xsl:value-of select="$glyph/@id"/></xsl:attribute>
       </xsl:if>

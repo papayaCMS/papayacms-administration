@@ -68,7 +68,7 @@
             <xsl:if test="$item/@hint and $item/@hint != ''">
               <xsl:attribute name="title"><xsl:value-of select="$item/@hint"/></xsl:attribute>
             </xsl:if>
-            <img src="{$imageUrl}" alt="{$imageText}" title="{$imageText}"/>
+            <img src="{$PAGE_WEB_PATH}{$imageUrl}" alt="{$imageText}" title="{$imageText}"/>
           </a>
         </xsl:when>
         <xsl:otherwise>
@@ -76,7 +76,7 @@
             <xsl:if test="$item/@hint and $item/@hint != ''">
               <xsl:attribute name="title"><xsl:value-of select="$item/@hint"/></xsl:attribute>
             </xsl:if>
-            <img src="{$imageUrl}"  alt="{$imageText}" title="{$imageText}"/>
+            <img src="{$PAGE_WEB_PATH}{$imageUrl}"  alt="{$imageText}" title="{$imageText}"/>
           </span>
         </xsl:otherwise>
       </xsl:choose>
