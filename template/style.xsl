@@ -608,8 +608,8 @@
       </xsl:variable>
       <xsl:choose>
         <xsl:when test="$PAPAYA_USE_TINYMCE_GZIP">
-          <script type="text/javascript" src="{$PAGE_WEB_PATH}/script/{$tinymce}/tiny_mce_gzip.js?rev={$PAPAYA_VERSION}"></script>
-          <script type="text/javascript" src="{$PAGE_WEB_PATH}/script/{$tinymce}.js?rev={$PAPAYA_VERSION}"></script>
+          <script type="text/javascript" src="{$PAGE_WEB_PATH}script/{$tinymce}/tiny_mce_gzip.js?rev={$PAPAYA_VERSION}"></script>
+          <script type="text/javascript" src="{$PAGE_WEB_PATH}script/{$tinymce}.js?rev={$PAPAYA_VERSION}"></script>
           <script type="text/javascript">
             <xsl:comment>
               <xsl:if test="$PAPAYA_DBG_DEVMODE">
@@ -626,12 +626,12 @@
           </script>
         </xsl:when>
         <xsl:when test="$PAPAYA_DBG_DEVMODE">
-          <script type="text/javascript" src="{$PAGE_WEB_PATH}/script/{$tinymce}/tiny_mce_src.js?rev={$PAPAYA_VERSION}"></script>
-          <script type="text/javascript" src="{$PAGE_WEB_PATH}/script/{$tinymce}.js?rev={$PAPAYA_VERSION}"></script>
+          <script type="text/javascript" src="{$PAGE_WEB_PATH}script/{$tinymce}/tiny_mce_src.js?rev={$PAPAYA_VERSION}"></script>
+          <script type="text/javascript" src="{$PAGE_WEB_PATH}script/{$tinymce}.js?rev={$PAPAYA_VERSION}"></script>
         </xsl:when>
         <xsl:otherwise>
-          <script type="text/javascript" src="{$PAGE_WEB_PATH}/script/{$tinymce}/tiny_mce.js?rev={$PAPAYA_VERSION}"></script>
-          <script type="text/javascript" src="{$PAGE_WEB_PATH}/script/{$tinymce}.js?rev={$PAPAYA_VERSION}"></script>
+          <script type="text/javascript" src="{$PAGE_WEB_PATH}script/{$tinymce}/tiny_mce.js?rev={$PAPAYA_VERSION}"></script>
+          <script type="text/javascript" src="{$PAGE_WEB_PATH}script/{$tinymce}.js?rev={$PAPAYA_VERSION}"></script>
         </xsl:otherwise>
       </xsl:choose>
       <script type="text/javascript">
