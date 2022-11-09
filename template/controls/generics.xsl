@@ -183,6 +183,12 @@
       <xsl:text>?size=</xsl:text>
       <xsl:value-of select="$icon-size"/>
     </xsl:when>
+    <xsl:when test="contains($icon-src, '/icon.') or contains($icon-src, '/i18n-icon.')">
+      <xsl:value-of select="string($icon-src)"/>
+    </xsl:when>
+    <xsl:when test="starts-with($icon-src, 'i18n-icon.')">
+      <xsl:value-of select="string($icon-src)"/>
+    </xsl:when>
     <xsl:when test="starts-with($icon-src, 'http://') or starts-with($icon-src, 'https://')"><xsl:value-of select="$icon-src"/></xsl:when>
     <xsl:when test="starts-with($icon-src, 'extension.')"><xsl:value-of select="$icon-src"/>&amp;size=<xsl:value-of select="$icon-size"/></xsl:when>
     <xsl:when test="starts-with($icon-src, 'module:')">extension.image?module=<xsl:value-of select="substring($icon-src, 8, 32)"/>&amp;src=<xsl:value-of select="substring($icon-src, 41)"/>&amp;size=<xsl:value-of select="$icon-size"/>&amp;behavior=.png</xsl:when>
